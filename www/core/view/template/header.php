@@ -43,7 +43,7 @@
             <div class="container header-contacts__container ">
                 <ul class="header-list">
                     <li>
-                        <a href="#">О компании</a>
+                        <a href="/about">О компании</a>
 
                     </li>
                     <li>

@@ -255,7 +255,7 @@ if (orderItems) {
 // CHANGE AMOUNT LOGIC
 
 const chooseAmountBoxes = document.querySelectorAll('.choose-amount')
-chooseAmountBoxes.forEach(box => {
+chooseAmountBoxes?.forEach(box => {
     const increaseBtn = box.querySelector('.increase')
     const decreaseBtn = box.querySelector('.decrease')
     const current = box.querySelector('.current-amout')
