@@ -1,0 +1,3 @@
+a[id*="cke_Upload"], a[id*="cke_upload"] {
+	display: none!important;
+}

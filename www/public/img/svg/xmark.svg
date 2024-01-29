@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+  <symbol viewBox="0 0 17 17" id="xmark-icon" style="overflow: visible">
+  <rect x="2" y="-0.000244141" width="21" height="2.5" rx="1.25" transform="rotate(45 2 -0.000244141)" fill="white"/>
+  <rect y="15" width="21" height="2.5" rx="1.25" transform="rotate(-45 0 15)" fill="white"/>
+      </symbol>
+</svg>
