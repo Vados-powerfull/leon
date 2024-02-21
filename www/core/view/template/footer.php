@@ -2,8 +2,8 @@
     <div class="container footer-wrapper">
         <div class="footer-container container row">
 
-            <div class="col-sm-2 col-6 footer-container__item footer-mobile">
-                <a href="">
+            <div class="col-sm-2 col-12 footer-container__item footer-mobile footer-logo-leon">
+                <a href="" class="">
                     <img src="/public/img/logo-top.png" alt="">
 
                 </a>
@@ -38,7 +38,7 @@
                 </div>
 
             </div>
-            <div class="col-sm-3 footer-container__item footer-mobile__contacts footer-mobile col-6">
+            <div class="col-sm-3 footer-container__item footer-mobile__contacts footer-mobile col-12">
              
             
                 <div class="footer-phone__container adress-container">

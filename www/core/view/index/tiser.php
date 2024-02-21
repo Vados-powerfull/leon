@@ -31,7 +31,7 @@
                 </div>
             </a>
             <a href="#" class="tiser-card__wrapper">
-                <div class=" tiser-card" style="background-image: url('/public/img/cards/2.jpg');">
+                <div class="last-tiser__card tiser-card" style="background-image: url('/public/img/cards/2.jpg');">
                     <div class="tiser-card__container">
                         <p>Наши сотрудники
                             соберут ваш

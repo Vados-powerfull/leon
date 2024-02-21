@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="add-delivery-point">
-                <img src="./svg/plus.svg" alt="" />
+                <img src="/public/img/svg/plus.svg" alt="" />
                 <p>Добавить новый адрес доставки</p>
             </div>
             <div class="bonus-card">

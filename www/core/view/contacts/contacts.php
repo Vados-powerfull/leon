@@ -1,27 +1,27 @@
 <div class="container contacts-wrapper">
     <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-4">
             <p> Адрес: <br>
                 <span> Россия, Белгородская обл., Белгородский район, 308501, коттеджный посёлок Лесной,
                     село Шагаровка</span>
             </p>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-sm-2">
             <p>Телефоны <br>
                 <span>8 (910) 326-19-56</span>
             </p>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-sm-2">
             <p>График работы <br>
                 <span>с 10:00-22:00</span>
             </p>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-sm-2">
             <p>Эл. почта <br>
                 <span>leone_bel@mail.ru</span>
             </p>
         </div>
-        <div class="col-2">
+        <div class="col-6 col-sm-2">
             <p>Социальные сети <br></p>
             <a href="">
                 <img src="/public/img/svg/vk.svg" alt="">

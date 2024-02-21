@@ -1,5 +1,5 @@
 <div class="container">
-<div class="path">
+<div class="path long-path">
         <a href="#" class="main-page">Главная</a>
         <img src="/public/img/svg/path-arrow.svg" class="arrow-svg" alt="">
         <a href="/catalog" class="main-page">Каталог</a>

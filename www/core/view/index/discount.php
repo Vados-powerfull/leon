@@ -1,4 +1,4 @@
-<section class="section discount-section round-section">
+<section class="section discount-section discount-mobile round-section">
     <div class="container">
         <h6 class="small-title">Акции</h6>
         <h2 class="block-title">Скидки до -60%</h2>
@@ -28,6 +28,9 @@
                             149,95 руб
                         </span>
                     </div>
+                    <button class="item-card__buy-mobile">
+                        В корзину
+                    </button>
                     <button class="item-card__btn">
                         <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />

@@ -28,6 +28,9 @@
                             149,95 руб
                         </span>
                     </div>
+                    <button class="item-card__buy-mobile">
+                        В корзину
+                    </button>
                     <button class="item-card__btn">
                         <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />

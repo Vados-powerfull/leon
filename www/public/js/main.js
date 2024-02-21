@@ -229,6 +229,30 @@ registerBtn?.addEventListener('click', () => {
     registerWrapper.classList.remove('hidden')
 })
 
+// const orderItems = document.querySelectorAll('.order-item')
+// const empty = document.querySelector('.empty')
+// const clearBasket = document.querySelector('.clear-basket')
+
+// clearBasket?.addEventListener('click', () => {
+//     orderItems.forEach(item => {
+//         item.remove();
+//         empty.classList.remove('hidden')
+//     })
+// })
+
+// if (orderItems) {
+//     orderItems.forEach(item => {
+//         cancelBtn = item.querySelector('.cancel')
+//         cancelBtn.addEventListener('click', () => {
+//             item.remove();
+//             document.querySelectorAll('.order-item').length == 0 ? empty.classList.remove('hidden') : null;
+//         })
+//     })
+// } else {
+//     empty.classList.remove('hidden')
+// }
+// BASKET REMOVAL
+
 const orderItems = document.querySelectorAll('.order-item')
 const empty = document.querySelector('.empty')
 const clearBasket = document.querySelector('.clear-basket')
@@ -240,13 +264,33 @@ clearBasket?.addEventListener('click', () => {
     })
 })
 
-if (orderItems) {
+
+console.log(orderItems);
+if (orderItems) {	
     orderItems.forEach(item => {
         cancelBtn = item.querySelector('.cancel')
+        chooseAmount = item.querySelector('.choose-amount')
+        decrease = item.querySelector('.decrease')
+        increase = item.querySelector('.decrease')
         cancelBtn.addEventListener('click', () => {
             item.remove();
             document.querySelectorAll('.order-item').length == 0 ? empty.classList.remove('hidden') : null;
         })
+        if (window.innerWidth < 767) {
+            item.addEventListener('click', (e) => {
+                cancel = item.querySelector('.cancel')
+                if (e.target == item) {
+                    console.log(e.target)
+                    if (item.classList.contains('order-item-active')) {
+                        item.classList.remove('order-item-active')
+                        cancel.classList.remove('cancel-active')
+                    } else {
+                        item.classList.add('order-item-active')
+                        cancel.classList.add('cancel-active')
+                    }
+                }
+            })
+        }
     })
 } else {
     empty.classList.remove('hidden')
@@ -291,3 +335,34 @@ function uncheckAllPayment(checkbox) {
         }
     })
 };
+const catalogMobileBtn = document.querySelector('.catalog-mobile-btn')
+const catalogOpenBtn = document.querySelector('.phone-round-catalog')
+const modalMenu = document.querySelector('.modal-menu__wrapper')
+const modalMenuWrapper = document.querySelector('.modal-menu')
+const modalClose = document.querySelector('.modal-menu-close-btn')
+const submenuBtn = document.querySelector('.submenu-open') 
+const submenuWrapper = document.querySelector('.modal-sub-menu')
+const submenuBackBtn = document.querySelector('.submenu-back')
+const submenuClose = document.querySelector('.submenu-close')
+catalogOpenBtn?.addEventListener('click',()=>{
+	modalMenu.classList.add('active')
+})
+const subMenuBack = document.querySelector('.submenu-back')
+subMenuBack?.addEventListener('click',()=>{
+	modalMenuWrapper.classList.remove('d-none')
+})
+modalClose?.addEventListener('click',()=>{
+	modalMenu.classList.remove('active')
+})
+catalogMobileBtn?.addEventListener('click',()=>{
+	submenuWrapper.classList.add('active')
+
+})
+submenuBackBtn?.addEventListener('click',()=>{
+	submenuWrapper.classList.remove('active')
+	
+})
+submenuClose?.addEventListener('click',()=>{
+	submenuWrapper.classList.remove('active')
+	modalMenu.classList.remove('active')
+})

@@ -114,7 +114,7 @@
                     <div class="shelf-life-info">
                         <p class="shelf-life-info-content">
                             <span class="shelf-life-info-decorated">
-                                Срок хранения заказа – 6 часов в специально оборудованном помещении с необходимым
+                                Срок хранения заказа – 6 часов в специально оборудованном помещении с необходимым 
                                 температурным режимом.
                             </span>
                             По истечении этого срока заказ будет автоматически аннулирован.
@@ -144,8 +144,8 @@
                         <li>
                             <p>Время доставки от часа<span class="list-item-decorated"> до 4 часов;</span></p>
                         </li>
-                        <li>
-                            <p>Стоимость доставки заказа<span class="list-item-decorated"> от 200 рублей,</span> свыше
+                        <li class="long-delivery">
+                            <p >Стоимость доставки заказа<span class="list-item-decorated"> от 200 рублей,</span> свыше 
                                 4000 рублей –<span class="list-item-decorated"> бесплатно</span></p>
                         </li>
                     </ul>

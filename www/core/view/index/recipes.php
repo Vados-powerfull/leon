@@ -4,7 +4,7 @@
         <h2 class="block-title">НОВЫЕ РЕЦЕПТЫ КАЖДУЮ НЕДЕЛЮ</h2>
         <div class="recipe-container row">
 
-            <div class="col-6 recipe-big-wrapper">
+            <div class="col-12 col-sm-6 recipe-big-wrapper">
                 <a href="#" class="card-container recipe-card">
                     <img class="card-image" src="/public/img/recipes/1.jpg" alt="Product Image">
                     <div class="card-text">
@@ -19,7 +19,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-6 recipe-small-wrapper row">
+            <div class="col-12 col-sm-6 recipe-small-wrapper row">
                 <a href="#" class=" recipe-card">
                     <img src="/public/img/recipes/1.jpg" alt="">
                     <div class="recipe-card__container">

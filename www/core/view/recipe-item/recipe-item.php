@@ -1,9 +1,9 @@
 <div class="container recipe-item-container">
     <div class="row">
-        <div class="col-7">
+        <div class="col-sm-7 col-12">
             <img src="/public/img/recipe/3.jpg" alt="">
         </div>
-        <div class="col-5">
+        <div class="col-sm-5 col-12">
             <h3>
                 <strong>
                     Соус карри – <br>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-sm-6 col-12">
             <h2>
                 ПОМИМО ОСНОВНЫХ ИНГРЕДИЕНТОВ, <br>
                 В БЛЮДО ДОБАВЛЯЮТ:
@@ -41,7 +41,7 @@
                 В качестве гарнира лучше всего подойдёт отварной рис. По желанию, вместо риса можно подать спагетти или
                 овощи.</p>
         </div>
-        <div class="col-6">
+        <div class="col-sm-6 col-12">
             <h2>
                 РЕЦЕПТ КЛАССИЧЕСКИЙ НА СКОВОРОДЕ
             </h2>
