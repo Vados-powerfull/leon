@@ -490,6 +490,7 @@ section {
 }
 .nav-section {
 	padding: 14px 20px;
+	padding-bottom: 25px;
 	display: flex;
 	background: #fff;
 	border-radius: 20px;

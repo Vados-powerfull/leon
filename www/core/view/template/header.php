@@ -60,8 +60,7 @@
                 </li>
 
 
-
-
+               
             </div>
             <div class="phone-search container">
                 <div class="phone-round-catalog">
@@ -80,30 +79,19 @@
         <div class="contacts">
             <div class="container header-contacts__container ">
                 <ul class="header-list">
-                    <li>
-                        <a href="/about">О компании</a>
+                <?
+                // print_r($menu);
+                foreach ( $menu as $item ) {
+                
+                    ?> <li>
+                        <a href="<?=$item['url']?>"><?=$item['name']?></a>
+                    </li> <?
+                } ?>
 
-                    </li>
-                    <li>
-                        <a href="/delivery">Доставка и оплата</a>
-
-                    </li>
-                    <li>
-                        <a href="/help">Помощь при покупке</a>
-
-                    </li>
-                    <li>
-                        <a href="/recipe">Рецепты</a>
-
-                    </li>
-                    <li>
-                        <a href="/contacts">Контакты</a>
-
-                    </li>
                 </ul>
 
-                <a class="header-phone__container" href="tel:89103261956">
-                    <p>8 (910) 326-19-56</p> <img src="/public/img/svg/phone.svg" alt="">
+                <a class="header-phone__container" href="tel:<?=atel($kontakty["phone2"])?>">
+                    <p><?=$kontakty["phone2"]?></p> <img src="/public/img/svg/phone.svg" alt="">
                 </a>
             </div>
 
@@ -204,7 +192,7 @@
             <div class="modal-menu-phone">
                 <div class="modal-menu-phone-number">
 
-                    <a href="tel:<?=atel($kontakty["phone1"])?>">8 (910) 326-19-56</a>
+                    <a href="tel:<?=atel($kontakty["phone1"])?>"><?=$kontakty["phone1"]?></a>
                     <img src="/public/img/svg/phone.svg" alt="">
                 </div>
 
@@ -224,28 +212,14 @@
             </div>
 
 
+           <? foreach ( $menu as $item ) {
+               ?>   <div class="modal-menu-main-btn modal-menu-item">
+                  <a href="<?=$item['url']?>"><?=$item['name']?></a>
+              </div> <?
+               
+            } ?>
 
 
-
-            <div class="modal-menu-main-btn modal-menu-item">
-                <a href="/about">О Компании</a>
-            </div>
-
-            <div class="modal-menu-main-btn modal-menu-item">
-                <a href="/delivery">Доставка и оплата</a>
-            </div>
-
-            <div class="modal-menu-main-btn modal-menu-item">
-                <a href="/help">Помощь при покупке</a>
-            </div>
-
-            <div class="modal-menu-main-btn modal-menu-item">
-                <a href="/recipe">Рецепты</a>
-            </div>
-
-            <div class="modal-menu-main-btn modal-menu-item">
-                <a href="/contacts">Контакты</a>
-            </div>
 
         </div>
 
@@ -256,6 +230,7 @@
             <div class="submenu-title">
                 <img class="submenu-back" src="/public/img/svg/mobile-back.svg" alt="">
                 <div class="modal-menu-title">КАТАЛОГ</div>
+               
                 <img class="submenu-close close" src="/public/img/svg/mobile-close.svg" />
             </div>
         </div>
