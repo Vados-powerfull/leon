@@ -229,6 +229,16 @@ registerBtn?.addEventListener('click', () => {
     registerWrapper.classList.remove('hidden')
 })
 
+const mobileFilterBtn = document.querySelector('.mobile-filter__btn');
+const mobileFilterClose = document.querySelector('.modal-catalog-close-btn');
+const filterPopup = document.querySelector('.mobile-popup__wrapper');
+mobileFilterBtn?.addEventListener('click', () => { 
+	filterPopup.classList.add('active');
+})
+mobileFilterClose?.addEventListener('click', ()=> {
+	filterPopup.classList.remove('active');
+})
+
 // const orderItems = document.querySelectorAll('.order-item')
 // const empty = document.querySelector('.empty')
 // const clearBasket = document.querySelector('.clear-basket')

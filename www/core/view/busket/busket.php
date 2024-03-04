@@ -185,7 +185,7 @@
                 </div>
             </div>
             <div class="wrapper">
-                <div class="delivery-methods">
+                <div class="delivery-methods busket-delivery">
                     <h3 class="title delivery-title">Способ доставки</h3>
                     <div class="checkbox-container">
                         <input type="checkbox" onchange="uncheckAllDelivery(this)">
@@ -196,7 +196,7 @@
                         <label>Самовывоз</label>
                     </div>
                 </div>
-                <div class="payment-methods">
+                <div class="payment-methods busket-payment">
                     <h3 class="title payment-title">Способ оплаты</h3>
                     <div class="checkbox-container">
                         <input type="checkbox" onchange="uncheckAllPayment(this)">
