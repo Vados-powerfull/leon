@@ -24,7 +24,7 @@
                     <p>123</p>
                 </a> -->
 
-                <a href="/index.php" class="nav-main-logo main-logo"><img src="/public/img/logo-top.png" alt=""></a>
+                <a href="/" class="nav-main-logo main-logo"><img src="/public/img/logo-top.png" alt=""></a>
 
                 <li>
                     <a href="/lc">
@@ -80,9 +80,8 @@
             <div class="container header-contacts__container ">
                 <ul class="header-list">
                 <?
-                // print_r($menu);
                 foreach ( $menu as $item ) {
-                
+                // ВЕРХНЕЕ МЕНЮ ДЕСКТОП
                     ?> <li>
                         <a href="<?=$item['url']?>"><?=$item['name']?></a>
                     </li> <?
@@ -98,7 +97,7 @@
         </div>
         <div class="nav-section container">
             <!-- <img src="" alt=""> -->
-            <a href="/index.php" class="nav-main-logo main-logo"><img src="/public/img/logo-top.png" alt=""></a>
+            <a href="/" class="nav-main-logo main-logo"><img src="/public/img/logo-top.png" alt=""></a>
 
 
             <div class="navbar-link<?=$act?> navbar-link__dropdown" id="navbar-link">
@@ -115,23 +114,14 @@
                 <div class="navbar-dropdown">
                     <div class="dropdown-wrapper dropdown-wrapper__left">
 
-                        <div class="dropdown-container"><a href="#" class="">Овощи, фрукты</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Крепкий алкоголь, пиво</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Вода, соки, напитки</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Молоко, яйца</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Сладости</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Колбасы, сосиски, нарезки</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Сыры</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Хлеб и выпечка</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Рыба и морепродукты </a></div>
-                        <div class="dropdown-container"><a href="#" class="">Мясо и птица</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Чипсы, снеки</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Консервы, соленья</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Чай, кофе</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Соусы, приправы, специи</a></div>
-                        <div class="dropdown-container"><a href="#" class="">Бытовая химия</a></div>
-                    </div>
+                        <? foreach ($razdel_info as $item) {?>
+                            <!-- КАТАЛОГ ДЕСКТОП -->
+                        
+                            <div class="dropdown-container"><a href="/catalog/<?=$item["sys_name"]?>" class=""><?=$item["name"]?></a></div>
 
+
+                        <?  } ?>
+                    </div>
                 </div>
 
             </div>
@@ -175,13 +165,9 @@
 
     </div>
 
-
-
-
-
-
-
 </header>
+
+
 <div class="modal-menu__wrapper ">
     <div class="modal-menu">
         <div class="modal-menu-header">
@@ -212,12 +198,13 @@
             </div>
 
 
-           <? foreach ( $menu as $item ) {
-               ?>   <div class="modal-menu-main-btn modal-menu-item">
-                  <a href="<?=$item['url']?>"><?=$item['name']?></a>
-              </div> <?
+           <? foreach ( $menu as $item ) {?> 
+                 <!-- МОБИЛЬНОЕ МЕНЮ ХЕДЕРА -->
+               <div class="modal-menu-main-btn modal-menu-item">
+                    <a href="<?=$item['url']?>"><?=$item['name']?></a>
+                </div> 
                
-            } ?>
+            <?} ?>
 
 
 
@@ -240,39 +227,16 @@
 
         <div class="modal-menu-main-btns">
 
+        <? foreach ($razdel_info as $item) {?>
+                <!-- МОБИЛЬНЫЙ КАТАЛОГ ХЕДЕРА -->
 
 
-
-
-
             <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Овощи, фрукты</a>
+                <a href="<?=$item["sys_name"]?>"><?=$item["name"]?></a>
             </div>
 
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
-            <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="#">Крепкий алкоголь, пиво</a>
-            </div>
+        <? }?>
+
         </div>
     </div>
 </div>
