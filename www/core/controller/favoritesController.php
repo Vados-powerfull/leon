@@ -9,6 +9,7 @@
 	$razdel_info = mqs("SELECT * FROM catalog_razdel WHERE on_moderate=0  ORDER BY ordering");
 	$kontakty = mqo("SELECT * FROM contacts_settings WHERE id=1");
 	$page = mqo("SELECT * FROM pages WHERE sys_name='".end($path)."'");
+	$page_title = $page["page_title"];
 
 	include('core/view/head.php');
 	include('core/view/template/header.php');

@@ -124,7 +124,7 @@
                     </svg>
                 </button>
                 <div class="item-card__img">
-                    <a href="/itemcard/<?=$item["sys_name"]?>"> <img src="<?=$item["img"]?>" alt=""></a>
+                    <a href="/item/<?=$item["sys_name"]?>"> <img src="<?=$item["img"]?>" alt=""></a>
                 </div>
                 <div class="item-card__articul__wrapper">
                     <p class="item-card-articul">
@@ -152,7 +152,7 @@
 
 
                 </div>
-                <a href="/itemcard" class="item-card__title">
+                <a href="/item" class="item-card__title">
                     <?=$item["name"]?>
                 </a>
                 <p class="item-card__county">

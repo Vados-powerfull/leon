@@ -21,9 +21,9 @@
                     </svg>
                 </button>
                 <div class="item-card__img mt-1">
-                  <a href="/itemcard/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
+                  <a href="/item/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
                 </div>
-                <a href="/itemcard/<?=$item["sys_name"]?>" class="item-card__title">
+                <a href="/item/<?=$item["sys_name"]?>" class="item-card__title">
                     <?=$item["name"]?>
                 </a>
 

@@ -42,7 +42,7 @@
                         <?  
                              $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
                             foreach ($catalog_podcats as $pitem) {?>
-                            <a href="/<?=$citem["sys_name"]?>/<?=$pitem["sys_name"]?>"><?=$pitem["name"]?></a>
+                            <a href="/podcat/<?=$pitem["sys_name"]?>"><?=$pitem["name"]?></a>
                             <? } ?>
                         </div>
                     </div>
@@ -319,7 +319,7 @@
                     </svg>
                 </button>
                 <div class="item-card__img">
-                    <a href="/itemcard"> <img src="/public/img/items/1.jpg" alt=""></a>
+                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="/public/img/items/1.jpg" alt=""></a>
                 </div>
                 <div class="item-card__articul__wrapper">
                     <p class="item-card-articul">
@@ -329,7 +329,7 @@
                         Много
                     </span>
                 </div>
-                <a href="/itemcard" class="item-card__title">
+                <a href="/item/<?=$gitem["sys_name"]?>" class="item-card__title">
                     Сыр мягкий
                     «Егорлык Молоко»
                     Шевр в масле
@@ -364,7 +364,7 @@
                     </svg>
                 </button>
                 <div class="item-card__img">
-                    <a href="/itemalcocard"> <img src="/public/img/items/2.jpg" alt=""></a>
+                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="/public/img/items/2.jpg" alt=""></a>
                 </div>
                 <div class="item-card__articul__wrapper">
                     <p class="item-card-articul">
@@ -374,7 +374,7 @@
                         Много
                     </span>
                 </div>
-                <a href="/itemalcocard" class="item-card__title">
+                <a href="/item/<?=$gitem["sys_name"]?>" class="item-card__title">
                     Водка ABSOLUT 40%, 0.7л, Швеция, 0.7 L
                     <br><br>
                 </a>

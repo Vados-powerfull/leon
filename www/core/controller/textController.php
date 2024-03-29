@@ -9,6 +9,7 @@
 	$page = mqo("SELECT * FROM pages WHERE sys_name = ?",[end($path)]);
 	$metaTitle = $page['meta_title'];
 	$metaDescription = $page['meta_desc'];
+	$page_title = $page["page_title"];
 	$footerInfo = mqo("SELECT * FROM footer WHERE id = 1");
 	
 	$mobmenu = mqs("SELECT * FROM menu WHERE position = 4 AND on_moderate=0 ORDER BY ordering ASC");

@@ -4,7 +4,7 @@
         <div class="products-grid-container">
             <?  foreach ($razdel_info as $item) {?>
 
-                <a href="/category/<?=$item["sys_name"]?>" class="product-card">
+                <a href="/razdel/<?=$item["sys_name"]?>" class="product-card">
                     <img class="product-image" src="<?=$item["img"]?>" alt="">
                     <div class="product-cover">
                         <h3 class="text-overlay"><?=$item["name"]?></h3>

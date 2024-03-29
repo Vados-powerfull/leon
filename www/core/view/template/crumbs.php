@@ -2,30 +2,47 @@
 	<? $arr = '<img src="/public/img/svg/path-arrow.svg" class="arrow-svg" alt="">';
     $index = '<a href="/">Главная</a>'.$arr; ?>
         
-        <?
+    <?
 	if ($path[0] == 'catalog') {//каталог
-        if (isset($path[0])) $crumbs = $index.'<span href="#">Каталог</span>';
-        if (isset($path[1])) {
-        	$step1 = '<a href="/'.$path[0].'">Каталог</a>'.$arr; 
-        	$crumbs = $index.$step1.'<span href="#">'.$razdel_info["name"].'</span>';
-        }
-        if (isset($path[2])) { // Раздел-категория
-        	$step2 = '<a href="/'.$path[0].'/'.$path[1].'">'.$cat_info["name"].'</a>'.$arr;
-        	$crumbs = $index.$step1.$step2.'<span href="#">'.$cat_info["name"].'</span>';
-        }
-        if (isset($path[3])) { // подкат
-        	$step2 = '<a href="/'.$path[0].'/'.$path[1].'">'.$podcat_info["name"].'</a>'.$arr;
-        	$crumbs = $index.$step1.$step2.$step3.'<span href="#">'.$podcat_info["name"].'</span>';
-        }
-        if (isset($path[4])) { 
-        	$crumbs = $index.$step1.$step2.'<a href="/'.$path[0].'/'.$path[1].'/'.$path[2].'/'.$path[3].'">'.$item_info["name"].'</a>'.$arr.'<span href="#">'.$item_info["name"].'</span>';
-        }
-       
+        $crumbs = $index.'<span href="#">'.$page_title.'</span>';
+    }elseif($path[0] == 'razdel') {
+       $mrazdel_info = mqo("SELECT name FROM catalog_razdel WHERE sys_name='".end($path)."'"); 
+       $crumbs = $index.'<a href="/catalog">Каталог</a>'.$arr.'<span href="#">'.$mrazdel_info["name"].'</span>';
         
-        echo $crumbs;
 
-    } else {?>
+    }elseif($path[0] == 'podcat') {
+       $mpodcat_info = mqo("SELECT * FROM catalog_podcats WHERE sys_name='".end($path)."'"); 
+       $mrazdel_info = mqo("SELECT * FROM catalog_razdel WHERE id='".$mpodcat_info["razdel_id"]."'"); 
+       $mcat_info = mqo("SELECT * FROM catalog_cats WHERE id='".$mpodcat_info["cat_id"]."'"); 
+       
+       $crumbs = $index.'<a href="/catalog">Каталог</a>'.$arr.'<a href="/category/'.$mcat_info["sys_name"].'">'.$mcat_info["name"].'</a>'.$arr.
+       '<span href="#">'.$mpodcat_info["name"].'</span>';
+        
+
+    }elseif($path[0] == 'category') {
+       $mcat_info = mqo("SELECT * FROM catalog_cats WHERE sys_name='".end($path)."'"); 
+       
+       $crumbs = $index.'<a href="/catalog">Каталог</a>'.$arr.
+       '<span href="#">'.$mcat_info["name"].'</span>';
+        
+
+    } elseif($path[0] == 'item') {
+       $mitem_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'"); 
+       $mpodcat_info = mqo("SELECT * FROM catalog_podcats WHERE id='".$mitem_info["podcat_id"]."'"); 
+       $crumbs = $index.'<a href="/catalog">Каталог</a>'.$arr.'<a href="/podcat/'.$mpodcat_info["sys_name"].'">'.$mpodcat_info["name"].'</a>'.$arr.
+       '<span href="#">'.$mitem_info["name"].'</span>';
+        
+
+    } elseif($path[0] == 'recipe' && isset($path[1])) {
+       $mrecipe_info = mqo("SELECT * FROM recipes WHERE sys_name='".end($path)."'"); 
+       
+       $crumbs = $index.'<a href="/recipe">Рецепты</a>'.$arr.
+       '<span href="#">'.$mrecipe_info["page_title"].'</span>';
+        
+
+    }else {?>
     	<?=$index?><span href="#"><?=$page_title?></span>
     <?}?>
 
+    <?=$crumbs?>
 </nav>
