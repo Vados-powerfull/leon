@@ -1,4 +1,4 @@
-<div class="newsletter container">
+<div class="newsletter container pb-5">
         <h6 class="small-title">Подписка</h6>
         <h2 class="block-title"><span>Подпишитесь на нашу рассылку </span> <br>
             и получайте первыми информацию

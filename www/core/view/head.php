@@ -18,6 +18,6 @@
         <link rel="stylesheet" type="text/css" href="<?=hashPath('/public/css/style.css')?>" />
         <link rel="icon" href="public/img/favicon.jpg">
     
-        <title><?=$metaTitle?></title>
+        <title><?=$page["page_title"]?></title>
     </head>
     <body>

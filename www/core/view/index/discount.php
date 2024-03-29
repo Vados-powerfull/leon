@@ -3,35 +3,41 @@
         <h6 class="small-title">Акции</h6>
         <h2 class="block-title">Скидки до -60%</h2>
         <div class="discount-grid-container">
-        <?  for ($i = 0; $i < 4; $i++) {?>
+        <?  foreach ($sell as $item) {
+
+                $catalog_razdel = mqo("SELECT * FROM catalog_razdel WHERE id='".$item["razdel_id"]."'");
+                $catalog_cat = mqo("SELECT sys_name FROM catalog_cats WHERE id='".$item["cat_id"]."'");
+                $catalog_podcat = mqo("SELECT sys_name FROM catalog_podcats WHERE id='".$item["podcat_id"]."'");
+                // $goods_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'");
+                // $nal = mqo("SELECT * FROM catalog_nal WHERE id='".$item["nal_id"]."'"); НАЛИЧИЕ
+                ?>
+                
 
             <div class="item-card">
-                <span class="item-discount">-18%</span>
-                <button class="item-fav__btn">
+                <span class="item-discount"><?=$item["discount"]?></span>
+                <button class="item-fav__btn" data-id="<?=$item["id"]?>">
                     <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 27 22">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
-                <div class="item-card__img">
-                  <a href="/itemcard">  <img src="/public/img/items/1.jpg" alt=""></a>
+                <div class="item-card__img mt-1">
+                  <a href="/itemcard/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
                 </div>
-                <a href="/itemcard" class="item-card__title">
-                     Сыр мягкий
-                    «Егорлык Молоко»
-                    Шевр в масле
+                <a href="/itemcard/<?=$item["sys_name"]?>" class="item-card__title">
+                    <?=$item["name"]?>
                 </a>
 
                 <div class="price-wrapper">
                     <div class="price-container">
-                        <p>333,99</p>
+                        <p><?=$item["price2"]?></p>
                         <span>
-                            149,95 руб
+                            <?=$item["price"]?> руб
                         </span>
                     </div>
-                    <button class="item-card__buy-mobile">
+                    <button class="item-card__buy-mobile" data-id="<?=$item["id"]?>">
                         В корзину
                     </button>
-                    <button class="item-card__btn">
+                    <button class="item-card__btn" data-id="<?=$item["id"]?>">
                         <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
@@ -40,8 +46,8 @@
             </div>
              <?} ?>
         </div>
-        <button class="upload-more__btn black-btn">
-        Загрузить еще
+        <button class="upload-more__btn black-btn" data-id="<?=$item["id"]?>">
+            <a href="/category/<?=$catalog_razdel["sys_name"]?>/<?=$catalog_cat["sys_name"]?>/<?=$catalog_podcat["sys_name"]?>" style="color: white; text-decoration: none">Загрузить еще</a>
         </button>
     </div>
 </section>

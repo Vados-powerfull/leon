@@ -5,7 +5,5 @@
         <a href="#" class="main-page">Корзина</a>
        
     </div>
-    <h2 class="page-title">
-    Мой заказ
-    </h2>
+
 </div>

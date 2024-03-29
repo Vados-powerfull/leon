@@ -1,33 +1,38 @@
 <div class="container contacts-wrapper">
     <div class="row">
+    <div class="mt-3">
+        <? include ("core/view/template/crumbs.php"); ?>
+    </div>
+    <h2 class="page-title mb-5">
+        Контакты
+    </h2>
         <div class="col-12 col-sm-4">
             <p> Адрес: <br>
-                <span> Россия, Белгородская обл., Белгородский район, 308501, коттеджный посёлок Лесной,
-                    село Шагаровка</span>
+                <span><?=$kontakty["address2"]?></span>
             </p>
         </div>
         <div class="col-6 col-sm-2">
             <p>Телефоны <br>
-                <span>8 (910) 326-19-56</span>
+                <a href="tel:<?=atel($kontakty["phone2"])?>" ><?=$kontakty["phone2"]?></a>
             </p>
         </div>
         <div class="col-6 col-sm-2">
             <p>График работы <br>
-                <span>с 10:00-22:00</span>
+                <span><?=$kontakty["rezhim"]?></span>
             </p>
         </div>
         <div class="col-6 col-sm-2">
             <p>Эл. почта <br>
-                <span>leone_bel@mail.ru</span>
+                <span><?=$kontakty["email"]?></span>
             </p>
         </div>
         <div class="col-6 col-sm-2">
             <p>Социальные сети <br></p>
-            <a href="">
+            <a href="<?=$kontakty["vk_href"]?>">
                 <img src="/public/img/svg/vk.svg" alt="">
 
             </a>
-            <a href="">
+            <a href="youtube.com">
                 <img src="/public/img/svg/youtube.svg" alt="">
             </a>
         </div>

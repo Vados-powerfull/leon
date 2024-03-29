@@ -210,6 +210,23 @@ $(document).ready(function () {
           $("#slider-range-popup").slider("values", 1, endValuepopup);
       });
   
+	  // Обработчик формы нажатия на кнопки + и -
+		// Обработка нажатия на кнопку "-"
+	$('.basket-counter button:contains("-")').click(function(){
+		var counter = $(this).next('.basket-counter__text');
+		var count = parseInt(counter.text()) - 1;
+		count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
+		counter.text(count);
+	  });
+	  
+	  // Обработка нажатия на кнопку "+"
+	  $('.basket-counter button:contains("+")').click(function(){
+		var counter = $(this).prev('.basket-counter__text');
+		var count = parseInt(counter.text()) + 1;
+		counter.text(count);
+	  });
+
+
 	$(".collapsible").click(function() {
 	
 		var content = $(this).find(".content");
@@ -247,3 +264,120 @@ $(document).ready(function () {
 
 	$("input[type=tel]").mask("+7 (999) 999 99 99");
 });
+
+
+
+// ПЕРЕЕХАЛО ИЗ АГРОЗА
+
+// Загрузка счетчика из sessionStorage при инициализации
+if (sessionStorage.getItem("favoritesCount")) {
+	$("#favorites-count").text(sessionStorage.getItem("favoritesCount"));
+}
+
+
+if ($(".add_to_favorites").length > 0) {
+	id = $(".add_to_favorites").attr("data-id");
+	mcookie = getCookie("favorites");
+	if (mcookie != undefined && mcookie.includes(id+",")) $(".add_to_favorites").css("color","#00742c")
+}
+fav_count();
+$(".add_to_favorites").click(function() {
+	id = $(this).attr("data-id"); 
+	if (checkCookieExists("favorites") == false) 
+	{	
+		addCookie("favorites", id+",");
+		$(this).css("color","#00742c")
+	}
+	else {
+		mcookie = getCookie("favorites");
+		if (mcookie.includes(id+",") == false)
+		{
+			addCookie("favorites", mcookie+id+",");
+			$(this).css("color","#00742c")
+		}
+		else { 
+			mcookie = mcookie.replace(id+",", '');
+			addCookie("favorites", mcookie);
+			$(this).css("color","lightgrey")
+		}
+	}
+	fav_count();
+});
+$(".del_from_fav").click( function(){
+	id = $(this).attr("data-id");
+	mcookie = getCookie("favorites");
+	mcookie = mcookie.replace(id+",", '');
+	addCookie("favorites", mcookie);
+	location.reload();
+})
+
+
+if ($(".add_to_compare").length > 0) {
+	id = $(".add_to_compare").attr("data-id");
+	mcookie = getCookie("compare"); 
+	if (mcookie != undefined && mcookie.includes(id+",")) $(".add_to_compare").css("color","#00742c")
+}
+compare_count();
+$(".add_to_compare").click(function() {
+	id = $(this).attr("data-id");
+	if (checkCookieExists("compare") == false) 
+	{	
+		addCookie("compare", id+",");
+		$(this).css("color","#00742c")
+	}
+	else {
+		mcookie = getCookie("compare");
+		if (mcookie.includes(id+",") == false)
+		{
+			addCookie("compare", mcookie+id+",");
+			$(this).css("color","#00742c")
+		}
+		else { 
+			mcookie = mcookie.replace(id+",", '');
+			addCookie("compare", mcookie);
+			$(this).css("color","lightgrey")
+		}
+	}
+	compare_count();
+});
+$(".del_from_compare").click( function(){
+	id = $(this).attr("data-id");
+	mcookie = getCookie("compare");
+	mcookie = mcookie.replace(id+",", '');
+	addCookie("compare", mcookie);
+	location.reload();
+})
+$(".compare-clear-btn").click(function (){
+	addCookie("compare", "");
+})
+	
+
+cart_count();
+$(".add_to_cart, .buy-btn").click(function() {
+	id = $(this).attr("data-id");
+	
+	if (checkCookieExists("cart") == false) 
+	{	
+		addCookie("cart", id+",");
+		alert('Товар добавлен в корзину')
+	}
+	else {
+		mcookie = getCookie("cart");
+		if (mcookie != undefined && mcookie.includes(id+",") == false)
+		{
+			addCookie("cart", mcookie+id+",");
+			alert('Товар добавлен в корзину')
+		}
+		else { 
+			alert('Товар добавлен в корзину')
+		}
+	}
+	cart_count();
+});
+$(".del_from_cart").click( function(){
+	id = $(this).attr("data-id");
+	mcookie = getCookie("cart");
+	mcookie = mcookie.replace(id+",", '');
+	addCookie("cart", mcookie);
+	location.reload();
+})

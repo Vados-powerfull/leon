@@ -7,6 +7,7 @@ html {
 	padding: 0;
 	margin: 0 auto;
 }
+
 @font-face {
 	font-weight: 400;
 	font-family: Unbounded;
@@ -66,8 +67,10 @@ h3 {
 
 a {
 	transition: all 0.2s linear;
+	color: black;
 }
 a:hover {
+	color: black;
 }
 
 .mdnone {
@@ -488,6 +491,9 @@ section {
 	padding-top: 60px;
 	padding-bottom: 50px;
 }
+
+
+
 .nav-section {
 	padding: 14px 20px;
 	padding-bottom: 25px;
@@ -1067,6 +1073,7 @@ section {
 .catalog-section {
 	background-color: #fff;
 	padding-bottom: 130px;
+	margin-top: -50px;
 }
 .catalog-section h2,
 .catalog-section h6 {
@@ -1128,7 +1135,6 @@ section {
 	border-radius: 30px;
 	background: #ee9d01;
 	padding: 50px;
-	margin-top: 50px;
 	position: relative;
 }
 .newsletter-wrapper {
@@ -1260,7 +1266,14 @@ section {
 	padding-bottom: 15px;
 	padding-left: 30px;
 }
+.ritem_img {
+	max-height: 222px;
+	max-width: 261px;
+	overflow: hidden;
+	
+	
 
+}
 .recipe-big-wrapper .card-image {
 	width: 100%;
 
@@ -1268,7 +1281,7 @@ section {
 	height: inherit;
 	border-radius: 25px;
 	object-fit: cover;
-	filter: brightness(70%);
+	/* filter: brightness(70%); */
 }
 
 .recipe-big-wrapper .card-text {
@@ -1287,20 +1300,23 @@ section {
 	padding: 0;
 	background-color: #fff;
 	margin-bottom: 30px;
+	height: 222px;
+	overflow: hidden;
 }
+
 .recipe-card > img {
 	height: 222px;
 	border-radius: 30px;
 }
 .recipe-card h4 {
 	color: #262626;
-	font-family: Unbounded;
+	font-family: Unbounded;	
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: 125%; /* 22.5px */
 	letter-spacing: 0.36px;
-	width: 71%;
+	width: 91%;
 }
 .recipe-card p {
 	color: #9d9d9d;
@@ -1309,6 +1325,8 @@ section {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 125%;
+	overflow: hidden;
+	
 }
 .recipe-card {
 	text-decoration: none;
@@ -1332,6 +1350,7 @@ section {
 	padding: 30px;
 	position: relative;
 	padding-bottom: 0;
+	width: 370px;
 }
 .recipe-card__container .link-arrow {
 	position: absolute;
@@ -1492,8 +1511,10 @@ section {
 	}
 }
 
+.newsletter container 
+
 .path {
-	margin-top: 60px;
+	margin-top: 10px;
 	display: flex;
 	justify-content: start;
 
@@ -2530,6 +2551,12 @@ input[type="number"]::-webkit-inner-spin-button {
 	height: 100%;
 	padding: 30px;
 }
+
+.item-card__img img{
+	height: 155px;
+	
+	overflow: hidden;
+}
 .item-card__price {
 	display: flex;
 	background-color: #fff;
@@ -2928,7 +2955,9 @@ input[type="number"]::-webkit-inner-spin-button {
 	margin-top: 30px;
 }
 .map-container {
+	margin-top: 70px;
 	margin-bottom: 300px;
+
 }
 .contacts-wrapper a img {
 	margin-top: 5px;
@@ -2959,7 +2988,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .recipe-big-card img {
 	border-radius: 30px;
+	max-width: 100%;
+	
 }
+
 .recipe-big-card h3 {
 	color: #262626;
 	font-family: Unbounded;
@@ -2970,16 +3002,44 @@ input[type="number"]::-webkit-inner-spin-button {
 	letter-spacing: 0.36px;
 	margin-bottom: 15px;
 	margin-top: 20px;
-}
+}	
+
 .recipe-big-card p {
 	color: #9d9d9d;
 	font-family: Unbounded;
 	font-size: 14px;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: normal;
 	line-height: 125%; /* 17.5px */
 	margin-bottom: 20px;
+	max-height: 50px;
+	overflow: hidden;
 }
+.recipe_img_card {
+	
+	overflow: hidden ;
+	float: left ;
+	max-width: 100%;
+	margin-right: 25px;
+	margin-bottom: 20px;
+}
+.recipe_text {
+	
+}
+.recipe_text_card {
+	padding-top: 30px;
+}
+
+.recipe_text_card h3{
+	float: right;
+	width:  450px;
+	margin-right: 12px;
+	margin-bottom: 20px;
+
+}
+
+
+
 .recipe-big-card p span {
 	font-weight: 700;
 }
@@ -5353,6 +5413,7 @@ footer {
 	.recipe-small-wrapper {
 		display: block;
 	}
+	
 	.recipe-small-wrapper .recipe-card {
 		display: block;
 		margin-left: 10px;
@@ -5464,6 +5525,10 @@ footer {
 		margin-left: 15px;
 		margin-top: 20px;
 		padding-bottom: 20px;
+	}
+
+	.crumbs_fav {
+		padding-top: 150px;
 	}
 	.contacts-wrapper .newsletter {
 		left: -15px;

@@ -1,27 +1,32 @@
 <section class="section tiser-section">
     <div class="container">
         <div class="main-grid-container">
-
-            <a href="#" class="tiser-card__wrapper">
-                <div class="big-tiser__card tiser-card" style="background-image: url('/public/img/cards/1.jpg');">
+        <? $banner1 = mqo("SELECT * FROM banners WHERE position = 1");
+           $banner2 = mqo("SELECT * FROM banners WHERE position = 2");
+           $banner3 = mqo("SELECT * FROM banners WHERE position = 3")
+        ?>
+<!-- первый -->
+            <a href="<?=$banner1["btn_href"]?>" class="tiser-card__wrapper"  >
+                <div class="big-tiser__card tiser-card" style="background-image: url('<?=$banner1["img"]?>');">
                     <div class="tiser-card__container">
-                        <p>Порадуйте себя хрустящим хлебом, ароматным печением и нежнейшими тортами</p>
-                        <h3>Свежая выпечка каждый день</h3>
+                        <p><?=$banner1["descr"]?></p>
+                        <h3><?=$banner1["name"]?></h3>
                         <div class="link-arrow">
                             <img src="/public/img/svg/arrow.svg" alt="">
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="#" class="tiser-card__wrapper tiser-card color-tiser__card"
-                style="background-image: url('/public/img/cards/3.jpg');">
+<!-- второй -->
+            <a href="<?=$banner2["btn_href"]?>" class="tiser-card__wrapper tiser-card color-tiser__card"
+                style="background-image: url('<?=$banner2["img"]?>');">
                 <div class="tiser-card__container">
                     <div class="color-card__container">
                         <p>
-                            В ассортименте мясные и молочные продукты и свежая зелень
+                            <?=$banner2["descr"]?>
                         </p>
                         <h4>
-                            ФЕРМЕРСКИЕ ПРОДУКТЫ БЕЛОГОРЬЯ
+                            <?=$banner2["name"]?>
                         </h4>
                         <div href="#" class="link-arrow">
 
@@ -30,21 +35,19 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="tiser-card__wrapper">
-                <div class="last-tiser__card tiser-card" style="background-image: url('/public/img/cards/2.jpg');">
+<!-- третий -->
+            <a href="<?=$banner3["btn_href"]?>" class="tiser-card__wrapper">
+                <div class="last-tiser__card tiser-card" style="background-image: url('<?=$banner3["img"]?>');">
                     <div class="tiser-card__container">
-                        <p>Наши сотрудники
-                            соберут ваш
-                            заказ и доставят
-                            по указанному
-                            Вами адресу</p>
-                        <h4>ДОСТАВКА ПРОДУКТОВ ДОМОЙ</h4>
+                        <p><?=$banner3["descr"]?></p>
+                        <h4><?=$banner3["name"]?></h4>
                         <div class="link-arrow">
                             <img src="/public/img/svg/arrow.svg" alt="">
                         </div>
                     </div>
                 </div>
             </a>
+            
         </div>
     </div>
 </section>

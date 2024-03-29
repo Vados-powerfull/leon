@@ -1,10 +1,9 @@
 <div class="container">
-    <div class="path">
-        <a href="#" class="main-page">Главная</a>
-        <img src="/public/img/svg/path-arrow.svg" class="arrow-svg" alt="">
-        <h5 class="current-page">Доставка и оплата</h5>
+    <div class=" mt-5">
+    <? include ("core/view/template/crumbs.php"); ?>
     </div>
-    <h1 class="payment-title">Оплата заказа</h1>
+    
+    <h1 class="payment-title"><?=$page["meta_title"]?></h1>
     <div class="order-info">
         <img src="/public/img/payment/clock.svg" class="clock-svg" alt="">
         <div class="order-info-wrapper">
@@ -73,7 +72,7 @@
                     МИР, Visa Int., MasterCard Europe Sprl, JCB.
                 </p>
             </div>
-            <h3 class="payment-method-title card-to-courier-title"">2. Картой курьеру при получении заказа</h3>
+            <h3 class="payment-method-title card-to-courier-title">2. Картой курьеру при получении заказа</h3>
             </div>
         </div>
         <h2 class=" delivery-title">Доставка</h2>

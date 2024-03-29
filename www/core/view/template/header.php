@@ -117,7 +117,7 @@
                         <? foreach ($razdel_info as $item) {?>
                             <!-- КАТАЛОГ ДЕСКТОП -->
                         
-                            <div class="dropdown-container"><a href="/catalog/<?=$item["sys_name"]?>" class=""><?=$item["name"]?></a></div>
+                            <div class="dropdown-container"><a href="/category/<?=$item["sys_name"]?>" class=""><?=$item["name"]?></a></div>
 
 
                         <?  } ?>

@@ -1,29 +1,56 @@
-<? include('core/view/category/category-mobile-popup.php'); ?>
+<div class="path mt-5 container">
+    <? include ("core/view/template/crumbs.php"); ?>
+</div>
+
+
+    <?
+        // $razdel_info = mqo("SELECT * FROM catalog_razdel WHERE sys_name='".end($path)."'");
+        // $cat_info = mqs("SELECT * FROM catalog_cats WHERE sys_name='".end($path)."'");
+        // $podcat_info = mqo("SELECT * FROM catalog_podcats WHERE sys_name='".end($path)."'");
+        $goods_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'");
+    ?>
+
+
+
+<h2 class="page-title container">
+    <?=$razdel_info["name"]?>
+</h2>
+
 <div class="container category-wrapper">
+   
     <div class="category-aside">
         <div class="aside-category__dropdowns">
-            <div class="aside-preview">
-                <h3>Рыба <br>
-                    и морепродукты</h3>
-            </div>
-            <div class="question  question-active">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Охлажденная
-                            и переработанная
-                            рыбная продукция</h3>
-                        <button class="dropdown dropdown-active"></button>
 
-                    </div>
-                    <div class="question-text  text-active text-slide-in">
-                        <a href="#">Живая рыба и морепродукты</a>
-                        <a href="#">Лососевая рыба</a>
-                        <a href="#">Белая рыба</a>
-                        <a href="#">Экзотическая рыба</a>
+            <!-- <div class="aside-preview">  НУЖЕН ПОВТОР РАЗДЕЛА ТУТ?
+                <h3><?=$razdel_info["name"]?></h3>
+            </div> -->
+
+
+
+            <? foreach ($cat_info as $citem) {?>
+           
+                <div class="question  question-active">
+                    <div class="quesion-body">
+                        <div class="question-title-wrapper">
+                            <h3 class="question-title title-active"><?=$citem["name"]?></h3>
+                            <button class="dropdown dropdown-active"></button>
+
+                        </div>
+                        
+                        <div class="question-text  text-active text-slide-in">
+                                              
+                        <?  
+                             $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
+                            foreach ($catalog_podcats as $pitem) {?>
+                            <a href="/<?=$citem["sys_name"]?>/<?=$pitem["sys_name"]?>"><?=$pitem["name"]?></a>
+                            <? } ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="question  ">
+            <? } ?>
+
+
+            <!-- <div class="question  ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
                         <h3 class="question-title title-active">Замороженная рыба
@@ -43,6 +70,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="question  ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
@@ -88,7 +116,10 @@
                     <a href="#">Икра</a>
 
                 </div>
-            </div>
+            </div> -->
+
+
+
         </div>
         <div class="desktop-category">
             <div class="range-slider__wrapper">
