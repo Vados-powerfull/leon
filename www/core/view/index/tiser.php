@@ -37,7 +37,7 @@
             </a>
 <!-- третий -->
             <a href="<?=$banner3["btn_href"]?>" class="tiser-card__wrapper">
-                <div class="last-tiser__card tiser-card" style="background-image: url('<?=$banner3["img"]?>');">
+                <div class="last-tiser__card tiser-card mb-5" style="background-image: url('<?=$banner3["img"]?>');">
                     <div class="tiser-card__container">
                         <p><?=$banner3["descr"]?></p>
                         <h4><?=$banner3["name"]?></h4>

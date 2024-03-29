@@ -48,7 +48,7 @@
                 <div class="footer-phone__container adress-container">
                     <p>Адрес:
                     </p>
-                    <span><?=$kontakty["adres2"]?></span>
+                    <span><?=$kontakty["address"]?></span>
                 </div>
                 <div class="footer-svg__container ">
                     <a href="<?=$kontakty["vk_href"]?>">
@@ -70,7 +70,7 @@
     <div class="deep-footer">
         <div class="container ">
             <p class="thin-text"><?=$footerInfo['copyright']?></p>
-            <p class="thin-text"><a href="<?=$footerInfo['link']?>">
+            <p class="thin-text"><a href="politika">
                     Политика конфиденциальности
                 </a></p>
         </div>

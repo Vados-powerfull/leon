@@ -55,7 +55,7 @@
            
         </div>
         <button class="upload-more__btn black-btn">
-            Смотреть все
+            <a href="/recipe" style="color: white; text-decoration: none">Смотреть все</a>
         </button>
     </div>
 

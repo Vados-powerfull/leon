@@ -1,6 +1,5 @@
 <section class="section catalog-section  discount-section round-section">
     <div class="container">
-        <h6 class="small-title">Каталог</h6>
         <h2 class="block-title">Наши продукты</h2>
         <div class="products-grid-container">
             <?  foreach ($razdel_info as $item) {?>

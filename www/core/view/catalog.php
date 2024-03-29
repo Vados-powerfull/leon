@@ -1,10 +1,8 @@
 <div class="container">
-<div class="path mt-5">
-        <a href="/" class="main-page">Главная</a>
-        <img src="/public/img/svg/path-arrow.svg" class="arrow-svg" alt="">
-        <h5 class="current-page">Каталог</h5>
+<div class="mt-5">
+    <?include('core/view/template/crumbs.php');?>
     </div>
-    <h2 class="page-title">
+    <h2 class="page-title mt-5">
     Каталог
     </h2>
 </div>
