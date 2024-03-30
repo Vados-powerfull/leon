@@ -9,9 +9,11 @@
 	$kontakty = mqo("SELECT * FROM contacts_settings WHERE id=1");
 
 	$razdel_info = mqs("SELECT * FROM catalog_razdel WHERE on_moderate=0  ORDER BY ordering");
+	$mmrazdel_info = mqo("SELECT * FROM catalog_razdel WHERE sys_name='".end($path)."'");
+	$mmcat_info = mqo("SELECT * FROM catalog_cats WHERE sys_name='".end($path)."'");
 	$cat_info = mqs("SELECT * FROM catalog_cats WHERE on_moderate=0  ORDER BY ordering");
 	$podcat_info = mqs("SELECT * FROM catalog_podcats WHERE on_moderate=0  ORDER BY ordering");
-	$goods = mqs("SELECT * FROM catalog WHERE on_moderate=0  ORDER BY ordering");
+	$goods_info = mqs("SELECT * FROM catalog WHERE on_moderate=0  ORDER BY ordering");
 
 	$catalog_brands = mqs("SELECT * FROM catalog_brands WHERE on_moderate=0 ORDER BY ordering"); // БРЕНД 
 	$catalog_country = mqs("SELECT * FROM catalog_country WHERE on_moderate=0 ORDER BY ordering"); // СТРАНЫ

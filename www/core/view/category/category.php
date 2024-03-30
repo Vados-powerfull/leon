@@ -7,7 +7,7 @@
         // $razdel_info = mqo("SELECT * FROM catalog_razdel WHERE sys_name='".end($path)."'");
         // $cat_info = mqs("SELECT * FROM catalog_cats WHERE sys_name='".end($path)."'");
         // $podcat_info = mqo("SELECT * FROM catalog_podcats WHERE sys_name='".end($path)."'");
-        $goods_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'");
+        // $goods_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'");
     ?>
 
 
@@ -26,7 +26,7 @@
             </div> -->
 
 
-
+           
             <? foreach ($cat_info as $citem) {?>
            
                 <div class="question  question-active">
@@ -308,91 +308,60 @@
                 <img src="/public/img/svg/filter.svg" alt="">
             </div>
         </div>
+
+<!-- ВЫВОД ТОВАРОВ --><!-- ВЫВОД ТОВАРОВ --><!-- ВЫВОД ТОВАРОВ --><!-- ВЫВОД ТОВАРОВ --><!-- ВЫВОД ТОВАРОВ --><!-- ВЫВОД ТОВАРОВ -->
+        
         <div class="category-grid__container">
-            <?  for ($i = 0; $i < 6; $i++) {?>
+        
+           <? if ($path[0] == 'razdel') $goods = mqs("SELECT * FROM catalog WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0 ORDER BY ordering"); 
+              elseif ($path[0] == 'category') $goods = mqs("SELECT * FROM catalog WHERE cat_id='".$mmcat_info["id"]."' AND on_moderate=0 ORDER BY ordering");
+              elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ORDER BY ordering"); 
+          
+          ?>
+          <? foreach ($goods as $gitem) {
+                
+                $gnal = mqo("SELECT * FROM catalog_nal WHERE id='".$gitem["nal_id"]."'");
+                $gcountry = mqo("SELECT * FROM catalog_country WHERE id='".$gitem["country_id"]."'");
+                
+
+            ?>
 
             <div class="item-card item-discount__card">
-                <span class="item-discount">-18%</span>
-                <button class="item-fav__btn">
+                <span class="item-discount"><?=$gitem["discount"]?></span>
+                <button class="item-fav__btn" data-id="<?=$gitem["id"]?>">
                     <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 27 22">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
                 <div class="item-card__img">
-                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="/public/img/items/1.jpg" alt=""></a>
+                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="<?=$gitem["img"]?>" alt=""></a>
                 </div>
                 <div class="item-card__articul__wrapper">
                     <p class="item-card-articul">
-                        арт. 688541
+                        арт. <?=$gitem["art"]?>
                     </p>
                     <span class="item-card__count green">
-                        Много
+                    <?=$gnal["name"]?>
                     </span>
                 </div>
                 <a href="/item/<?=$gitem["sys_name"]?>" class="item-card__title">
-                    Сыр мягкий
-                    «Егорлык Молоко»
-                    Шевр в масле
+                    <?=$gitem["name"]?>
                 </a>
                 <p class="item-card__county">
-                    Вьетнам, 400 г
+                    <?=$gcountry["name"]?>, <?=$gitem["ves"]?> г
                 </p>
 
                 <div class="price-wrapper">
                     <div class="price-container ">
-                        <p>333,99</p>
+                        <p><?=$gitem["price2"]?></p>
                         <span>
-                            149,95 руб
+                        <?=$gitem["price"]?> руб
                         </span>
                     </div>
 
                 </div>
                 <div class="item-card__buy-btn-wrapper">
-                    <button class="item-card__busket-btn">
-                        В корзину
-                    </button>
-                    <button class="item-card__buy-btn">
-                        Купить в 1 клик
-                    </button>
-                </div>
-            </div>
-            <div class="item-card">
-                <span class="item-new">Новинка</span>
-                <button class="item-fav__btn">
-                    <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 27 22">
-                        <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
-                    </svg>
-                </button>
-                <div class="item-card__img">
-                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="/public/img/items/2.jpg" alt=""></a>
-                </div>
-                <div class="item-card__articul__wrapper">
-                    <p class="item-card-articul">
-                        арт. 688541
-                    </p>
-                    <span class="item-card__count green">
-                        Много
-                    </span>
-                </div>
-                <a href="/item/<?=$gitem["sys_name"]?>" class="item-card__title">
-                    Водка ABSOLUT 40%, 0.7л, Швеция, 0.7 L
-                    <br><br>
-                </a>
-                <p class="item-card__county">
-                    Вьетнам, 400 г
-                </p>
-
-                <div class="price-wrapper">
-                    <div class="price-container new-price__container">
-
-                        <span>
-                            149,95 руб
-                        </span>
-                    </div>
-
-                </div>
-                <div class="item-card__buy-btn-wrapper">
-                    <button class="item-card__busket-btn">
+                    <button class="item-card__busket-btn" data-id="<?=$gitem["id"]?>">
                         В корзину
                     </button>
                     <button class="item-card__buy-btn">
@@ -401,6 +370,8 @@
                 </div>
             </div>
             <?} ?>
+
+<!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END -->
 
         </div>
         <nav aria-label="Page navigation example">
