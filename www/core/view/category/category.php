@@ -138,6 +138,10 @@
                 </div>
 
             </div>
+
+
+
+
             <div class="question aside-white__question ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
@@ -146,26 +150,19 @@
 
                     </div>
                     <div class="question-text text-slide-in">
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms1" type="checkbox">
-                            <label for="terms1">365 ДНЕЙ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms2" type="checkbox">
-                            <label for="terms2">5 ОКЕАНОВ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms3" type="checkbox">
-                            <label for="terms3">Agama <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms4" type="checkbox">
-                            <label for="terms4">AQUA PRODUKT <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms5" type="checkbox">
-                            <label for="terms5">BONVIDA <span>(1)</span></label>
-                        </div>
+                        <? $n = 1; 
+                        foreach ($catalog_brands as $bitem) {
+                        
+                            
+                            ?>
+                          
+                        
+                            <div class="checkbox-container checkbox-category__container">
+                                <input id="terms<?=$n?>" type="checkbox">
+                                <label for="terms<?=$n?>"><?=$bitem["name"]?><span>(1)</span></label>
+                            </div>
+                        <? $n++;} ?>
+                        
 
                         <span class="show-all-btn">
                             Показать все
@@ -328,8 +325,8 @@
 
             <div class="item-card item-discount__card">
                 <span class="item-discount"><?=$gitem["discount"]?></span>
-                <button class="item-fav__btn" data-id="<?=$gitem["id"]?>">
-                    <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 27 22">
+                <button class="item-fav__btn" >
+                    <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22" data-id="<?=$gitem["id"]?>">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
@@ -361,7 +358,7 @@
 
                 </div>
                 <div class="item-card__buy-btn-wrapper">
-                    <button class="item-card__busket-btn" data-id="<?=$gitem["id"]?>">
+                    <button class="item-card__busket-btn add_to_cart" data-id="<?=$gitem["id"]?>">
                         В корзину
                     </button>
                     <button class="item-card__buy-btn">

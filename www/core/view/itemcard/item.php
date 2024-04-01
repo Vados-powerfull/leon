@@ -1,7 +1,19 @@
 <div class="item-card item-discount__card">
-                <span class="item-discount"><?=$gitem["discount"]?></span>
+
+<!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА -->
+
+                <?if ($gitem["discount"] === 'Новинка') {
+                   echo '<span class="item-discount" style="background: #0bda51">' . $gitem["discount"] .'</span>';
+                  } else {echo '<span class="item-discount">' . $gitem["discount"] . '</span>'; }
+               
+                ?>
+
+<!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА -->
+
+
+
                 <button class="item-fav__btn">
-                    <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 27 22" data-id="<?=$gitem["id"]?>">
+                    <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22" data-id="<?=$gitem["id"]?>">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
@@ -14,7 +26,8 @@
                     </p>
 
 
-    <!-- НАЛИЧИЕ -->
+    <!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ -->
+
                     <?   
                          
                         $nal = mqo("SELECT * FROM catalog_nal WHERE id = '".$gitem["nal_id"]."'"); 
@@ -30,7 +43,8 @@
                              echo '<span class="item-card__count green">' . $nal["name"] . '</span>';
                         }
                     ?>
-    <!-- НАЛИЧИЕ -->
+
+    <!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ -->
 
 
                 </div>
@@ -52,7 +66,7 @@
 
                 </div>
                 <div class="item-card__buy-btn-wrapper">
-                    <button class="item-card__busket-btn" data-id="<?=$gitem["id"]?>">
+                    <button class="item-card__busket-btn add_to_cart" data-id="<?=$gitem["id"]?>">
                         В корзину
                     </button>
                     <button class="item-card__buy-btn">

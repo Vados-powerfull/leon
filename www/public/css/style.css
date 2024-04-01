@@ -1036,6 +1036,10 @@ section {
 	background: #e72033;
 	padding: 8px 12px;
 }
+/* ОКНО ЖИВОГО ПОИСКА */
+.search_res { position: absolute; top: 52px; left: 0; width: 100%; background-color: white; padding: 20px; display: none;; }
+	.search_res a { display: block; margin-bottom: 10px; color: black; font-size: 12px }
+
 .item-card > button.item-fav__btn {
 	padding: 0;
 	position: absolute;
@@ -1270,9 +1274,16 @@ section {
 }
 .ritem_img {
 	max-height: 222px;
-	max-width: 261px;
+	max-width: 40%;
 	overflow: hidden;
+	border-radius: 40px;
 	
+
+}
+
+.ritem_img img {
+	max-height: 100%;
+
 	
 
 }
@@ -1350,9 +1361,12 @@ section {
 }
 .recipe-card__container {
 	padding: 30px;
-	position: relative;
-	padding-bottom: 0;
-	width: 370px;
+    position: relative;
+    padding-bottom: 0;
+    width: 370px;
+    max-height: 82%;
+    overflow: hidden;
+    padding-right: 52px;
 }
 .recipe-card__container .link-arrow {
 	position: absolute;
@@ -3014,7 +3028,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	font-weight: normal;
 	line-height: 125%; /* 17.5px */
 	margin-bottom: 20px;
-	max-height: 50px;
+	
 	overflow: hidden;
 }
 .recipe_img_card {
@@ -3026,7 +3040,9 @@ input[type="number"]::-webkit-inner-spin-button {
 	margin-bottom: 20px;
 }
 .recipe_text {
-	
+	max-height: 150px;
+	overflow: hidden;
+	margin-bottom: 20px;
 }
 .recipe_text_card {
 	padding-top: 30px;

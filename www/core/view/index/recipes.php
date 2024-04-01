@@ -1,6 +1,6 @@
 <section class="section recipe-section  discount-section round-section">
     <div class="container">
-    <? $recipe = mqs("SELECT * FROM recipes ORDER BY RAND() LIMIT 1"); ?>
+    <? $recipe = mqs("SELECT * FROM recipes ORDER BY date_added DESC, ordering LIMIT 1"); ?>
         <h6 class="small-title">Рецепты</h6>
         <h2 class="block-title">НОВЫЕ РЕЦЕПТЫ КАЖДУЮ НЕДЕЛЮ</h2>
         <div class="recipe-container row">
@@ -26,7 +26,7 @@
         
  <!-- второй---------------------------------------------------------------------------------------- -->
             <div class="col-12 col-sm-6 recipe-small-wrapper row">
-            <? $recipe2 = mqs("SELECT * FROM recipes ORDER BY ordering LIMIT 2"); ?>
+            <? $recipe2 = mqs("SELECT * FROM recipes ORDER BY date_added DESC, ordering LIMIT 1,2"); ?>
                 <?foreach ($recipe2 as $ritem) {?>
                     <a href="/recipe/<?=$ritem["sys_name"]?>" class=" recipe-card">
                     <div class="ritem_img">

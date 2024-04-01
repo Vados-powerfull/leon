@@ -11,7 +11,7 @@
             <div class="recipe-big-card">
                 <a href="/recipe/<?=$item["sys_name"]?>"> <img src="<?=$item["page_foto"]?>" alt=""></a>
                 <h3><?=$item["page_title"]?></h3>
-                <p class="recipe_text"><?=$item["page_text"]?></p>
+                <div class="recipe_text"><?=$item["page_text"]?></div>
                 <a href="/recipe/<?=$item["sys_name"]?>" class="recipe-btn prime-black-btn">Подробнее</a>
             </div>
 

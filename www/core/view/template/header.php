@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/busket" class="header-relative__icon">
+                    <a href="/busket" class="header-relative__icon h_busket">
                         <svg class="header-nav-svg" width="28" height="28" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
@@ -68,9 +68,10 @@
                         <use xlink:href="/public/img/svg/catalog.svg#catalog-menu-icon" fill="currentColor" />
                     </svg>
                 </div>
-                <form class="search-form">
-                    <input type="text" name="search" class="header-search__input" placeholder="Поиск">
-                    <button type="submit" class="search-icon"><img src="/public/img/svg/search.svg" alt=""></button>
+                <form class="search-form" action="/poisk" method="GET">
+                    <input type="text" name="search" class="header-search__input" placeholder="Поиск" type="text" name="query" autocomplete="off">
+                    <button class="search-icon"><img src="/public/img/svg/search.svg" alt=""></button>
+                    <div class="search_res"></div>
                 </form>
             </div>
 
@@ -96,7 +97,7 @@
 
         </div>
         <div class="nav-section container">
-            <!-- <img src="" alt=""> -->
+            
             <a href="/" class="nav-main-logo main-logo"><img src="/public/img/logo-top.png" alt=""></a>
 
 
@@ -126,9 +127,10 @@
 
             </div>
 
-            <form class="search-form">
-                <input type="text" name="search" class="header-search__input" placeholder="Поиск">
-                <button type="submit" class="search-icon"><img src="/public/img/svg/search.svg" alt=""></button>
+            <form class="search-form"  action="/search" method="GET">
+                <input type="text" name="search" class="header-search__input search-input-desk1" placeholder="Поиск" type="text" name="query" autocomplete="off">
+                <button class="search-icon"><img src="/public/img/svg/search.svg" alt=""></button>
+                <div class="search_res"></div>
             </form>
 
             <ul class="nav-media-list">
@@ -147,12 +149,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/busket" class="header-relative__icon">
+                    <a href="/busket" class="header-relative__icon h_cart">
                         <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
-                        <div class="header-relative__count">
-                            4
+                        <div class="header-relative__count right-corner__number">
+                            0
                         </div>
                     </a>
                 </li>

@@ -29,9 +29,9 @@
         <div class="item-card__info">
             <p>арт. <?=$goods_info["art"]?></p>
             <div class="item-card__fav-container">
-                <a href="" data-id="<?=$goods_info["id"]?>">В избранное</a>
+                <a class="add_to_favorites" href="" data-id="<?=$goods_info["id"]?>">В избранное</a>
                 <a class="item-card__fav">
-                    <svg class="header-nav-svg" width="29" height="23" viewBox="0 0 29 23" data-id="<?=$goods_info["id"]?>">
+                    <svg class="header-nav-svg add_to_favorites" width="29" height="23" viewBox="0 0 29 23" data-id="<?=$goods_info["id"]?>">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" stroke="red" fill="currentColor" />
                     </svg>
                 </a>
@@ -58,10 +58,10 @@
             </div>
         </div>
         <div class="item-card__btns">
-            <button class="prime-btn" data-id="<?=$goods_info["id"]?>">
+            <button class="prime-btn add_to_cart" data-id="<?=$goods_info["id"]?>">
                 В корзину
             </button>
-            <button class="prime-black-btn" data-id="<?=$goods_info["id"]?>">
+            <button class="prime-black-btn">
                 Купить в 1 клик
             </button>
         </div>

@@ -212,16 +212,16 @@ $(document).ready(function () {
   
 	  // Обработчик формы нажатия на кнопки + и -
 		// Обработка нажатия на кнопку "-"
-	$('.basket-counter button:contains("-")').click(function(){
-		var counter = $(this).next('.basket-counter__text');
+	$('.choose-amount button:contains("-")').click(function(){
+		var counter = $(this).find('.current-amout');
 		var count = parseInt(counter.text()) - 1;
 		count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
 		counter.text(count);
 	  });
 	  
 	  // Обработка нажатия на кнопку "+"
-	  $('.basket-counter button:contains("+")').click(function(){
-		var counter = $(this).prev('.basket-counter__text');
+	  $('.choose-amount button:contains("+")').click(function(){
+		var counter = $(this).find('.current-amout');
 		var count = parseInt(counter.text()) + 1;
 		counter.text(count);
 	  });
@@ -263,93 +263,68 @@ $(document).ready(function () {
 	});
 
 	$("input[type=tel]").mask("+7 (999) 999 99 99");
-});
 
+	$(".search-input-desk1").keyup(function(){
+		val = $(this).val();
+		if (val.length > 3){
+			$(".search_res").fadeIn(300)
+			$.post('/public/forms/search.php', {query:val}, function(data){
+				$(".search_res").html(data);
+				my_target('search');
+	
+			});
+		} else {
+			$(".search_res").fadeOut(300)
+			$(".search_res").html('');
+		}
+	})
 
+	// ПЕРЕЕХАЛО ИЗ АГРОЗА
 
-// ПЕРЕЕХАЛО ИЗ АГРОЗА
-
-// Загрузка счетчика из sessionStorage при инициализации
-if (sessionStorage.getItem("favoritesCount")) {
-	$("#favorites-count").text(sessionStorage.getItem("favoritesCount"));
-}
-
-
-if ($(".add_to_favorites").length > 0) {
-	id = $(".add_to_favorites").attr("data-id");
-	mcookie = getCookie("favorites");
-	if (mcookie != undefined && mcookie.includes(id+",")) $(".add_to_favorites").css("color","#00742c")
-}
-fav_count();
-$(".add_to_favorites").click(function() {
-	id = $(this).attr("data-id"); 
-	if (checkCookieExists("favorites") == false) 
-	{	
-		addCookie("favorites", id+",");
-		$(this).css("color","#00742c")
+	// Загрузка счетчика из sessionStorage при инициализации
+	if (sessionStorage.getItem("favoritesCount")) {
+		$("#favorites-count").text(sessionStorage.getItem("favoritesCount"));
 	}
-	else {
+
+
+	if ($(".add_to_favorites").length > 0) {
+		id = $(".add_to_favorites").attr("data-id");
 		mcookie = getCookie("favorites");
-		if (mcookie.includes(id+",") == false)
-		{
-			addCookie("favorites", mcookie+id+",");
-			$(this).css("color","#00742c")
-		}
-		else { 
-			mcookie = mcookie.replace(id+",", '');
-			addCookie("favorites", mcookie);
-			$(this).css("color","lightgrey")
-		}
+		if (mcookie != undefined && mcookie.includes(id+",")) $(".add_to_favorites").css("color","#EE9D01")
 	}
+
 	fav_count();
-});
-$(".del_from_fav").click( function(){
-	id = $(this).attr("data-id");
-	mcookie = getCookie("favorites");
-	mcookie = mcookie.replace(id+",", '');
-	addCookie("favorites", mcookie);
-	location.reload();
-})
-
-
-if ($(".add_to_compare").length > 0) {
-	id = $(".add_to_compare").attr("data-id");
-	mcookie = getCookie("compare"); 
-	if (mcookie != undefined && mcookie.includes(id+",")) $(".add_to_compare").css("color","#00742c")
-}
-compare_count();
-$(".add_to_compare").click(function() {
-	id = $(this).attr("data-id");
-	if (checkCookieExists("compare") == false) 
-	{	
-		addCookie("compare", id+",");
-		$(this).css("color","#00742c")
-	}
-	else {
-		mcookie = getCookie("compare");
-		if (mcookie.includes(id+",") == false)
-		{
-			addCookie("compare", mcookie+id+",");
-			$(this).css("color","#00742c")
+	$(".add_to_favorites").click(function() {
+		id = $(this).attr("data-id"); 
+		if (checkCookieExists("favorites") == false) 
+		{	
+			addCookie("favorites", id+",");
+			$(this).css("color","#EE9D01")
 		}
-		else { 
-			mcookie = mcookie.replace(id+",", '');
-			addCookie("compare", mcookie);
-			$(this).css("color","lightgrey")
+		else {
+			mcookie = getCookie("favorites");
+			if (mcookie.includes(id+",") == false)
+			{
+				addCookie("favorites", mcookie+id+",");
+				$(this).css("color","#EE9D01")
+			}
+			else { 
+				mcookie = mcookie.replace(id+",", '');
+				addCookie("favorites", mcookie);
+				$(this).css("color","lightgrey")
+			}
 		}
-	}
-	compare_count();
+		fav_count();
+	});
+	$(".del_from_fav").click( function(){
+		id = $(this).attr("data-id");
+		mcookie = getCookie("favorites");
+		mcookie = mcookie.replace(id+",", '');
+		addCookie("favorites", mcookie);
+		location.reload();
+	})
 });
-$(".del_from_compare").click( function(){
-	id = $(this).attr("data-id");
-	mcookie = getCookie("compare");
-	mcookie = mcookie.replace(id+",", '');
-	addCookie("compare", mcookie);
-	location.reload();
-})
-$(".compare-clear-btn").click(function (){
-	addCookie("compare", "");
-})
+
 	
 
 cart_count();
@@ -381,3 +356,69 @@ $(".del_from_cart").click( function(){
 	addCookie("cart", mcookie);
 	location.reload();
 })
+
+
+$('.ajax-form').submit(function(e){
+	e.preventDefault();
+	var _self = $(this);
+	var tel  = $(this).find("input[name=phone]").val();
+
+	if ($(this).find("input[type=tel]").val().length < 8) alert('Введите номер телефона!')
+	else
+	{
+		$.post('/public/forms/modal.php', $(this).serializeArray(), function(data){
+			$("body").append(data);
+			_self.trigger('reset');
+			$('.modal-close').click();
+			my_target('tzvonok');
+		});
+	}
+});
+
+function addCookie(name, val)
+{
+	exp = $("footer").attr("data-days");
+	document.cookie = encodeURIComponent(name)+"="+encodeURIComponent(val)+"; expires=Thu, "+encodeURIComponent(exp)+" UTC; path=/";
+}
+
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function checkCookieExists(cookieName) {
+  // Получаем все куки в виде одной строки
+  var cookies = document.cookie;
+   
+  // Ищем наше куки по имени с добавлением "=" в конец, чтобы точно совпадало имя
+  var cookieStart = cookies.indexOf(cookieName + "=");
+   
+  // Если индекс найден и он равен 0 или после него идет '; ', значит куки существует
+  if (cookieStart != -1) { 
+    return true;
+  }
+
+  return false;
+}
+
+function fav_count()
+{
+	mcookie = getCookie("favorites");
+	if (mcookie != undefined)
+	{
+		count = mcookie.split(',').filter(Boolean).length
+		$(".h_fav").find(".right-corner__number").html(count);
+	}
+}
+
+function cart_count()
+{
+	mcookie = getCookie("cart");
+	if (mcookie != undefined) 
+	{
+		count = mcookie.split(',').filter(Boolean).length;
+		$(".h_cart").find(".right-corner__number").html(count);
+	}
+}
