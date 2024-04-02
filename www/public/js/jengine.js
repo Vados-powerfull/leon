@@ -323,6 +323,37 @@ $(document).ready(function () {
 		addCookie("favorites", mcookie);
 		location.reload();
 	})
+
+
+	// document.addEventListener("DOMContentLoaded", function() {
+	// 	const element = document.querySelector(".question-text");
+	// 	if (element) {
+	// 	  element.classList.add("text-active");
+	// 	}
+	//   });
+
+	
+	$(".filtr_btn").click(function(){
+		curl = $(".filtr_btn_reset").attr('data-url');
+    	
+    	price1 = $("#start-amount").val()
+    	price2 = $("#end-amount").val()
+    	murl = '?price1='+price1+'&price2='+price2;
+
+    	$('.filtr_nav').find('input:checkbox').each(function(){
+		    if ($(this).is(':checked') && !$(this).hasClass("dropdown")){
+		    	if (murl.includes($(this).attr("name"))) murl = murl + ',' + $(this).attr("data-value");
+				else murl = murl + '&' + $(this).attr("name") + '=' + $(this).attr("data-value");
+			}
+		});
+    	window.location.replace(murl);
+		//submit(curl, {  murl: murl  });
+	})
+
+    $(".filtr_btn_reset").click(function(){
+    	curl = $(this).attr('data-url');
+    	window.location.replace(curl);
+    })
 });
 
 	

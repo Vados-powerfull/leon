@@ -45,8 +45,5 @@
             </div>
             <?} ?>
         </div>
-        <button class="upload-more__btn black-btn" data-id="<?=$item["id"]?>">
-            <a href="/category/<?=$catalog_razdel["sys_name"]?>/<?=$catalog_cat["sys_name"]?>/<?=$catalog_podcat["sys_name"]?>" style="color: white; text-decoration: none">Загрузить еще</a>
-        </button>
     </div>
 </section>

@@ -19,7 +19,7 @@
 	$page = mqo("SELECT * FROM pages WHERE sys_name='".end($path)."'");
 	$sell = mqs("SELECT * FROM catalog WHERE sell=1 ORDER BY ordering LIMIT 4");
 	$new = mqs("SELECT * FROM catalog WHERE new=1 ORDER BY ordering LIMIT 4");
-	$goods = mqs("SELECT * FROM catalog WHERE on_moderate=0  ORDER BY ordering");
+	
 	
 	
 

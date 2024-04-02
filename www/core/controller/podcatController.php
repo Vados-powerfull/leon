@@ -10,7 +10,9 @@
 
 	$razdel_info = mqs("SELECT * FROM catalog_razdel WHERE on_moderate=0  ORDER BY ordering");
 	$mmpodcat_info = mqo("SELECT * FROM catalog_podcats WHERE sys_name='".end($path)."'");
-	$cat_info = mqs("SELECT * FROM catalog_cats WHERE on_moderate=0  ORDER BY ordering");
+	$cur_cat = mqo("SELECT * FROM catalog_cats WHERE id='".$mmpodcat_info["cat_id"]."'");
+	$cur_razdel = mqo("SELECT * FROM catalog_razdel WHERE id='".$cur_cat["razdel_id"]."'");
+	$cat_info = mqs("SELECT * FROM catalog_cats WHERE on_moderate=0 AND razdel_id='".$cur_razdel["id"]."' ORDER BY ordering");
 	$podcat_info = mqs("SELECT * FROM catalog_podcats WHERE on_moderate=0  ORDER BY ordering");
 	$goods = mqs("SELECT * FROM catalog WHERE on_moderate=0  ORDER BY ordering");
 

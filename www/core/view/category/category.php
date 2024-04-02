@@ -28,16 +28,21 @@
 
            
             <? foreach ($cat_info as $citem) {?>
-           
-                <div class="question  question-active">
+                <? 
+                if ($mmpodcat_info["cat_id"] == $citem["id"]) {
+                    $cat_active = ' text-active'; $cat_dd = ' dropdown-active'; $cat_cont = ' question-active';
+                } else {$cat_active = $cat_dd = $cat_cont = '';}?>
+
+                <div class="question  <?=$cat_cont?>">
                     <div class="quesion-body">
                         <div class="question-title-wrapper">
                             <h3 class="question-title title-active"><?=$citem["name"]?></h3>
-                            <button class="dropdown dropdown-active"></button>
+                            <button class="dropdown <?=$cat_dd?>"></button>
 
                         </div>
                         
-                        <div class="question-text  text-active text-slide-in">
+                        
+                        <div class="question-text <?=$cat_active?> text-slide-in">   <!--text-active ОТКРЫВАЕТ ВСЕ-->
                                               
                         <?  
                              $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
@@ -50,90 +55,23 @@
             <? } ?>
 
 
-            <!-- <div class="question  ">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Замороженная рыба
-                            и морепродукты</h3>
-                        <button class="dropdown "></button>
+          
 
-                    </div>
-                    <div class="question-text text-slide-in">
-                        <a href="#">Лососевая рыба</a>
-                        <a href="#">Белая рыба</a>
-                        <a href="#">Креветки и ракообразные</a>
-                        <a href="#">Морепродукты</a>
-                        <a href="#">Полуфабрикаты из рыбы
-                            и морепродуктов</a>
-                        <a href="#">
-                            Продукты из сурими</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="question  ">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Замороженная рыба
-                            и морепродукты</h3>
-                        <button class="dropdown "></button>
+        
 
-                    </div>
-                    <div class="question-text  text-slide-in">
-                        <a href="#">Лососевая рыба</a>
-                        <a href="#">Белая рыба</a>
-                        <a href="#">Креветки и ракообразные</a>
-                        <a href="#">Морепродукты</a>
-                        <a href="#">Полуфабрикаты из рыбы
-                            и морепродуктов</a>
-                        <a href="#">
-                            Продукты из сурими</a>
-                    </div>
-                </div>
-            </div>
-            <div class="question  aside-last-question">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Замороженная рыба
-                            и морепродукты</h3>
-                        <button class="dropdown "></button>
-
-                    </div>
-                    <div class="question-text text-slide-in">
-                        <a href="#">Лососевая рыба</a>
-                        <a href="#">Белая рыба</a>
-                        <a href="#">Креветки и ракообразные</a>
-                        <a href="#">Морепродукты</a>
-                        <a href="#">Полуфабрикаты из рыбы
-                            и морепродуктов</a>
-                        <a href="#">
-                            Продукты из сурими</a>
-                    </div>
-                </div>
-            </div>
-            <div class="aside-without__dropdown">
-                <div class="aside-text">
-                    <a href="#">Икра</a>
-
-                </div>
-            </div> -->
-
-
-
-        </div>
-        <div class="desktop-category">
+        <div class="desktop-category filtr_nav">
             <div class="range-slider__wrapper">
                 <div class="price-range-slider">
                     <h6 class="filters-header">Цена (руб.)</h6>
                     <p class="range-value">
-                        <input type="number" id="start-amount">
-                        <input type="number" id="end-amount">
+                        <input type="number" id="start-amount" value="<?=$start_price["price"]?>" data-min="<?=$start_price["price"]?>">
+                        <input type="number" id="end-amount" value="<?=$end_price["price"]?>" data-max="<?=$end_price["price"]?>">
                     </p>
                     <div id="slider-range" class="range-bar"></div>
 
                     <div class="checkbox-container checkbox-category__container">
-                        <input id="terms" type="checkbox">
-                        <label for="terms">Товары со скидкой</label>
+                        <input id="discount1" type="checkbox" name="fsell" data-value="1" class="check">
+                        <label class="checkbox-label" for="discount1">Товары со скидкой</label>
                     </div>
                 </div>
 
@@ -141,7 +79,7 @@
 
 
 
-
+<!-- БРЕНДЫ -->
             <div class="question aside-white__question ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
@@ -152,61 +90,24 @@
                     <div class="question-text text-slide-in">
                         <? $n = 1; 
                         foreach ($catalog_brands as $bitem) {
-                        
+                            
                             
                             ?>
                           
-                        
+                        <?$vsego_brand = mqs("SELECT id FROM catalog WHERE brand_id='".$bitem["id"]."'");?>
                             <div class="checkbox-container checkbox-category__container">
                                 <input id="terms<?=$n?>" type="checkbox">
-                                <label for="terms<?=$n?>"><?=$bitem["name"]?><span>(1)</span></label>
+                                <label for="terms<?=$n?>"><?=$bitem["name"]?> <span>(<?=count($vsego_brand)?>)</span></label>
                             </div>
                         <? $n++;} ?>
                         
 
-                        <span class="show-all-btn">
-                            Показать все
-                        </span>
                     </div>
 
                 </div>
             </div>
-            <div class="question aside-white__question ">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Вес</h3>
-                        <button class="dropdown "></button>
 
-                    </div>
-                    <div class="question-text text-slide-in">
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms11" type="checkbox">
-                            <label for="terms11">1 кг <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms21" type="checkbox">
-                            <label for="terms21">100 г <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms31" type="checkbox">
-                            <label for="terms31">1000 г <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms41" type="checkbox">
-                            <label for="terms41">113 г <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms51" type="checkbox">
-                            <label for="terms51">115 г <span>(1)</span></label>
-                        </div>
-
-                        <span class="show-all-btn">
-                            Показать все
-                        </span>
-                    </div>
-
-                </div>
-            </div>
+<!-- СПОСОБ ОБРАБОТКИ -->
             <div class="question aside-white__question ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
@@ -215,34 +116,24 @@
 
                     </div>
                     <div class="question-text text-slide-in">
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms12" type="checkbox">
-                            <label for="terms12">365 ДНЕЙ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms22" type="checkbox">
-                            <label for="terms22">5 ОКЕАНОВ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms32" type="checkbox">
-                            <label for="terms32">Agama <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms42" type="checkbox">
-                            <label for="terms42">AQUA PRODUKT <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms52" type="checkbox">
-                            <label for="terms52">BONVIDA <span>(1)</span></label>
-                        </div>
 
-                        <span class="show-all-btn">
-                            Показать все
-                        </span>
+                       
+                       <?  foreach ($catalog_type as $titem) {?>
+                            
+                            
+                            
+                            <?$vsego_type = mqs("SELECT id FROM catalog WHERE type_id='".$titem["id"]."'");?>
+                            <div class="checkbox-container checkbox-category__container">
+                                <input id="terms<?=$n?>" type="checkbox">
+                                <label for="terms<?=$n?>"><?=$titem["name"]?> <span>(<?=count($vsego_type)?>)</span></label>
+                            </div>
+                        <? $n++;} ?>
+
                     </div>
-
                 </div>
             </div>
+
+<!-- СТРАНА -->
             <div class="question aside-white__question ">
                 <div class="quesion-body">
                     <div class="question-title-wrapper">
@@ -250,41 +141,32 @@
                         <button class="dropdown "></button>
 
                     </div>
-                    <div class="question-text text-slide-in">
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms14" type="checkbox">
-                            <label for="terms14">365 ДНЕЙ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms24" type="checkbox">
-                            <label for="terms24">5 ОКЕАНОВ <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms34" type="checkbox">
-                            <label for="terms34">Agama <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms44" type="checkbox">
-                            <label for="terms44">AQUA PRODUKT <span>(1)</span></label>
-                        </div>
-                        <div class="checkbox-container checkbox-category__container">
-                            <input id="terms54" type="checkbox">
-                            <label for="terms54">BONVIDA <span>(1)</span></label>
-                        </div>
 
-                        <span class="show-all-btn">
-                            Показать все
-                        </span>
+                    
+                        <div class="question-text text-slide-in">
+
+
+                            <? foreach ($catalog_country as $couitem) {?>
+                                <div class="checkbox-container checkbox-category__container">
+                                    <? $vsego_country = mqs("SELECT id FROM catalog WHERE country_id='".$couitem["id"]."'");?>
+                                    <input id="terms<?=$n?>" type="checkbox">
+                                    <label for="terms<?=$n?>"><?=$couitem["name"]?> <span>(<?=count($vsego_country)?>)</span></label>
+                                </div>
+                            <? $n++;} ?>
+                        </div>
                     </div>
-
                 </div>
             </div>
-            <button class="prime-btn catalog-aside-btns">
-                Показать 42 товара
+
+
+            <button class="prime-btn filtr_btn catalog-aside-btns">
+                Показать товары
             </button>
-            <button class="prime-black-btn catalog-aside-btns">
+
+            <button class="prime-black-btn filtr_btn_reset catalog-aside-btns" data-url="<?=$_SERVER['REDIRECT_URL']?>">
                 Сбросить фильтры
             </button>
+
         </div>
 
     </div>

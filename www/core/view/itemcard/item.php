@@ -1,14 +1,14 @@
 <div class="item-card item-discount__card">
 
-<!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА -->
+<!-- СКИДКА -->
 
-                <?if ($gitem["discount"] === 'Новинка') {
+                <? if ($gitem["discount"] === 'Новинка') {
                    echo '<span class="item-discount" style="background: #0bda51">' . $gitem["discount"] .'</span>';
                   } else {echo '<span class="item-discount">' . $gitem["discount"] . '</span>'; }
                
                 ?>
 
-<!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА --><!-- СКИДКА -->
+<!-- СКИДКА -->
 
 
 
@@ -26,7 +26,7 @@
                     </p>
 
 
-    <!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ -->
+    <!-- НАЛИЧИЕ -->
 
                     <?   
                          
@@ -44,7 +44,7 @@
                         }
                     ?>
 
-    <!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ --><!-- НАЛИЧИЕ -->
+    <!-- НАЛИЧИЕ -->
 
 
                 </div>
@@ -52,7 +52,7 @@
                     <?=$gitem["name"]?>
                 </a>
                 <p class="item-card__county">
-                <?$country_info = mqo("SELECT * FROM catalog_country WHERE id = '".$gitem["nal_id"]."'"); ?>
+                <?$country_info = mqo("SELECT * FROM catalog_country WHERE id = '".$gitem["country_id"]."'"); ?>
                     <?=$country_info["name"]?>, <?=$gitem["ves"]?> г
                 </p>
 
