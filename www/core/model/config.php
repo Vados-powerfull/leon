@@ -10,9 +10,9 @@
 	}
 	else{
 		define('DB_HOST', 'localhost');
-		define('DB_NAME', 'halin_pm');
-		define('DB_USER', 'halin_pm');
-		define('DB_PASSW', 'Pmodmin1!');	
+		define('DB_NAME', 'halin_leon');
+		define('DB_USER', 'halin_leon');
+		define('DB_PASSW', 'Lodmin1!');	
 	}
 
 	try {
