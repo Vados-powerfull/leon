@@ -1418,6 +1418,15 @@ section {
 	justify-content: space-between;
 }
 
+#question_id:last-of-type {
+	border-bottom: 2px solid #040404;
+	border-radius: 50px 50px 50px 50px;
+}
+
+.border_qw:last-child {
+	border-radius: 50px;
+	border-bottom: 2px solid #660b0b;
+}
 .question-active {
 	padding: 41px 45px 40px 51px;
 }
@@ -1914,7 +1923,7 @@ li p {
 .category-aside {
 	width: 263px;
 }
-.category-aside .question {
+.aside-category__dropdowns .question {
 	width: 100%;
 	padding: 13px 30px;
 	cursor: pointer;
@@ -1925,6 +1934,9 @@ li p {
 }
 .category-aside .question:first-of-type {
 	margin-top: 0;
+}
+.question:last-child {
+	border-bottom: 1px solid #bbb; border-radius: 50px;
 }
 
 .aside-last-question {

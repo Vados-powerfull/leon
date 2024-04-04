@@ -16,25 +16,26 @@
     <?=$razdel_info["name"]?>
 </h2>
 
-<div class="container category-wrapper">
+<div class="container category-wrapper ">
    
-    <div class="category-aside">
-        <div class="aside-category__dropdowns">
+    <div class="category-aside ">
+        <div class="aside-category__dropdowns ">
 
             <!-- <div class="aside-preview">  НУЖЕН ПОВТОР РАЗДЕЛА ТУТ?
                 <h3><?=$razdel_info["name"]?></h3>
             </div> -->
 
 
-           
-            <? foreach ($cat_info as $citem) {?>
+            <div class="mquestions">
+            <?  foreach ($cat_info as $citem) {?>
                 <? 
                 if ($mmpodcat_info["cat_id"] == $citem["id"]) {
                     $cat_active = ' text-active'; $cat_dd = ' dropdown-active'; $cat_cont = ' question-active';
                 } else {$cat_active = $cat_dd = $cat_cont = '';}?>
 
+                
                 <div class="question  <?=$cat_cont?>">
-                    <div class="quesion-body">
+                    <div class="quesion-body ">
                         <div class="question-title-wrapper">
                             <h3 class="question-title title-active"><?=$citem["name"]?></h3>
                             <button class="dropdown <?=$cat_dd?>"></button>
@@ -42,7 +43,7 @@
                         </div>
                         
                         
-                        <div class="question-text <?=$cat_active?> text-slide-in">   <!--text-active ОТКРЫВАЕТ ВСЕ-->
+                        <div class="question-text  <?=$cat_active?> text-slide-in">   <!--text-active ОТКРЫВАЕТ ВСЕ-->
                                               
                         <?  
                              $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
@@ -52,7 +53,8 @@
                         </div>
                     </div>
                 </div>
-            <? } ?>
+            <?} ?>
+            </div>
 
 
           
@@ -197,58 +199,11 @@
               elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ORDER BY ordering"); 
           
           ?>
-          <? foreach ($goods as $gitem) {
-                
-                $gnal = mqo("SELECT * FROM catalog_nal WHERE id='".$gitem["nal_id"]."'");
-                $gcountry = mqo("SELECT * FROM catalog_country WHERE id='".$gitem["country_id"]."'");
-                
+        <? foreach ($goods as $gitem) {
 
-            ?>
-
-            <div class="item-card item-discount__card">
-                <span class="item-discount"><?=$gitem["discount"]?></span>
-                <button class="item-fav__btn" >
-                    <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22" data-id="<?=$gitem["id"]?>">
-                        <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
-                    </svg>
-                </button>
-                <div class="item-card__img">
-                    <a href="/item/<?=$gitem["sys_name"]?>"> <img src="<?=$gitem["img"]?>" alt=""></a>
-                </div>
-                <div class="item-card__articul__wrapper">
-                    <p class="item-card-articul">
-                        арт. <?=$gitem["art"]?>
-                    </p>
-                    <span class="item-card__count green">
-                    <?=$gnal["name"]?>
-                    </span>
-                </div>
-                <a href="/item/<?=$gitem["sys_name"]?>" class="item-card__title">
-                    <?=$gitem["name"]?>
-                </a>
-                <p class="item-card__county">
-                    <?=$gcountry["name"]?>, <?=$gitem["ves"]?> г
-                </p>
-
-                <div class="price-wrapper">
-                    <div class="price-container ">
-                        <p><?=$gitem["price2"]?></p>
-                        <span>
-                        <?=$gitem["price"]?> руб
-                        </span>
-                    </div>
-
-                </div>
-                <div class="item-card__buy-btn-wrapper">
-                    <button class="item-card__busket-btn add_to_cart" data-id="<?=$gitem["id"]?>">
-                        В корзину
-                    </button>
-                    <button class="item-card__buy-btn">
-                        Купить в 1 клик
-                    </button>
-                </div>
-            </div>
-            <?} ?>
+            include('core/view/itemcard/item.php');
+           
+        } ?>
 
 <!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END --><!-- END -->
 

@@ -1,3 +1,10 @@
+<div class="path mt-5 container">
+    <? include ("core/view/template/crumbs.php"); ?>
+    <h2 class="page-title">
+        <?=$page_title?>
+    </h2>
+</div>
+
 <div class="container">
 
     <div class="personal">
