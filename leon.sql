@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 04 2024 г., 09:52
--- Версия сервера: 5.6.51
--- Версия PHP: 7.3.33
+-- Время создания: Апр 04 2024 г., 15:51
+-- Версия сервера: 5.6.47
+-- Версия PHP: 7.3.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -607,6 +607,93 @@ INSERT INTO `features` (`id`, `name`, `img`, `on_moderate`, `ordering`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `lc_adress`
+--
+
+CREATE TABLE `lc_adress` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Адрес',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `lc_adress`
+--
+
+INSERT INTO `lc_adress` (`id`, `user_id`, `adress`, `ordering`) VALUES
+(1, 1, 'г. Белгород, ул. Ленина , д.12, кв. 35', 1),
+(2, 1, 'г. Курск, Гайдара 3, 2 эт, оф.6', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `lc_cards`
+--
+
+CREATE TABLE `lc_cards` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `numb` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Номер карты',
+  `points` int(11) NOT NULL COMMENT 'Баллы',
+  `active` int(11) NOT NULL COMMENT 'Активна?',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `lc_cards`
+--
+
+INSERT INTO `lc_cards` (`id`, `user_id`, `numb`, `points`, `active`, `ordering`) VALUES
+(2, 1, '5678 2345 6789 8901', 0, 1, 1),
+(3, 0, '5678 2345 6789 8900', 0, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `lc_cards_status`
+--
+
+CREATE TABLE `lc_cards_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Наименование',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `lc_cards_status`
+--
+
+INSERT INTO `lc_cards_status` (`id`, `name`, `ordering`) VALUES
+(1, 'Активна', 0),
+(2, 'Неактивна', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `lc_users`
+--
+
+CREATE TABLE `lc_users` (
+  `id` int(11) NOT NULL,
+  `fio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ФИО',
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Телефон',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'E-mail',
+  `pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Пароль',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `lc_users`
+--
+
+INSERT INTO `lc_users` (`id`, `fio`, `phone`, `email`, `pass`, `ordering`) VALUES
+(1, 'Иванов Константин Петрович', '+7 (950) 678 90 00', 'user@mail.ru', '123', 1),
+(7, 'Alex', '79507777773', 'mosarbopro@yandex.ru', '123', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `menu`
 --
 
@@ -814,7 +901,10 @@ INSERT INTO `relation` (`id`, `primary_table`, `foreign_table`, `primary_column`
 (61, 'catalog_country', 'catalog', 'id', 'country_id', 'name', '', 0, 1, 1, 15),
 (62, 'catalog_marka', 'catalog', 'id', 'marka_id', 'name', '', 0, 1, 1, 16),
 (63, 'catalog_razdel', 'catalog', 'id', 'razdel_id', 'name', '', 0, 1, 1, 17),
-(64, 'catalog_razdel', 'catalog_cats', 'id', 'razdel_id', 'name', '', 0, 1, 1, 18);
+(64, 'catalog_razdel', 'catalog_cats', 'id', 'razdel_id', 'name', '', 0, 1, 1, 18),
+(65, 'lc_users', 'lc_adress', 'id', 'user_id', 'fio', '', 0, 1, 1, 19),
+(66, 'lc_users', 'lc_cards', 'id', 'user_id', 'fio', '', 0, 0, 1, 20),
+(67, 'lc_cards_status', 'lc_cards', 'id', 'active', 'name', '', 0, 1, 1, 21);
 
 -- --------------------------------------------------------
 
@@ -896,7 +986,10 @@ INSERT INTO `s_modes` (`id`, `name`, `action`, `dbtable`, `module_id`, `showcols
 (78, 'Новости', 'novosti', 'news', 47, 'page_title', '', '', '', '', 43),
 (79, 'Раздел', 'razdel', 'catalog_razdel', 23, 'name,img', '', '', '', '', 44),
 (80, 'FAQ', 'faq', 'faq', 49, 'question', '', '', '', '', 45),
-(81, 'Рецепты', 'recipe', 'recipes', 50, 'page_title', '', '', '', '', 46);
+(81, 'Рецепты', 'recipe', 'recipes', 50, 'page_title', '', '', '', '', 46),
+(82, 'Пользователи', 'items', 'lc_users', 52, 'fio', '', '', '', '', 47),
+(83, 'Адреса', 'adress', 'lc_adress', 52, 'adress', 'user_id', '', '', '', 48),
+(84, 'Бонусные карты', 'cards', 'lc_cards', 52, 'numb', 'active', '', '', '', 49);
 
 -- --------------------------------------------------------
 
@@ -930,7 +1023,8 @@ INSERT INTO `s_modules` (`id`, `name`, `action`, `icon`, `settings`, `settingsTa
 (46, 'Блог', 'blog', '<i class=\"fa fa-rss\" aria-hidden=\"true\"></i>', 0, '', '', 9),
 (40, 'Банеры', 'banners', '<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>', 0, '', '', 2),
 (49, 'FAQ', 'faq', '', 0, '', '', 10),
-(50, 'Рецепты', 'recipe', '', 0, '', '', 11);
+(50, 'Рецепты', 'recipe', '', 0, '', '', 11),
+(52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 12);
 
 -- --------------------------------------------------------
 
@@ -1121,6 +1215,30 @@ ALTER TABLE `faq`
 -- Индексы таблицы `features`
 --
 ALTER TABLE `features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lc_adress`
+--
+ALTER TABLE `lc_adress`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lc_cards`
+--
+ALTER TABLE `lc_cards`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lc_cards_status`
+--
+ALTER TABLE `lc_cards_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lc_users`
+--
+ALTER TABLE `lc_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1338,6 +1456,30 @@ ALTER TABLE `features`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT для таблицы `lc_adress`
+--
+ALTER TABLE `lc_adress`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `lc_cards`
+--
+ALTER TABLE `lc_cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `lc_cards_status`
+--
+ALTER TABLE `lc_cards_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `lc_users`
+--
+ALTER TABLE `lc_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
@@ -1383,7 +1525,7 @@ ALTER TABLE `recipes`
 -- AUTO_INCREMENT для таблицы `relation`
 --
 ALTER TABLE `relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT для таблицы `stock`
@@ -1395,13 +1537,13 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT для таблицы `s_modes`
 --
 ALTER TABLE `s_modes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT для таблицы `s_modules`
 --
 ALTER TABLE `s_modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT для таблицы `uslugi`

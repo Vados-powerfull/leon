@@ -40,6 +40,8 @@
        '<span href="#">'.$mrecipe_info["page_title"].'</span>';
         
 
+    }elseif($path[0] == 'lc' && isset($path[1])) {
+       $crumbs = $index.'<span href="#">Личный кабинет</span>';
     }else {?>
     	<?=$index?><span href="#"><?=$page_title?></span>
     <?}?>
