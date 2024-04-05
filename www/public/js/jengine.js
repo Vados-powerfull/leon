@@ -165,11 +165,24 @@ $(document).ready(function () {
 	// 	  collapsibleContent.css("max-height", collapsibleContent.prop("scrollHeight") + "px");
 	// 	}
 	//   });
+
+
+
+	// Баскет отправляет форму вне формы
+	$('#submitForm').click(function() {
+		_self = $('#form_basket');
+		$.post('/public/forms/basket.php', _self.serializeArray(), function(data){
+				$("body").append(data);
+				_self.trigger('reset');
+				my_target('basket');
+		});
+	})
+
 	$("#slider-range").slider({
         range: true,
         min: 0,
-        max: 1000,
-        values: [0, 250],
+        max: 33000,
+        values: [0, 11250],
         slide: function (event, ui) {
             $("#start-amount").val(ui.values[0]);
             $("#end-amount").val(ui.values[1]);
@@ -341,7 +354,7 @@ $(document).ready(function () {
     	murl = '?price1='+price1+'&price2='+price2;
 
     	$('.filtr_nav').find('input:checkbox').each(function(){
-		    if ($(this).is(':checked') && !$(this).hasClass("dropdown")){
+		    if ($(this).is(':checked')){
 		    	if (murl.includes($(this).attr("name"))) murl = murl + ',' + $(this).attr("data-value");
 				else murl = murl + '&' + $(this).attr("name") + '=' + $(this).attr("data-value");
 			}

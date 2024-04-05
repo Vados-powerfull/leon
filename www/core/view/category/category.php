@@ -65,11 +65,13 @@
             <div class="range-slider__wrapper">
                 <div class="price-range-slider">
                     <h6 class="filters-header">Цена (руб.)</h6>
+
                     <p class="range-value">
                         <input type="number" id="start-amount" value="<?=$start_price["price"]?>" data-min="<?=$start_price["price"]?>">
                         <input type="number" id="end-amount" value="<?=$end_price["price"]?>" data-max="<?=$end_price["price"]?>">
                     </p>
                     <div id="slider-range" class="range-bar"></div>
+
 
                     <div class="checkbox-container checkbox-category__container">
                         <input id="discount1" type="checkbox" name="fsell" data-value="1" class="check">
@@ -83,7 +85,7 @@
 
 <!-- БРЕНДЫ -->
             <div class="question aside-white__question ">
-                <div class="quesion-body">
+                <div class="quesion-body ">
                     <div class="question-title-wrapper">
                         <h3 class="question-title title-active">Бренд</h3>
                         <button class="dropdown "></button>
@@ -91,16 +93,17 @@
                     </div>
                     <div class="question-text text-slide-in">
                         <? $n = 1; 
-                        foreach ($catalog_brands as $bitem) {
-                            
+                            foreach ($catalog_brands as $bitem) {
+                                $mbrand_info =  mqo("SELECT * FROM catalog WHERE brand_id = '".$bitem["id"]."'");
                             
                             ?>
                           
-                        <?$vsego_brand = mqs("SELECT id FROM catalog WHERE brand_id='".$bitem["id"]."'");?>
-                            <div class="checkbox-container checkbox-category__container">
-                                <input id="terms<?=$n?>" type="checkbox">
-                                <label for="terms<?=$n?>"><?=$bitem["name"]?> <span>(<?=count($vsego_brand)?>)</span></label>
-                            </div>
+                            <?$vsego_brand = mqs("SELECT id FROM catalog WHERE brand_id='".$bitem["id"]."'");
+                                $mark = 'filter-brand'.$n;?>
+                                <div class="checkbox-container checkbox-category__container ">
+                                    <input class="check" name="brand_id" id="<?=$mark?>" type="checkbox" data-value="<?=$mbrand_info["id"]?>">
+                                    <label class="checkbox-label" for="<?=$mark?>"><?=$bitem["name"]?> <span>(<?=count($vsego_brand)?>)</span></label>
+                                </div>
                         <? $n++;} ?>
                         
 

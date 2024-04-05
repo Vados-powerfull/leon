@@ -19,6 +19,8 @@
 	$catalog_country = mqs("SELECT * FROM catalog_country WHERE on_moderate=0 ORDER BY ordering"); // СТРАНЫ
 	$catalog_type = mqs("SELECT * FROM catalog_type WHERE on_moderate=0 ORDER BY ordering"); // МЕТОД ОБРАБОТКИ 
 
+
+
 	
 	
 	include('core/view/head.php');
@@ -27,6 +29,6 @@
 
     include('core/view/category/category.php');
 
-	
+
 	include('core/view/template/footer.php');
 	include('core/view/foot.php');
