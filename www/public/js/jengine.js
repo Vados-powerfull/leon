@@ -180,9 +180,9 @@ $(document).ready(function () {
 
 	$("#slider-range").slider({
         range: true,
-        min: 0,
-        max: 33000,
-        values: [0, 11250],
+        min: Number($("#start-amount").attr("data-min")),
+        max: Number($("#end-amount").attr("data-max")),
+        values: [Number($("#start-amount").attr("data-min")), Number($("#end-amount").attr("data-max"))],
         slide: function (event, ui) {
             $("#start-amount").val(ui.values[0]);
             $("#end-amount").val(ui.values[1]);

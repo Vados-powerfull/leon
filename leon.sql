@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 04 2024 г., 15:51
--- Версия сервера: 5.6.47
--- Версия PHP: 7.3.17
+-- Время создания: Апр 08 2024 г., 15:02
+-- Версия сервера: 5.6.51
+-- Версия PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -555,6 +555,28 @@ INSERT INTO `contacts_settings` (`id`, `phone1`, `phone2`, `address`, `address2`
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Имя',
+  `cour` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Курьером',
+  `samo` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Самовывоз',
+  `on_moderate` tinyint(4) NOT NULL COMMENT 'Скрыть?',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `delivery`
+--
+
+INSERT INTO `delivery` (`id`, `name`, `cour`, `samo`, `on_moderate`, `ordering`) VALUES
+(1, '', '<div>\r\n                        <p>\r\n                            Белгород<br>\r\n                            Время работы доставки:<span> с 10:00-22:00</span>\r\n                        </p>\r\n                    </div>\r\n                    <ul class=\"courier-delivery-positions-list\">\r\n                        <li>\r\n                            <p>Доставка продуктов из магазина «ЛЕОН»<span class=\"list-item-decorated\">с 10:00 до\r\n                                    22:00;</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Минимальная сумма заказа – <span class=\"list-item-decorated\">1 000 рублей;</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Максимальный вес заказа – <span class=\"list-item-decorated\">40 кг;</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Время доставки от часа<span class=\"list-item-decorated\"> до 4 часов;</span></p>\r\n                        </li>\r\n                        <li class=\"long-delivery\">\r\n                            <p >Стоимость доставки заказа<span class=\"list-item-decorated\"> от 200 рублей,</span> свыше \r\n                                4000 рублей –<span class=\"list-item-decorated\"> бесплатно</span></p>\r\n                        </li>\r\n                    </ul>\r\n                    <p class=\"price-title\">Стоимость за доставку</p>\r\n                    <ul class=\"courier-delivery-price-list\">\r\n                        <li>\r\n                            <p>Зона доставки 1 – <span class=\"list-item-decorated\">200 рублей</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Зона доставки 2 – <span class=\"list-item-decorated\">250 рублей</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Зона доставки 3 – <span class=\"list-item-decorated\">300 рублей</span></p>\r\n                        </li>\r\n                    </ul>\r\n                    <br>\r\n                    <br>\r\n                    <p>Для получения заказа в магазине обратитесь на кассу.</p><br>\r\n                    <p>Частичное получение заказа на данный момент невозможно.</p><br>\r\n                    <p>Доставка по региону не осуществляется.</p><br>\r\n                    <p>При оформлении заказа, выберите способ доставки «Доставка курьером» укажите желаемую дату\r\n                        доставки, интервал времени и адрес.</p>', '<ul class=\"positions-list\">\r\n                        <li>\r\n                            <p>Стоимость самовывоза из магазина – <span class=\"list-item-decorated\">бесплатно;</span>\r\n                            </p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Минимальная сумма заказа – <span class=\"list-item-decorated\">800 рублей;</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Максимальный вес заказа – <span class=\"list-item-decorated\">50 кг;</span></p>\r\n                        </li>\r\n                        <li>\r\n                            <p>Возможна частичная выдача товара</p>\r\n                        </li>\r\n                    </ul>\r\n                    <div class=\"shelf-life-info\">\r\n                        <p class=\"shelf-life-info-content\">\r\n                            <span class=\"shelf-life-info-decorated\">\r\n                                Срок хранения заказа – 6 часов в специально оборудованном помещении с необходимым \r\n                                температурным режимом.\r\n                            </span>\r\n                            По истечении этого срока заказ будет автоматически аннулирован.\r\n                            Денежные средства будут возвращены на карту, с которой производилась оплата.\r\n                        </p>\r\n                    </div>\r\n                    <p class=\"delivery-additional-info\">Для получения заказа в магазине обратитесь на кассу.</p>', 0, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `faq`
 --
 
@@ -989,7 +1011,8 @@ INSERT INTO `s_modes` (`id`, `name`, `action`, `dbtable`, `module_id`, `showcols
 (81, 'Рецепты', 'recipe', 'recipes', 50, 'page_title', '', '', '', '', 46),
 (82, 'Пользователи', 'items', 'lc_users', 52, 'fio', '', '', '', '', 47),
 (83, 'Адреса', 'adress', 'lc_adress', 52, 'adress', 'user_id', '', '', '', 48),
-(84, 'Бонусные карты', 'cards', 'lc_cards', 52, 'numb', 'active', '', '', '', 49);
+(84, 'Бонусные карты', 'cards', 'lc_cards', 52, 'numb', 'active', '', '', '', 49),
+(85, 'Доставка и оплата', 'delivery', 'delivery', 53, 'name', '', '', '', '', 50);
 
 -- --------------------------------------------------------
 
@@ -1024,7 +1047,8 @@ INSERT INTO `s_modules` (`id`, `name`, `action`, `icon`, `settings`, `settingsTa
 (40, 'Банеры', 'banners', '<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>', 0, '', '', 2),
 (49, 'FAQ', 'faq', '', 0, '', '', 10),
 (50, 'Рецепты', 'recipe', '', 0, '', '', 11),
-(52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 12);
+(52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 12),
+(53, 'Способы оплаты', 'delivery', '', 0, '', '', 13);
 
 -- --------------------------------------------------------
 
@@ -1203,6 +1227,12 @@ ALTER TABLE `catalog_type`
 -- Индексы таблицы `contacts_settings`
 --
 ALTER TABLE `contacts_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `delivery`
+--
+ALTER TABLE `delivery`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1444,6 +1474,12 @@ ALTER TABLE `contacts_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT для таблицы `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT для таблицы `faq`
 --
 ALTER TABLE `faq`
@@ -1537,13 +1573,13 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT для таблицы `s_modes`
 --
 ALTER TABLE `s_modes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT для таблицы `s_modules`
 --
 ALTER TABLE `s_modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT для таблицы `uslugi`

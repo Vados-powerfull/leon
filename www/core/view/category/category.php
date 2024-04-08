@@ -27,36 +27,68 @@
 
 
             <div class="mquestions">
-            <?  foreach ($cat_info as $citem) {?>
-                <? 
-                if ($mmpodcat_info["cat_id"] == $citem["id"]) {
-                    $cat_active = ' text-active'; $cat_dd = ' dropdown-active'; $cat_cont = ' question-active';
-                } else {$cat_active = $cat_dd = $cat_cont = '';}?>
+            <? $cat_razdelinfo = mqs("SELECT * FROM catalog_cats WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0  ORDER BY ordering");
+                  foreach ($cat_razdelinfo as $citem) {
+                    
 
-                
-                <div class="question  <?=$cat_cont?>">
-                    <div class="quesion-body ">
-                        <div class="question-title-wrapper">
-                            <h3 class="question-title title-active"><?=$citem["name"]?></h3>
-                            <button class="dropdown <?=$cat_dd?>"></button>
+                    if ($mmpodcat_info["cat_id"] == $citem["id"]) {
+                        $cat_active = ' text-active'; $cat_dd = ' dropdown-active'; $cat_cont = ' question-active';
+                    } else {$cat_active = $cat_dd = $cat_cont = '';}?>
 
-                        </div>
-                        
-                        
-                        <div class="question-text  <?=$cat_active?> text-slide-in">   <!--text-active ОТКРЫВАЕТ ВСЕ-->
-                                              
-                        <?  
-                             $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
-                            foreach ($catalog_podcats as $pitem) {?>
-                            <a href="/podcat/<?=$pitem["sys_name"]?>"><?=$pitem["name"]?></a>
-                            <? } ?>
+
+                    <div class="question  <?=$cat_cont?>">
+                        <div class="quesion-body ">
+                            <div class="question-title-wrapper">
+                                <h3 class="question-title title-active"><?=$citem["name"]?></h3>
+                                <button class="dropdown <?=$cat_dd?>"></button>
+
+                            </div>
+
+
+                            <div class="question-text  <?=$cat_active?> text-slide-in">   <!--text-active ОТКРЫВАЕТ ВСЕ-->
+
+                                <?  
+                                    $catalog_podcats = mqs("SELECT * FROM catalog_podcats WHERE cat_id='".$citem["id"]."'");
+                                    foreach ($catalog_podcats as $pitem) {?>
+                                    <a href="/podcat/<?=$pitem["sys_name"]?>"><?=$pitem["name"]?></a>
+                                <? } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?} ?>
+                <?} ?>
             </div>
 
 
+<!-- CAT_QUERY -->
+            <?
+                if ($path[0] == 'razdel') $cat_query = ' AND razdel_id='.$mmrazdel_info["id"];
+                elseif ($path[0] == 'podcat') $cat_query = ' AND podcat_id='.$mmpodcat_info["id"];
+                elseif ($path[0] == 'category') $cat_query = ' AND cat_id='.$mmcat_info["id"];
+                else $cat_query = '';
+            ?>
+
+
+<!-- ADD_QUERY -->
+            <? 
+            if ($_SERVER['QUERY_STRING'] == '') $add_query = '';
+            else {
+                $params = explode('&', $_SERVER['QUERY_STRING']);
+                $add_query = '';
+                foreach ($params as $param) {
+                    if ( preg_match('/price1/',$param) ) $add_query .= ' AND price >= '.str_replace("price1=","",$params[0]);
+                    elseif ( preg_match('/price2/',$param) ) $add_query .= ' AND price <= '.str_replace("price2=","",$params[1]);
+                    else {
+                        $add_query .= ' AND '.$param;
+                    }
+                }
+            }
+            
+
+           	if ($path[0] == 'razdel') $goods = mqs("SELECT * FROM catalog WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
+            elseif ($path[0] == 'category') $goods = mqs("SELECT * FROM catalog WHERE cat_id='".$mmcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering");
+            elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
+          
+            ?>
           
 
         
@@ -67,6 +99,10 @@
                     <h6 class="filters-header">Цена (руб.)</h6>
 
                     <p class="range-value">
+
+                   <?   $start_price = mqo("SELECT price FROM catalog WHERE on_moderate=0".$add_query.$cat_query." ORDER BY price LIMIT 1 ");
+		                $end_price = mqo("SELECT price FROM catalog WHERE on_moderate=0".$add_query.$cat_query." ORDER BY price DESC LIMIT 1 ");
+                    ?>
                         <input type="number" id="start-amount" value="<?=$start_price["price"]?>" data-min="<?=$start_price["price"]?>">
                         <input type="number" id="end-amount" value="<?=$end_price["price"]?>" data-max="<?=$end_price["price"]?>">
                     </p>
@@ -84,6 +120,7 @@
 
 
 <!-- БРЕНДЫ -->
+
             <div class="question aside-white__question ">
                 <div class="quesion-body ">
                     <div class="question-title-wrapper">
@@ -98,11 +135,11 @@
                             
                             ?>
                           
-                            <?$vsego_brand = mqs("SELECT id FROM catalog WHERE brand_id='".$bitem["id"]."'");
-                                $mark = 'filter-brand'.$n;?>
+                            <?$vsego_brand = mqs("SELECT id FROM catalog WHERE brand_id='".$bitem["id"]."'".$cat_query);
+                                $mark_brand = 'filter-brand'.$n;?>
                                 <div class="checkbox-container checkbox-category__container ">
-                                    <input class="check" name="brand_id" id="<?=$mark?>" type="checkbox" data-value="<?=$mbrand_info["id"]?>">
-                                    <label class="checkbox-label" for="<?=$mark?>"><?=$bitem["name"]?> <span>(<?=count($vsego_brand)?>)</span></label>
+                                    <input class="check" name="brand_id" id="<?=$mark_brand?>" type="checkbox" data-value="<?=$mbrand_info["id"]?>">
+                                    <label class="checkbox-label" for="<?=$mark_brand?>"><?=$bitem["name"]?> <span>(<?=count($vsego_brand)?>)</span></label>
                                 </div>
                         <? $n++;} ?>
                         
@@ -112,31 +149,6 @@
                 </div>
             </div>
 
-<!-- СПОСОБ ОБРАБОТКИ -->
-            <div class="question aside-white__question ">
-                <div class="quesion-body">
-                    <div class="question-title-wrapper">
-                        <h3 class="question-title title-active">Способ обработки</h3>
-                        <button class="dropdown "></button>
-
-                    </div>
-                    <div class="question-text text-slide-in">
-
-                       
-                       <?  foreach ($catalog_type as $titem) {?>
-                            
-                            
-                            
-                            <?$vsego_type = mqs("SELECT id FROM catalog WHERE type_id='".$titem["id"]."'");?>
-                            <div class="checkbox-container checkbox-category__container">
-                                <input id="terms<?=$n?>" type="checkbox">
-                                <label for="terms<?=$n?>"><?=$titem["name"]?> <span>(<?=count($vsego_type)?>)</span></label>
-                            </div>
-                        <? $n++;} ?>
-
-                    </div>
-                </div>
-            </div>
 
 <!-- СТРАНА -->
             <div class="question aside-white__question ">
@@ -151,11 +163,17 @@
                         <div class="question-text text-slide-in">
 
 
-                            <? foreach ($catalog_country as $couitem) {?>
+                            <? foreach ($catalog_country as $couitem) {
+                                $mcountry_info =  mqo("SELECT * FROM catalog WHERE country_id = '".$couitem["id"]."'");?>
                                 <div class="checkbox-container checkbox-category__container">
-                                    <? $vsego_country = mqs("SELECT id FROM catalog WHERE country_id='".$couitem["id"]."'");?>
-                                    <input id="terms<?=$n?>" name="country_id" type="checkbox">
-                                    <label for="terms<?=$n?>"><?=$couitem["name"]?> <span>(<?=count($vsego_country)?>)</span></label>
+                                                                                          <!-- podcat_id='".$pitem["id"]."' AND cat_id='".$item["id"]."' -->
+                                    <? $vsego_country = mqs("SELECT id FROM catalog WHERE country_id='".$couitem["id"]."'".$cat_query);
+                                       $mark_country = 'filter-country'.$n;
+                                    ?>
+
+                                    <input id="<?=$mark_country?>" name="country_id" type="checkbox" data-value="<?=$mcountry_info["id"]?>">
+                                    <label for="<?=$mark_country?>"><?=$couitem["name"]?> <span>(<?=count($vsego_country)?>)</span></label>
+
                                 </div>
                             <? $n++;} ?>
                         </div>
@@ -197,23 +215,7 @@
         
         <div class="category-grid__container">
         
-            <? 
-            $params = explode('&', $_SERVER['QUERY_STRING']);
-            $add_query = '';
-            foreach ($params as $param) {
-            	if ( preg_match('/price1/',$param) ) $add_query .= ' AND price >= '.str_replace("price1=","",$params[0]);
-            	elseif ( preg_match('/price2/',$param) ) $add_query .= ' AND price <= '.str_replace("price2=","",$params[1]);
-            	else {
-            		$add_query .= ' AND '.$param;
-            	}
-            }
-           	//echo $add_query;
-
-           	if ($path[0] == 'razdel') $goods = mqs("SELECT * FROM catalog WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
-            elseif ($path[0] == 'category') $goods = mqs("SELECT * FROM catalog WHERE cat_id='".$mmcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering");
-            elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
-          
-            ?>
+        
         <? foreach ($goods as $gitem) {
 
             include('core/view/itemcard/item.php');
