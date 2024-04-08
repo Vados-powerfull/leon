@@ -154,7 +154,7 @@
                             <? foreach ($catalog_country as $couitem) {?>
                                 <div class="checkbox-container checkbox-category__container">
                                     <? $vsego_country = mqs("SELECT id FROM catalog WHERE country_id='".$couitem["id"]."'");?>
-                                    <input id="terms<?=$n?>" type="checkbox">
+                                    <input id="terms<?=$n?>" name="country_id" type="checkbox">
                                     <label for="terms<?=$n?>"><?=$couitem["name"]?> <span>(<?=count($vsego_country)?>)</span></label>
                                 </div>
                             <? $n++;} ?>
@@ -197,11 +197,23 @@
         
         <div class="category-grid__container">
         
-           <? if ($path[0] == 'razdel') $goods = mqs("SELECT * FROM catalog WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0 ORDER BY ordering"); 
-              elseif ($path[0] == 'category') $goods = mqs("SELECT * FROM catalog WHERE cat_id='".$mmcat_info["id"]."' AND on_moderate=0 ORDER BY ordering");
-              elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ORDER BY ordering"); 
+            <? 
+            $params = explode('&', $_SERVER['QUERY_STRING']);
+            $add_query = '';
+            foreach ($params as $param) {
+            	if ( preg_match('/price1/',$param) ) $add_query .= ' AND price >= '.str_replace("price1=","",$params[0]);
+            	elseif ( preg_match('/price2/',$param) ) $add_query .= ' AND price <= '.str_replace("price2=","",$params[1]);
+            	else {
+            		$add_query .= ' AND '.$param;
+            	}
+            }
+           	//echo $add_query;
+
+           	if ($path[0] == 'razdel') $goods = mqs("SELECT * FROM catalog WHERE razdel_id='".$mmrazdel_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
+            elseif ($path[0] == 'category') $goods = mqs("SELECT * FROM catalog WHERE cat_id='".$mmcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering");
+            elseif ($path[0] == 'podcat') $goods = mqs("SELECT * FROM catalog WHERE podcat_id='".$mmpodcat_info["id"]."' AND on_moderate=0 ".$add_query." ORDER BY ordering"); 
           
-          ?>
+            ?>
         <? foreach ($goods as $gitem) {
 
             include('core/view/itemcard/item.php');
