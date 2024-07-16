@@ -8,20 +8,19 @@
                 $catalog_razdel = mqo("SELECT * FROM catalog_razdel WHERE id='".$item["razdel_id"]."'");
                 $catalog_cat = mqo("SELECT sys_name FROM catalog_cats WHERE id='".$item["cat_id"]."'");
                 $catalog_podcat = mqo("SELECT sys_name FROM catalog_podcats WHERE id='".$item["podcat_id"]."'");
-                // $goods_info = mqo("SELECT * FROM catalog WHERE sys_name='".end($path)."'");
-                // $nal = mqo("SELECT * FROM catalog_nal WHERE id='".$item["nal_id"]."'"); НАЛИЧИЕ
+                
                 ?>
                 
 
             <div class="item-card">
                 <span class="item-discount"><?=$item["discount"]?></span>
-                <button class="item-fav__btn" data-id="<?=$item["id"]?>">
+                <button class="item-fav__btn add_to_favorites" data-id="<?=$item["id"]?>">
                     <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
                 <div class="item-card__img mt-1">
-                  <a href="/item/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
+                   <a href="/item/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
                 </div>
                 <a href="/item/<?=$item["sys_name"]?>" class="item-card__title">
                     <?=$item["name"]?>
@@ -37,8 +36,8 @@
                     <button class="item-card__buy-mobile add_to_cart" data-id="<?=$item["id"]?>">
                         В корзину
                     </button>
-                    <button class="item-card__btn " data-id="<?=$item["id"]?>">
-                        <svg class="header-nav-svg add_to_cart" width="32" height="32" viewBox="0 0 33 23">
+                    <button class="item-card__btn add_to_cart" data-id="<?=$item["id"]?>">
+                        <svg class="header-nav-svg " width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
                     </button>

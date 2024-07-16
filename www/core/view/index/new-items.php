@@ -14,13 +14,13 @@
 
             <div class="item-card">
                 <span class="item-new">Новинка</span>
-                <button class="item-fav__btn" data-id="<?=$item["id"]?>">
+                <button class="item-fav__btn add_to_favorites" data-id="<?=$item["id"]?>">
                     <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
                 </button>
                 <div class="item-card__img mt-1">
-                    <a href="/item/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
+                   <a href="/item/<?=$item["sys_name"]?>">  <img src="<?=$item["img"]?>" alt=""></a>
                 </div>
                 <a href="/item/<?=$item["sys_name"]?>" class="item-card__title">
                     <?=$item["name"]?>
@@ -36,8 +36,8 @@
                     <button class="item-card__buy-mobile add_to_cart" data-id="<?=$item["id"]?>">
                         В корзину
                     </button>
-                    <button class="item-card__btn" data-id="<?=$item["id"]?>">
-                        <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
+                    <button class="item-card__btn add_to_cart" data-id="<?=$item["id"]?>">
+                        <svg class="header-nav-svg " width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
                     </button>

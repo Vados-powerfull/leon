@@ -12,7 +12,7 @@
 
 
 
-                <button class="item-fav__btn">
+                <button class="item-fav__btn ">
                     <svg class="header-nav-svg add_to_favorites" width="32" height="32" viewBox="0 0 27 22" data-id="<?=$gitem["id"]?>">
                         <use xlink:href="/public/img/svg/heart.svg#heart-menu-icon" fill="currentColor" />
                     </svg>
