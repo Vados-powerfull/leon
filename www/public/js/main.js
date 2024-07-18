@@ -308,20 +308,51 @@ if (orderItems) {
 
 // CHANGE AMOUNT LOGIC
 
-const chooseAmountBoxes = document.querySelectorAll('.choose-amount')
-chooseAmountBoxes?.forEach(box => {
-    const increaseBtn = box.querySelector('.increase')
-    const decreaseBtn = box.querySelector('.decrease')
-    const current = box.querySelector('.current-amout')
-    increaseBtn?.addEventListener('click', () => {
-        const value = parseFloat(current.innerHTML)
-        current.innerHTML = value + 1
-    })
-    decreaseBtn?.addEventListener('click', () => {
-        const value = parseFloat(current.innerHTML)
-        value != 0 ? current.innerHTML = value - 1 : null;
-    })
-})
+
+document.querySelectorAll('.choose-amount').forEach(box => {
+  const increaseBtn = box.querySelector('.increase');
+  const decreaseBtn = box.querySelector('.decrease');
+  const current = box.querySelector('.current-amout');
+  const itemPriceElement = box.closest('.order-item').querySelector('.item-price');
+
+  increaseBtn.addEventListener('click', () => {
+    let oldValue = parseInt(current.textContent);
+    current.textContent = oldValue + 1;
+    updateTotalPrice();
+  });
+
+  decreaseBtn.addEventListener('click', () => {
+    let oldValue = parseInt(current.textContent);
+    if (oldValue > 1) {
+      current.textContent = oldValue - 1;
+      updateTotalPrice();
+    }
+  });
+});
+
+function updateTotalPrice() {
+  let totalPrice = 0;
+  document.querySelectorAll('.order-item').forEach(item => {
+    let currentAmount = parseInt(item.querySelector('.current-amout').textContent);
+    let itemPrice = parseInt(item.querySelector('.item-price').textContent.replace('руб', '').trim());
+    totalPrice += itemPrice * currentAmount;
+  });
+  document.querySelector('.total-amount').textContent = totalPrice + ' руб';
+}
+
+// Инициализация общей суммы при загрузке страницы
+updateTotalPrice();
+
+
+
+
+
+
+
+
+
+
+
 
 // CHECKBOX LOGIC
 

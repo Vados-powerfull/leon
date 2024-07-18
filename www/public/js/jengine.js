@@ -378,7 +378,7 @@ $(".add_to_cart, .buy-btn").click(function() {
 	if (checkCookieExists("cart") == false) 
 	{	
 		addCookie("cart", id+",");
-		alert('Товар добавлен в корзину')
+		 alert('Товар добавлен в корзину')    //                       						
 	}
 	else {
 		mcookie = getCookie("cart");
@@ -400,6 +400,109 @@ $(".del_from_cart").click( function(){
 	addCookie("cart", mcookie);
 	location.reload();
 })
+
+$(".del_from_cart-m").click( function(){
+    addCookie("cart", "");
+    location.reload();
+})
+
+
+
+$(".make-order-d").click( function(){
+	var goods = '';
+	$(".order-content-wrapper-d").find(".order-item").each(function(){
+		gname = $(this).find(".item-name").text();
+		price = $(this).find(".item-price").text();
+		amount = $(this).find(".current-amout").text();
+		itemimg = $(this).find(".item-img").attr("src");
+
+		goods += `
+			<div class="order-item">
+			<div class="order-img__container">
+				<img class="item-img" src="${itemimg}" alt="" />
+			</div>
+			<p class="item-name">
+				${gname}
+			</p>
+			<div class="item-total">
+				<span class="item-price">${price}</span>
+				<span class="item-amount">${amount} шт</span>
+			</div>
+			</div>
+	  		`;
+		
+	})
+
+	phone = $("#basket-tel").val();
+	adress = $("#basket-address").val();
+	comment = $("#basket-connet").val();
+	ves = $(".order-ves").text();
+	summ = $(".total-amount").text();
+	gtype = $(".order-type").val();
+
+	if ($("#delivery").is(":checked")) gtype = '2'; else gtype = '1';
+
+
+
+	$.post('/public/forms/order.php', {goods:goods, phone:phone, adress:adress, comment:comment, ves:ves, summ:summ, gtype:gtype}, function(data){
+		$("body").append(data);
+		_self.trigger('reset');
+
+	})
+
+});
+
+
+
+
+$(".make-order-m").click( function(){
+	var goods = '';
+	$(".order-content-wrapper-m").find(".order-item").each(function(){
+		gname = $(this).find(".item-name").text();
+		price = $(this).find(".item-price").text();
+		amount = $(this).find(".current-amout").text();
+		itemimg = $(this).find(".item-img").attr("src");
+
+		goods += `
+			<div class="order-item">
+				<div class="order-img__container">
+					<img class="item-img" src="${itemimg}" alt="" />
+				</div>
+				<p class="item-name">
+					${gname}
+				</p>
+				<div class="item-total">
+					<span class="item-price">${price}</span>
+					<span class="item-amount">${amount} шт</span>
+				</div>
+			</div>
+	  		`;
+	
+		
+
+
+		
+	})
+
+	phone = $("#basket-tel").val();
+	adress = $("#basket-address").val();
+	comment = $("#basket-connet").val();
+	ves = $(".order-ves").text();
+	summ = $(".total-amount-m").text();
+	gtype = $(".order-type").val();
+
+	if ($("#delivery").is(":checked")) gtype = '2'; else gtype = '1';
+
+
+
+	$.post('/public/forms/order.php', {goods:goods, phone:phone, adress:adress, comment:comment, ves:ves, summ:summ, gtype:gtype}, function(data){
+		$("body").append(data);
+		_self.trigger('reset');
+
+	})
+
+});
+
 
 
 $('.ajax-form').submit(function(e){
@@ -466,3 +569,4 @@ function cart_count()
 		$(".h_cart").find(".right-corner__number").html(count);
 	}
 }
+

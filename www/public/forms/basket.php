@@ -30,4 +30,3 @@
 
 	if ($r) echo '<script>$("#loader").remove(); alert("Заказ успешно отправлен! Мы свяжемся с Вами в ближайшее время");</script>';
 	else echo '<script>$("#loader").remove(); alert("'.$cnf['mess_send'].'");</script>';
-	

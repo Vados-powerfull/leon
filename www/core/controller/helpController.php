@@ -8,7 +8,7 @@
 	
 	$page = mqo("SELECT * FROM pages WHERE sys_name='".end($path)."'");
 	$page_title = $page["page_title"];
-	$footerInfo = mqo("SELECT * FROM footer WHERE id = 1");
+	
 	$menu = mqs("SELECT * FROM menu WHERE on_moderate=0  ORDER BY ordering");
 	$kontakty = mqo("SELECT * FROM contacts_settings WHERE id=1");
 	$faq = mqs("SELECT * FROM faq WHERE on_moderate=0  ORDER BY ordering");

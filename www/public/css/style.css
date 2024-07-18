@@ -3171,6 +3171,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .history {
 	padding-top: 15px;
 	padding-bottom: 80px;
+	
 }
 
 .order {
@@ -3179,6 +3180,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	width: 100%;
 	background-color: #e8e8e8;
 	padding: 25px 36px 36px 45px;
+	
 }
 
 .order-header-wrapper {
@@ -3499,9 +3501,18 @@ input[type="number"]::-webkit-inner-spin-button {
 	line-height: 140%; /* 56px */
 }
 
+.order-content-flex {
+	display: flex; 
+	flex-wrap: wrap;
+	justify-content: space-between;
+	
+	
+}
+
 .order-content-wrapper {
 	display: none;
 	position: relative;
+	padding-bottom: 150px;
 }
 
 .order-content-wrapper-active {
@@ -3520,6 +3531,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	height: 95px;
 	border-radius: 20px;
 	background-color: #fff;
+	/* margin-bottom: 90px; */
 }
 
 .item-img {
@@ -3565,10 +3577,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .lc-order-info {
-	position: absolute;
-	top: 0px;
-	right: 70px;
-	padding: 30px 0px 30px 25px;
+	position: relative;
+	top: -208px;
+	right: 65px;
+	padding: 29px 0px 20px 20px;
 	border-radius: 30px;
 	border: 1px solid #262626;
 	width: 260px;
@@ -3577,6 +3589,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 110%;
+	margin-bottom: 50px;
 }
 @-moz-document url-prefix() {
 	.lc-order-info {
@@ -3607,6 +3620,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .total-amount {
+	color: #262626;
+	font-size: 22px;
+	font-weight: 700;
+	margin-top: 10px;
+}
+
+.total-amount-m {
 	color: #262626;
 	font-size: 22px;
 	font-weight: 700;
@@ -3896,6 +3916,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	height: 95px;
 	border-radius: 20px;
 	background-color: #fff;
+	
 }
 
 .busket-container .item-img {
@@ -4836,6 +4857,7 @@ footer {
 		.order-content-wrapper {
 			position: relative;
 			margin-top: 40px;
+			
 		}
 
 		.order-item {

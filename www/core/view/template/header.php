@@ -20,7 +20,7 @@
                     </svg>
                 </a>
                 <a href="tel:<?=atel($kontakty["phone1"])?>" class="nav-phone">
-                    <img src="public/img/svg/phone.svg" alt="">
+                    <img src="/public/img/svg/phone.svg" alt="">
                     <p>123</p>
                 </a> -->
 
@@ -52,7 +52,7 @@
                 </li>
                 <li>
                     <a href="tel:<?=atel($kontakty["phone1"])?>" class="header-relative__icon">
-                        <img src="public/img/svg/phone.svg" alt="">
+                        <img src="/public/img/svg/phone.svg" alt="">
                         <!-- <svg class="header-nav-svg" width="32" height="32" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/phone.svg" fill="currentColor" />
                         </svg> -->
@@ -234,7 +234,7 @@
 
 
             <div class="modal-menu-main-btn modal-submenu-item">
-                <a href="<?=$item["sys_name"]?>"><?=$item["name"]?></a>
+                <a href="/razdel/<?=$item["sys_name"]?>"><?=$item["name"]?></a>
             </div>
 
         <? }?>
