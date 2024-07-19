@@ -9,7 +9,7 @@
         <script src="/public/js/jquery.maskedinput.min.js"></script>
         <script src="/public/js/wow.min.js"></script>
         <script src="<?=hashPath('/public/js/jengine.js')?>"></script> 
-        <script src="/public/js/main.js"></script>
+        <script src="<?=hashPath('/public/js/main.js')?>"></script>
         <!--<script> document.oncontextmenu = cmenu; function cmenu() { return false; } </script>-->
     </body>
 </html>
