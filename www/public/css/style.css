@@ -4018,9 +4018,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .busket-container .order-info {
-	position: absolute;
-	top: 0px;
-	right: 0px;
+	
 	padding: 30px 0px 0px 25px;
 	border-radius: 30px;
 	border: 1px solid #262626;
@@ -4647,7 +4645,7 @@ footer {
 		font-size: 14px;
 		line-height: 130%;
 		letter-spacing: 3px;
-		margin-left: 15px;
+		margin-left: 0px;
 		width: 100%;
 		display: block;
 	}
@@ -5498,8 +5496,8 @@ footer {
 	}
 	
 	.payment-methods {
-		margin-top: 150px !important;
-		margin-left: 15px;
+		margin-top: 10px !important;
+		
 	}
 	.busket-delivery .delivery-title{
 		margin-left: 0;	
@@ -6290,7 +6288,7 @@ footer {
 	}
 	.busket-container .customer {
 		margin-top: 30px;
-		margin-left: 15px;
+		margin-left: 0px;
 	}
 	.modal-catalog-back-svg {
 		height: 20px;
@@ -6377,7 +6375,17 @@ footer {
 	.header-input__form-phone {
 		display: none;
 	}
+
 }
+
+@media screen and (max-width: 768px) {
+	
+	.busket-container { padding: 0 15px; }
+	.busket-container .wrapper { flex-wrap: wrap  } 
+	.busket-container .customer-info { display: block; width: auto; }
+		.busket-container .customer-info input { margin-bottom: 10px; width: 100%; max-width: 375px; margin-bottom: 10px; }
+}
+
 @media screen and (max-width: 575px) {
 }
 @media screen and (max-width: 325px) {

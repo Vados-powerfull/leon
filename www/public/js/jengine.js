@@ -408,9 +408,9 @@ $(".del_from_cart-m").click( function(){
 
 
 
-$(".make-order-d").click( function(){
+$(".make-order").click( function(){
 	var goods = '';
-	$(".order-content-wrapper-d").find(".order-item").each(function(){
+	$(".order-item").each(function(){
 		gname = $(this).find(".item-name").text();
 		price = $(this).find(".item-price").text();
 		amount = $(this).find(".current-amout").text();
@@ -455,53 +455,53 @@ $(".make-order-d").click( function(){
 
 
 
-$(".make-order-m").click( function(){
-	var goods = '';
-	$(".order-content-wrapper-m").find(".order-item").each(function(){
-		gname = $(this).find(".item-name").text();
-		price = $(this).find(".item-price").text();
-		amount = $(this).find(".current-amout").text();
-		itemimg = $(this).find(".item-img").attr("src");
+// $(".make-order-m").click( function(){
+// 	var goods = '';
+// 	$(".order-content-wrapper-m").find(".order-item").each(function(){
+// 		gname = $(this).find(".item-name").text();
+// 		price = $(this).find(".item-price").text();
+// 		amount = $(this).find(".current-amout").text();
+// 		itemimg = $(this).find(".item-img").attr("src");
 
-		goods += `
-			<div class="order-item">
-				<div class="order-img__container">
-					<img class="item-img" src="${itemimg}" alt="" />
-				</div>
-				<p class="item-name">
-					${gname}
-				</p>
-				<div class="item-total">
-					<span class="item-price">${price}</span>
-					<span class="item-amount">${amount} шт</span>
-				</div>
-			</div>
-	  		`;
+// 		goods += `
+// 			<div class="order-item">
+// 				<div class="order-img__container">
+// 					<img class="item-img" src="${itemimg}" alt="" />
+// 				</div>
+// 				<p class="item-name">
+// 					${gname}
+// 				</p>
+// 				<div class="item-total">
+// 					<span class="item-price">${price}</span>
+// 					<span class="item-amount">${amount} шт</span>
+// 				</div>
+// 			</div>
+// 	  		`;
 	
 		
 
 
 		
-	})
+// 	})
 
-	phone = $("#basket-tel").val();
-	adress = $("#basket-address").val();
-	comment = $("#basket-connet").val();
-	ves = $(".order-ves").text();
-	summ = $(".total-amount-m").text();
-	gtype = $(".order-type").val();
+// 	phone = $("#basket-tel").val();
+// 	adress = $("#basket-address").val();
+// 	comment = $("#basket-connet").val();
+// 	ves = $(".order-ves").text();
+// 	summ = $(".total-amount-m").text();
+// 	gtype = $(".order-type").val();
 
-	if ($("#delivery").is(":checked")) gtype = '2'; else gtype = '1';
+// 	if ($("#delivery").is(":checked")) gtype = '2'; else gtype = '1';
 
 
 
-	$.post('/public/forms/order.php', {goods:goods, phone:phone, adress:adress, comment:comment, ves:ves, summ:summ, gtype:gtype}, function(data){
-		$("body").append(data);
-		_self.trigger('reset');
+// 	$.post('/public/forms/order.php', {goods:goods, phone:phone, adress:adress, comment:comment, ves:ves, summ:summ, gtype:gtype}, function(data){
+// 		$("body").append(data);
+// 		_self.trigger('reset');
 
-	})
+// 	})
 
-});
+// });
 
 
 
