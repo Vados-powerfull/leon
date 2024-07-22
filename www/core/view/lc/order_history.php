@@ -1,5 +1,5 @@
 <div class="background personal-bg">
-    <div class="container">     
+    <div class="container busket-container-m">     
         <div class="history">
 
 
@@ -28,10 +28,10 @@
                             <p class="order-price"><?=$ord_info["summ"]?></p>
                         </div>
                         <div class="order-buttons">
-                            <div class="reorder">
+                            <!-- <div class="reorder">                                                       ПОВТОРИТЬ ЗАКАЗ КНОПКА
                                 <img src="/public/img/svg/reorder.svg" class="reorder-svg" alt="" />
                                 <span class="reorder-title">Повторить заказ</span>
-                            </div>
+                            </div> -->
                             <button class="dropdown"></button>
                         </div>
                     </div>

@@ -42,10 +42,10 @@
             </div>
             
 
-            <div class="add-delivery-point">
+            <!-- <div class="add-delivery-point">
                 <img src="/public/img/svg/plus.svg" alt="" />
                 <p>Добавить новый адрес доставки</p>
-            </div>
+            </div> -->
             <div class="bonus-card">
                 <p class="bonus-card-title">Активировать бонусную карту</p>
                 <p class="bonus-card-title bonus-card-title-locked content-hidden">

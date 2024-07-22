@@ -41,12 +41,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/busket" class="header-relative__icon h_busket">
+                    <a href="/busket" class="header-relative__icon h_cart">
                         <svg class="header-nav-svg" width="28" height="28" viewBox="0 0 33 23">
                             <use xlink:href="/public/img/svg/busket.svg#busket-menu-icon" fill="currentColor" />
                         </svg>
-                        <div class="header-relative__count">
-                            4
+                        <div class="header-relative__count right-corner__number">
+                            0
                         </div>
                     </a>
                 </li>

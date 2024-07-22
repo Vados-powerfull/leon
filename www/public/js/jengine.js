@@ -369,6 +369,30 @@ $(document).ready(function () {
     })
 });
 
+
+
+// ФОРМА ПОДПИСКИ НА РАССЫЛКУ
+
+$('#subscribeForm').submit(function(event) {
+	event.preventDefault();
+	var email = $('input[name="email"]').val();
+	$.ajax({
+		type: 'POST',
+		url: '/public/forms/subscribe.php', 
+		data: {email: email},
+		success: function(data) {
+			alert('Email успешно отправлен!');
+		},
+		error: function(xhr, status, error) {
+			alert('Error: ' + error);
+		}
+	});	
+});
+
+
+
+
+
 	
 
 cart_count();
@@ -399,11 +423,6 @@ $(".del_from_cart").click( function(){
 	mcookie = mcookie.replace(id+",", '');
 	addCookie("cart", mcookie);
 	location.reload();
-})
-
-$(".del_from_cart-m").click( function(){
-    addCookie("cart", "");
-    location.reload();
 })
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 18 2024 г., 18:26
+-- Время создания: Июл 22 2024 г., 15:56
 -- Версия сервера: 5.6.51
 -- Версия PHP: 7.3.33
 
@@ -713,7 +713,28 @@ CREATE TABLE `lc_users` (
 INSERT INTO `lc_users` (`id`, `fio`, `adress`, `phone`, `email`, `pass`, `ordering`) VALUES
 (1, 'Иванов Константин Петрович', '', '+7 (950) 678 90 00', 'user@mail.ru', '123', 1),
 (7, 'Alex', '', '79507777773', 'mosarbopro@yandex.ru', '123', 0),
-(8, 'dflz', 'г. Курск, Гайдара 3, 2 эт, оф.6', '72222222222', 'cooller.asus@gmail.com', '123', 0);
+(8, 'Вадя', 'г. Курск, Гайдара 3, 2 эт, оф.6', '72222222222', 'cooller.asus@gmail.com', '123', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mailing`
+--
+
+CREATE TABLE `mailing` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'E-mail',
+  `ordering` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `mailing`
+--
+
+INSERT INTO `mailing` (`id`, `email`, `ordering`) VALUES
+(30, 'a@a.ru', 0),
+(31, 'aa@aa.ru', 0),
+(32, 'ba@aa.ru', 0);
 
 -- --------------------------------------------------------
 
@@ -804,6 +825,13 @@ CREATE TABLE `orders` (
   `date_order` date NOT NULL COMMENT 'Дата заказа',
   `ordering` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `status_id`, `type_id`, `adress`, `summ`, `ves`, `phone`, `comment`, `details`, `time_order`, `date_order`, `ordering`) VALUES
+(101, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '16:53:11', '2024-07-19', 0);
 
 -- --------------------------------------------------------
 
@@ -1077,7 +1105,8 @@ INSERT INTO `s_modes` (`id`, `name`, `action`, `dbtable`, `module_id`, `showcols
 (82, 'Пользователи', 'items', 'lc_users', 52, 'fio', '', '', '', '', 47),
 (83, 'Адреса', 'adress', 'lc_adress', 52, 'adress', 'user_id', '', '', '', 48),
 (84, 'Бонусные карты', 'cards', 'lc_cards', 52, 'numb', 'active', '', '', '', 49),
-(85, 'Доставка и оплата', 'delivery', 'delivery', 53, 'name', '', '', '', '', 50);
+(85, 'Доставка и оплата', 'delivery', 'delivery', 53, 'name', '', '', '', '', 50),
+(86, 'mailing', 'mailing', 'mailing', 54, 'email', '', '', '', '', 51);
 
 -- --------------------------------------------------------
 
@@ -1110,10 +1139,11 @@ INSERT INTO `s_modules` (`id`, `name`, `action`, `icon`, `settings`, `settingsTa
 (29, 'Контакты', 'kontakty', '<i class=\"fa fa-address-card\" aria-hidden=\"true\"></i>', 1, 'contacts_settings', '', 4),
 (46, 'Блог', 'blog', '<i class=\"fa fa-rss\" aria-hidden=\"true\"></i>', 0, '', '', 9),
 (40, 'Банеры', 'banners', '<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>', 0, '', '', 2),
-(49, 'FAQ', 'faq', '', 0, '', '', 10),
-(50, 'Рецепты', 'recipe', '', 0, '', '', 11),
+(49, 'FAQ', 'faq', '<i class=\"fa fa-quora\" aria-hidden=\"true\"></i>', 0, '', '', 10),
+(50, 'Рецепты', 'recipe', '<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i>', 0, '', '', 11),
 (52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 12),
-(53, 'Способы оплаты', 'delivery', '', 0, '', '', 13);
+(53, 'Способы оплаты', 'delivery', '<i class=\"fa fa-money\" aria-hidden=\"true\"></i>', 0, '', '', 13),
+(54, 'Рассылка', '/mailing', '<i class=\"fa fa-paper-plane-o\" aria-hidden=\"true\"></i>', 0, '', '', 14);
 
 -- --------------------------------------------------------
 
@@ -1334,6 +1364,12 @@ ALTER TABLE `lc_cards_status`
 -- Индексы таблицы `lc_users`
 --
 ALTER TABLE `lc_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `mailing`
+--
+ALTER TABLE `mailing`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1599,6 +1635,12 @@ ALTER TABLE `lc_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT для таблицы `mailing`
+--
+ALTER TABLE `mailing`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
@@ -1620,7 +1662,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT для таблицы `orders_status`
@@ -1632,7 +1674,7 @@ ALTER TABLE `orders_status`
 -- AUTO_INCREMENT для таблицы `orders_type`
 --
 ALTER TABLE `orders_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `otzyvy`
@@ -1674,13 +1716,13 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT для таблицы `s_modes`
 --
 ALTER TABLE `s_modes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT для таблицы `s_modules`
 --
 ALTER TABLE `s_modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT для таблицы `uslugi`

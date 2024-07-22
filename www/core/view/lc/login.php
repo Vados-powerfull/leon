@@ -1,5 +1,5 @@
 <div class="login_signup">
-    <div class="container login-container pt-5 ">
+    <div class="container login-container pt-5 crumbs-m">
         <? include("core/view/template/crumbs.php"); ?>
         <h1>Вход в личный кабинет</h1>
 

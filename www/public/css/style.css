@@ -1142,6 +1142,7 @@ section {
 	background: #ee9d01;
 	padding: 50px;
 	position: relative;
+	
 }
 .newsletter-wrapper {
 	padding-bottom: 101px;
@@ -1586,7 +1587,7 @@ section {
 }
 
 .order-info {
-	margin-top: 40px;
+	margin-top: 21px;
 	display: flex;
 	align-items: center;
 	
@@ -3578,7 +3579,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .lc-order-info {
 	position: relative;
-	top: -208px;
+	top: 0px;
 	right: 65px;
 	padding: 29px 0px 20px 20px;
 	border-radius: 30px;
@@ -4513,6 +4514,82 @@ footer {
 @media screen and (max-width: 991px) {
 }
 @media screen and (max-width: 767px) {
+
+
+	
+
+
+	.busket-container { padding: 0 15px; }
+	.busket-container .wrapper { flex-wrap: wrap  } 
+	.busket-container .customer-info { display: block; width: auto; }
+		.busket-container .customer-info input { margin-bottom: 10px; width: 100%; max-width: 345px; margin-bottom: 10px; }
+		.busket-container .order-item { display: flex; flex-wrap: wrap; width: auto; height: auto; padding: 0 10px;}
+		.busket-container .order-item img { padding-top: 10px; }
+		.busket-container .order-item .item-img {margin-left: 0; padding-left: 0px; height: 95px; }
+
+		.busket-container .order-item .item-name {max-width: 100%; margin-left: 0; padding-left: 30px;}
+
+		.busket-container .order-item .choose-amount-m {margin: 10px 20px 20px 5px }
+		.busket-container .order-item .item-price-m {margin-right: 16px; padding-bottom: 8px;}
+		.busket-container .order-item .cancel-m {padding-bottom: 3px;}
+		.busket-container .order-item .order-img__container {margin-left: 25px;}
+
+	.busket-container .wide {}
+
+	.ritem_img { overflow: visible;}
+
+	.recipe-big-card img {max-width: 92%;}
+		
+	.recipe_text {margin-right: 20px;}
+
+	.path .arrow-svg {max-height: 15px; max-width: 10px;}
+
+	.item-card__img {margin-top: 10px;}
+
+	.crumbs-m {margin-left: 15px;}
+
+	.store-items__pagination .arrow-page-item {margin-left: -7px;}
+
+	.login { width: auto; margin-right: 30px;}
+
+		.login-wrapper { }
+
+		.login-wrapper input { width: max-content; margin-left: -38px; padding-right: 20px;}
+
+		.login-wrapper .register-btn {position: relative;}
+
+		.login-wrapper .forgot-password {position: relative; display: inline-block; left: 118px; font-size: 14px; top: -38px;}
+
+	/* ЛК АДАПТИВ */
+
+	.bonus-card {display: none;}
+
+	.personal-buttons {display: block;}
+		.exit-button {width: 30%; margin-top: 10px; margin-right: 10px;}
+		.order-history-button {position: relative; left: 0; width: auto;}
+		.add-delivery-point {padding: 33px 20px; margin-right: 10px;}
+	.my-info-button  {position: relative; }
+
+	.info {margin-left: 10px; margin-top: 50px; overflow-x: hidden;}
+		.info-body  {grid-template-columns: 124px auto;}
+
+		.order-header-wrapper {margin-top: 20px;}
+		.order-content-wrapper .order-content-flex .order-item {display: flex; flex-wrap: wrap; width: auto;  padding: 20px 10px; height: auto; }
+		.order-content-wrapper .order-item .order-img__container .item-img { height: 100%; margin-left: 10px;}
+		.order-item .item-name {margin-left: 0 !important; padding-left: 20px;}	
+		.order-header-wrapper .order-item .order-img__container {margin-left: 25px;}
+		.order-content-wrapper .item-total  { margin-top: 20px;margin-left: 10px;}
+		.order-content-wrapper .item-total span {padding-bottom: 10px;}
+
+		
+
+		.order-type {}
+		.reorder {display: none;}
+
+	.lc-order-info { top: 0; right: 0; margin-top: 30px;}
+
+
+
 	.contacts,
 	.nav-section,
 	.navbar {
@@ -4626,6 +4703,7 @@ footer {
 	}
 	.item-card .item-card__title {
 		height: 91px;
+		overflow-y: hidden;
 	}
 	.aside-category__dropdowns {
 		padding: 15px;
@@ -5467,7 +5545,7 @@ footer {
 	}
 	
 	.recipe-small-wrapper .recipe-card {
-		display: block;
+		
 		margin-left: 10px;
 	}
 	.recipe-small-wrapper .recipe-card > img {
@@ -5597,6 +5675,12 @@ footer {
 	.recipe-card__container {
 		padding-bottom: 10px;
 	}
+
+		.recipe-card h4 {color: white;}
+		.recipe-card p {color: white;}
+
+		
+
 	.recipe-big-container {
 		grid-template-columns: 1fr;
 		margin-left: 15px;
@@ -6280,7 +6364,7 @@ footer {
 	}
 	.busket-container .order-info {
 		position: static;
-		margin-left: calc((100vw - 260px) / 2);
+		margin: 50px auto;
 	}
 	.modal-catalog-back-btn {
 		background: none;
@@ -6380,10 +6464,7 @@ footer {
 
 @media screen and (max-width: 768px) {
 	
-	.busket-container { padding: 0 15px; }
-	.busket-container .wrapper { flex-wrap: wrap  } 
-	.busket-container .customer-info { display: block; width: auto; }
-		.busket-container .customer-info input { margin-bottom: 10px; width: 100%; max-width: 375px; margin-bottom: 10px; }
+	
 }
 
 @media screen and (max-width: 575px) {

@@ -1,4 +1,4 @@
-<div class="mobile-popup__wrapper">
+<div class="mobile-popup__wrapper ">
     <div class="mobile-popup-titie__wrapper">
         <h2>Фильтр</h2>
         <div class="modal-catalog-close-btn">

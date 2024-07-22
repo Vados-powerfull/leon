@@ -1,4 +1,4 @@
-<div class="path mt-5 container">
+<div class="path mt-5 container crumbs-m">
     <? include ("core/view/template/crumbs.php"); ?>
 </div>
 

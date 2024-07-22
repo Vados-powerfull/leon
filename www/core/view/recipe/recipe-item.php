@@ -1,6 +1,6 @@
 <div class="container recipe-item-container">
-    <div class="path mt-5 crumbs">
-    <? include('core/view/template/crumbs.php');?>
+    <div class="mt-5">
+        <? include('core/view/template/crumbs.php');?>
     </div>
     
     
