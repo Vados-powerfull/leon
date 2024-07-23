@@ -6030,6 +6030,7 @@ footer {
 		width: 100vw;
 		height: 100vh;
 		background-color: #fff;
+		overflow-y: scroll;
 	}
 	.modal-sub-menu.active {
 		display: block;
