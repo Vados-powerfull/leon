@@ -168,15 +168,7 @@ $(document).ready(function () {
 
 
 
-	// Баскет отправляет форму вне формы
-	$('#submitForm').click(function() {
-		_self = $('#form_basket');
-		$.post('/public/forms/basket.php', _self.serializeArray(), function(data){
-				$("body").append(data);
-				_self.trigger('reset');
-				my_target('basket');
-		});
-	})
+	
 
 	$("#slider-range").slider({
         range: true,
@@ -223,22 +215,7 @@ $(document).ready(function () {
           $("#slider-range-popup").slider("values", 1, endValuepopup);
       });
   
-	  // Обработчик формы нажатия на кнопки + и -
-		// Обработка нажатия на кнопку "-"
-	$('.choose-amount button:contains("-")').click(function(){
-		var counter = $(this).find('.current-amout');
-		var count = parseInt(counter.text()) - 1;
-		count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
-		counter.text(count);
-	  });
-	  
-	  // Обработка нажатия на кнопку "+"
-	  $('.choose-amount button:contains("+")').click(function(){
-		var counter = $(this).find('.current-amout');
-		var count = parseInt(counter.text()) + 1;
-		counter.text(count);
-	  });
-
+	
 
 	$(".collapsible").click(function() {
 	
@@ -402,13 +379,16 @@ $(".add_to_cart, .buy-btn").click(function() {
 	if (checkCookieExists("cart") == false) 
 	{	
 		addCookie("cart", id+",");
-		 alert('Товар добавлен в корзину')    //                       						
+		addCookie("cart_amount", id+"-1,");
+		alert('Товар добавлен в корзину')    //                       						
 	}
 	else {
 		mcookie = getCookie("cart");
+		amount_mcookie = getCookie("cart_amount");
 		if (mcookie != undefined && mcookie.includes(id+",") == false)
 		{
 			addCookie("cart", mcookie+id+",");
+			addCookie("cart_amount", amount_mcookie+id+"-1,");
 			alert('Товар добавлен в корзину')
 		}
 		else { 
@@ -419,11 +399,106 @@ $(".add_to_cart, .buy-btn").click(function() {
 });
 $(".del_from_cart").click( function(){
 	id = $(this).attr("data-id");
+
 	mcookie = getCookie("cart");
 	mcookie = mcookie.replace(id+",", '');
 	addCookie("cart", mcookie);
+
+	amount_mcookie = getCookie("cart_amount");
+	// Используем регулярное выражение для поиска и удаления id и количества
+	let regex = new RegExp(id + '-\\d+,?', 'g');
+	// Заменяем найденные совпадения на пустую строку
+	amount_mcookie = amount_mcookie.replace(regex, '');
+	// Убираем лишнюю запятую в конце, если она осталась
+	amount_mcookie = amount_mcookie.replace(/,$/, '');
+	addCookie("cart_amount", amount_mcookie);
+
 	location.reload();
 })
+
+// Функция для обновления количества товара в куке
+function updateCartAmountInCookie(id, newAmount) {
+    let amount_mcookie = getCookie("cart_amount") || "";
+    let regex = new RegExp(id + '-\\d+,?', 'g');
+
+    // Если новое количество 0, удаляем товар из куки
+    if (newAmount === 0) {
+        amount_mcookie = amount_mcookie.replace(regex, '');
+        amount_mcookie = amount_mcookie.replace(/,$/, ''); // Убираем запятую, если она осталась
+    } else {
+        // Если товар уже есть в куке, обновляем количество
+        if (amount_mcookie.match(regex)) {
+            amount_mcookie = amount_mcookie.replace(regex, id + '-' + newAmount + ',');
+        } else {
+            // Если товара нет в куке, добавляем его с новым количеством
+            if (amount_mcookie.length > 0) {
+                amount_mcookie += ',';
+            }
+            amount_mcookie += id + '-' + newAmount;
+        }
+    }
+
+    addCookie("cart_amount", amount_mcookie);
+    updateTotalPrice();
+}
+
+// Обработчик формы нажатия на кнопки + и -
+// Обработка нажатия на кнопку "-"
+$('.choose-amount .decrease').click(function(){
+    var counter = $(this).siblings('.current-amout');
+    var count = parseInt(counter.text()) - 1;
+    count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
+    //alert(count)
+    counter.text(count);
+
+    // Обновляем куку с количеством товара
+    let productId = $(this).data('id'); // Идентификатор товара
+    updateCartAmountInCookie(productId, count);
+});
+
+// Обработка нажатия на кнопку "+"
+$('.choose-amount button:contains("+")').click(function(){
+    var counter = $(this).siblings('.current-amout');
+    var count = parseInt(counter.text()) + 1;
+    //alert(count)
+    counter.text(count);
+
+    // Обновляем куку с количеством товара
+    let productId = $(this).data('id'); // Идентификатор товара
+    updateCartAmountInCookie(productId, count);
+});
+
+function updateTotalPrice() {
+  let totalPrice = 0;
+  document.querySelectorAll('.order-item').forEach(item => {
+    let currentAmount = parseInt(item.querySelector('.current-amout').textContent);
+    let itemPrice = parseInt(item.querySelector('.item-price').textContent.replace('руб', '').trim());
+    totalPrice += itemPrice * currentAmount;
+  });
+  document.querySelector('.total-amount').textContent = totalPrice + ' руб';
+}
+
+// Инициализация общей суммы при загрузке страницы
+updateTotalPrice();
+
+
+  // Обработчик формы нажатия на кнопки + и -
+		// Обработка нажатия на кнопку "-"
+	/*$('.choose-amount button:contains("-")').click(function(){
+		var counter = $(this).find('.current-amout');
+		var count = parseInt(counter.text()) - 1;
+		count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
+		counter.text(count);
+	 });
+	  
+	  // Обработка нажатия на кнопку "+"
+	 $('.choose-amount button:contains("+")').click(function(){
+		var counter = $(this).find('.current-amout');
+		var count = parseInt(counter.text()) + 1;
+		counter.text(count);
+	 });*/
+
+
 
 
 
@@ -470,6 +545,16 @@ $(".make-order").click( function(){
 	})
 
 });
+
+// Баскет отправляет форму вне формы
+	$('#submitForm').click(function() {
+		_self = $('#form_basket');
+		$.post('/public/forms/basket.php', _self.serializeArray(), function(data){
+				$("body").append(data);
+				//_self.trigger('reset');
+				//my_target('basket');
+		});
+	})
 
 
 

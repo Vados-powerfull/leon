@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 19 2024 г., 11:39
--- Версия сервера: 5.6.51
--- Версия PHP: 7.3.33
+-- Время создания: Сен 19 2024 г., 17:15
+-- Версия сервера: 5.6.47
+-- Версия PHP: 7.3.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -304,6 +304,94 @@ INSERT INTO `catalog` (`id`, `name`, `razdel_id`, `cat_id`, `brand_id`, `podcat_
 (4, 'Свинина свежая вкусная Свинина черкизово Свинина черкизово', 13, 4, 3, 4, 2, 3, 1, 'HLX-7822AB', '/public/img/items/3.png', '', 9325, 11200, 1, '', 0, 1, 1, 1, 'Форель слабосоленая WISH FISH филе-кусок станет удачным вариантом для повседневного обеда, ужина и сервировки праздничного стола. Ее можно подавать в виде нарезки, использовать для приготовления салатов и холодных закусок. Слабосоленая форель отличается нежной текстурой и отменными дегустационными качествами. Она быстро утоляет голод, заряжает энергией и является источником ценных омега-кислот, витаминов и минеральных элементов.', '', '', '', '', '', '', 2.5, '59%', '2024-03-19', 0, 'svinina-svezhaya-vkusnaya-svinina-cherkizovo-svinina-cherkizovo', 0),
 (5, 'Свинина черкизово Свинина черкизово', 13, 1, 1, 1, 1, 2, 1, 'ST40020AB', '/public/img/items/1.jpg', '', 3795, 4400, 2, '', 0, 1, 1, 1, 'Форель слабосоленая WISH FISH филе-кусок станет удачным вариантом для повседневного обеда, ужина и сервировки праздничного стола. Ее можно подавать в виде нарезки, использовать для приготовления салатов и холодных закусок. Слабосоленая форель отличается нежной текстурой и отменными дегустационными качествами. Она быстро утоляет голод, заряжает энергией и является источником ценных омега-кислот, витаминов и минеральных элементов.', '', '', '', '', '', '', 0, '11%', '2024-03-19', 0, 'svinina-cherkizovo-svinina-cherkizovo', 0),
 (160, 'Бананы', 1, 1, 1, 21, 1, 1, 1, 'ST40020AB', '/public/img/items/1.jpg', '', 3795, 4400, 3, '', 0, 1, 1, 1, 'Форель слабосоленая WISH FISH филе-кусок станет удачным вариантом для повседневного обеда, ужина и сервировки праздничного стола. Ее можно подавать в виде нарезки, использовать для приготовления салатов и холодных закусок. Слабосоленая форель отличается нежной текстурой и отменными дегустационными качествами. Она быстро утоляет голод, заряжает энергией и является источником ценных омега-кислот, витаминов и минеральных элементов.', '', '', '', '', '', '', 0, '12%', '2024-03-19', 0, 'banany', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `catalog_1c`
+--
+
+CREATE TABLE `catalog_1c` (
+  `id` int(11) NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `artikul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `price` decimal(10,2) DEFAULT NULL,
+  `manufacturer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` int(11) DEFAULT '0',
+  `category_id` int(11) DEFAULT NULL,
+  `warehouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_added` datetime DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `catalog_1c`
+--
+
+INSERT INTO `catalog_1c` (`id`, `product_id`, `artikul`, `name`, `description`, `price`, `manufacturer`, `quantity`, `category_id`, `warehouse`, `date_added`, `updated_at`) VALUES
+(1, '8f3b839b-abbe-11ee-820d-5ce93107e4c8', '76081', 'Карбонад в/у охл. вес Губкинский мяс.ком. (2,5)', 'Карбонад в/у охл. вес Губкинский мяс.ком. (2,5)', '357.00', 'РОССИЯ', 40, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(2, '8f3b839c-abbe-11ee-820d-5ce93107e4c8', '76082', 'Котлетное мясо в/у охл. вес Губкинский мяс.ком. (3,5)', 'Котлетное мясо в/у охл. вес Губкинский мяс.ком. (3,5)', '239.70', 'РОССИЯ', 23, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(3, '8f3b839d-abbe-11ee-820d-5ce93107e4c8', '76083', 'Ребра в/у охл. вес Губкинский мяс.ком. (1)', 'Ребра в/у охл. вес Губкинский мяс.ком. (1)', '336.60', 'РОССИЯ', 14, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(4, 'd0e94d4d-abbe-11ee-820d-5ce93107e4c8', '83153', 'Лопатка в/у охл. вес Губкинский мяс.ком. (2,5)', 'Лопатка в/у охл. вес Губкинский мяс.ком. (2,5)', '290.70', 'РОССИЯ', 17, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(5, 'dbb26b83-abbe-11ee-820d-5ce93107e4c8', '84330', 'Колбаса Полезная (докторская) в/с вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Полезная (докторская) в/с вес. (ТМ Ремесленные колбасы) (0,5)', '472.04', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(6, 'dbb26b84-abbe-11ee-820d-5ce93107e4c8', '84331', 'Колбаса Ленка пенка в/с вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Ленка пенка в/с вес. (ТМ Ремесленные колбасы) (0,5)', '472.04', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(7, 'dbb26b85-abbe-11ee-820d-5ce93107e4c8', '84332', 'Сосиски Олька полька ( детские) вес. (ТМ Ремесленные колбасы) (0,5)', 'Сосиски Олька полька ( детские) вес. (ТМ Ремесленные колбасы) (0,5)', '390.56', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(8, 'dbb26b86-abbe-11ee-820d-5ce93107e4c8', '84333', 'Сосиски сливочные (свинина) вес. (ТМ Ремесленные колбасы) (0,5)', 'Сосиски сливочные (свинина) вес. (ТМ Ремесленные колбасы) (0,5)', '390.57', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(9, 'dbb26b87-abbe-11ee-820d-5ce93107e4c8', '84334', 'Сардельки из говядины (говядина) вес. (ТМ Ремесленные колбасы) (0,5)', 'Сардельки из говядины (говядина) вес. (ТМ Ремесленные колбасы) (0,5)', '397.96', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(10, 'dbb26b88-abbe-11ee-820d-5ce93107e4c8', '84335', 'Сардельки Штутгартские (свинина) вес. (ТМ Ремесленные колбасы) (0,5)', 'Сардельки Штутгартские (свинина) вес. (ТМ Ремесленные колбасы) (0,5)', '390.56', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(11, 'dbb26b8a-abbe-11ee-820d-5ce93107e4c8', '84337', 'Ветчина Миланская  вес. (ТМ Ремесленные колбасы) (0,5)', 'Ветчина Миланская  вес. (ТМ Ремесленные колбасы) (0,5)', '642.40', 'РОССИЯ', 3, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(12, 'dbb26b8b-abbe-11ee-820d-5ce93107e4c8', '84338', 'Колбаса Охотничья п/к в/с вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Охотничья п/к в/с вес. (ТМ Ремесленные колбасы) (0,5)', '849.81', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(13, 'dbb26b8c-abbe-11ee-820d-5ce93107e4c8', '84339', 'Колбаса Ремесленная п/к вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Ремесленная п/к вес. (ТМ Ремесленные колбасы) (0,5)', '664.63', 'РОССИЯ', 4, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(14, 'dbb26b8d-abbe-11ee-820d-5ce93107e4c8', '84340', 'Колбаса Свиная ручной работы п/к в/с вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Свиная ручной работы п/к в/с вес. (ТМ Ремесленные колбасы) (0,5)', '575.74', 'РОССИЯ', 5, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(15, 'dbb26b8f-abbe-11ee-820d-5ce93107e4c8', '84342', 'Колбаса Фермерская п/к вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Фермерская п/к вес. (ТМ Ремесленные колбасы) (0,5)', '538.70', 'РОССИЯ', 5, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(16, 'dbb26b90-abbe-11ee-820d-5ce93107e4c8', '84343', 'Сервелат Мускатный вес. (ТМ Ремесленные колбасы) (0,5)', 'Сервелат Мускатный вес. (ТМ Ремесленные колбасы) (0,5)', '627.59', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(17, 'dbb26b91-abbe-11ee-820d-5ce93107e4c8', '84344', 'Шея в/к вес. (ТМ Ремесленные колбасы) (0,5)', 'Шея в/к вес. (ТМ Ремесленные колбасы) (0,5)', '546.11', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(18, 'dbb26b92-abbe-11ee-820d-5ce93107e4c8', '84345', 'Полендвица вес. (ТМ Ремесленные колбасы) (0,5)', 'Полендвица вес. (ТМ Ремесленные колбасы) (0,5)', '627.59', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(19, 'eec0f322-abbe-11ee-820d-5ce93107e4c8', '86654', 'Колбаса Хуторская в/к  вес. (ТМ Ремесленные колбасы) (0,5)', 'Колбаса Хуторская в/к  вес. (ТМ Ремесленные колбасы) (0,5)', '583.15', 'РОССИЯ', 3, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(20, '2a744e44-abbf-11ee-820d-5ce93107e4c8', '93188', 'Напиток Половинка Микс 1 Клубника/Гуава среднегаз. 0,33л ж/б (20)', 'Напиток Половинка Микс 1 Клубника/Гуава среднегаз. 0,33л ж/б (20)', '88.00', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(21, '2a744e45-abbf-11ee-820d-5ce93107e4c8', '93189', 'Напиток Половинка Микс 2 Маракуйя/Лайм/Красный грейпфрут среднегаз. 0,33л ж/б (20)', 'Напиток Половинка Микс 2 Маракуйя/Лайм/Красный грейпфрут среднегаз. 0,33л ж/б (20)', '88.00', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52'),
+(22, '2a744e46-abbf-11ee-820d-5ce93107e4c8', '93190', 'Напиток Половинка Микс 3 Гуава/Манго/Ананас среднегаз. 0,33л ж/б (20)', 'Напиток Половинка Микс 3 Гуава/Манго/Ананас среднегаз. 0,33л ж/б (20)', '88.00', 'РОССИЯ', 0, NULL, NULL, '2024-09-19 10:31:52', '2024-09-19 07:31:52');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `catalog_1c_cats`
+--
+
+CREATE TABLE `catalog_1c_cats` (
+  `id` int(11) NOT NULL,
+  `category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `catalog_1c_cats`
+--
+
+INSERT INTO `catalog_1c_cats` (`id`, `category_id`, `name`) VALUES
+(1, '19456', 'Бакалея'),
+(2, '9', 'Молочка'),
+(3, '12', 'Хлебобулочные изделия'),
+(4, '13', 'Рыба'),
+(5, '14', 'Кондитерка'),
+(6, '1290', 'Колбаса'),
+(7, '1533', 'Заморозка'),
+(8, '1792', 'Овощи, фрукты (ИП)'),
+(9, '4396', 'Яйцо'),
+(10, '13601', 'Кулинария'),
+(11, '17040', 'Детское питание'),
+(12, '20468', 'Химия'),
+(13, '26195', 'Упаковочный материал'),
+(14, '30480', 'Вода'),
+(15, '3080', 'Соки'),
+(16, '39486', 'Сухофрукты'),
+(17, '39505', 'Солье'),
+(18, '56558', 'Корма/Семена'),
+(19, '56577', 'Заморозка +многое'),
+(20, '71235', 'Химия - Колготки, носки'),
+(21, '85253', 'Упаковочный материал - на расх.');
 
 -- --------------------------------------------------------
 
@@ -713,7 +801,9 @@ CREATE TABLE `lc_users` (
 INSERT INTO `lc_users` (`id`, `fio`, `adress`, `phone`, `email`, `pass`, `ordering`) VALUES
 (1, 'Иванов Константин Петрович', '', '+7 (950) 678 90 00', 'user@mail.ru', '123', 1),
 (7, 'Alex', '', '79507777773', 'mosarbopro@yandex.ru', '123', 0),
-(8, 'Вадя', 'г. Курск, Гайдара 3, 2 эт, оф.6', '72222222222', 'cooller.asus@gmail.com', '123', 0);
+(8, 'Вадя', 'г. Курск, Гайдара 3, 2 эт, оф.6', '72222222222', 'cooller.asus@gmail.com', '123', 0),
+(12, 'test', 'test adr', '+7 (444) 444 44 44', 'test@test.ru', '356678', 0),
+(13, '', '', '', '', '237033', 0);
 
 -- --------------------------------------------------------
 
@@ -832,7 +922,25 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `status_id`, `type_id`, `adress`, `summ`, `ves`, `phone`, `comment`, `details`, `time_order`, `date_order`, `ordering`) VALUES
 (101, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '16:53:11', '2024-07-19', 0),
-(102, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '14:21:11', '2024-07-23', 0);
+(102, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '14:21:11', '2024-07-23', 0),
+(104, 9, 1, 1, '', '12645', 902.5, '+7 (222) 222 22 22', 'вапвап', '\r\n			<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/1.jpg\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">\r\n				${gname}\r\n			</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">3320 руб</span>\r\n				<span class=\"item-amount\">${amount} шт</span>\r\n			</div>\r\n			</div>\r\n			<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">\r\n				${gname}\r\n			</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">9325 руб</span>\r\n				<span class=\"item-amount\">${amount} шт</span>\r\n			</div>\r\n			</div>\r\n			<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">\r\n				${gname}\r\n			</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">${amount} шт</span>\r\n			</div>\r\n			</div>', '16:27:21', '2024-09-19', 0),
+(107, 12, 1, 1, 'test adr', '10015', 501.513, '+7 (444) 444 44 44', 'test com', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div>', '16:40:23', '2024-09-19', 0),
+(108, 12, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\"> шт</span>\r\n			</div>\r\n		</div>', '16:41:34', '2024-09-19', 0),
+(109, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:43:16', '2024-09-19', 0),
+(110, 12, 1, 2, '234234', '10015', 501.513, '+7 (444) 444 44 44', '234', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:48:48', '2024-09-19', 0),
+(111, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:51:01', '2024-09-19', 0),
+(112, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:51:06', '2024-09-19', 0),
+(113, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:51:34', '2024-09-19', 0),
+(114, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:51:47', '2024-09-19', 0),
+(115, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:51:57', '2024-09-19', 0),
+(116, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:53:13', '2024-09-19', 0),
+(117, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:54:05', '2024-09-19', 0),
+(118, 13, 1, 0, '', '10015', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:57:08', '2024-09-19', 0),
+(119, 13, 1, 0, '', '31260', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:59:15', '2024-09-19', 0),
+(120, 13, 1, 0, '', '31260', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">4 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '16:59:20', '2024-09-19', 0),
+(121, 13, 1, 0, '', '36875', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">5 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:02:42', '2024-09-19', 0),
+(122, 13, 1, 0, '', '36875', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">5 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:04:49', '2024-09-19', 0),
+(123, 13, 1, 0, '', '36875', 501.513, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Свинина свежая 3 сорт Свинина черкизово</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">5615 руб</span>\r\n				<span class=\"item-amount\">5 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:12:28', '2024-09-19', 0);
 
 -- --------------------------------------------------------
 
@@ -943,7 +1051,59 @@ INSERT INTO `pages` (`id`, `meta_desc`, `meta_key`, `meta_title`, `page_title`, 
 (86, 'Рецепты', 'Рецепты', 'Рецепты', 'Рецепты', '', '', 'recipe', 27),
 (64, 'Каталог', 'Каталог', 'Каталог', 'Каталог', '<p>Широкий ассортимент</p>\r\n', '', 'catalog', 5),
 (65, 'О компании', 'О компании', 'О компании', 'Супермаркет Леон', '<h3>Супермаркет «Леон» создан для людей, ценящих свое время и деньги, желающих покупать свежие <br>\r\n            и качественные продукты по низкой цене рядом с домом.\r\n\r\n        </h3>\r\n<p>&laquo;Леон&raquo;, заботясь о своих покупателях, постоянно обновляет ассортимент, размещает товар таким образом, чтобы посетители тратили минимум времени на его поиск.<br />\r\n<br />\r\nКроме того, супермаркет проводит гибкую ценовую политику и предоставляет дополнительные скидки каждую неделю.<br />\r\n<br />\r\nНа нашем интернет-магазине продуктов и товаров для дома &laquo;Леон&raquo; Вы сможете быстро и легко найти необходимые продукты по низким ценам. При необходимости доставим выбранные Вами покупки домой в удобное для Вас время. Совершать покупки теперь легко!</p>\r\n', '', 'about', 6),
-(87, 'Личный кабинет', 'Личный кабинет', 'Личный кабинет', 'Личный кабинет', '', '', 'lc', 28);
+(87, 'Личный кабинет', 'Личный кабинет', 'Личный кабинет', 'Личный кабинет', '', '', 'lc', 28),
+(88, 'paymentsucceeded', 'paymentsucceeded', 'paymentsucceeded', 'paymentsucceeded', '', '', 'paymentsucceeded', 29);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `payment_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `currency` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT 'RUB',
+  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `payments`
+--
+
+INSERT INTO `payments` (`id`, `order_id`, `payment_id`, `status`, `amount`, `currency`, `payment_method`, `created_at`, `updated_at`) VALUES
+(1, 118, '2e7e4174-000f-5000-9000-129f33740fff', 'pending', '10015.00', 'RUB', NULL, '2024-09-19 16:57:08', '2024-09-19 13:57:08'),
+(2, 120, '2e7e41f8-000f-5000-8000-1578d1e5b987', 'pending', '31260.00', 'RUB', NULL, '2024-09-19 16:59:21', '2024-09-19 13:59:21'),
+(3, 121, '2e7e42c2-000f-5000-8000-13f202af172c', 'pending', '36875.00', 'RUB', NULL, '2024-09-19 17:02:43', '2024-09-19 14:02:43'),
+(4, 122, '2e7e4341-000f-5000-9000-1c673e880f72', 'pending', '36875.00', 'RUB', NULL, '2024-09-19 17:04:49', '2024-09-19 14:04:49'),
+(5, 123, '2e7e450c-000f-5000-9000-1764dc675385', 'pending', '36875.00', 'RUB', NULL, '2024-09-19 17:12:28', '2024-09-19 14:12:28');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payments_status`
+--
+
+CREATE TABLE `payments_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `payments_status`
+--
+
+INSERT INTO `payments_status` (`id`, `name`, `status`) VALUES
+(1, 'Оплачен', 'succeeded'),
+(2, 'Отменен', 'canceled'),
+(3, 'В процессе', 'pending'),
+(4, 'Ожидают списания', 'waiting_for_capture');
 
 -- --------------------------------------------------------
 
@@ -1272,6 +1432,18 @@ ALTER TABLE `catalog`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `catalog_1c`
+--
+ALTER TABLE `catalog_1c`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `catalog_1c_cats`
+--
+ALTER TABLE `catalog_1c_cats`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `catalog_brands`
 --
 ALTER TABLE `catalog_brands`
@@ -1428,6 +1600,18 @@ ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `payments_status`
+--
+ALTER TABLE `payments_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `recipes`
 --
 ALTER TABLE `recipes`
@@ -1540,6 +1724,18 @@ ALTER TABLE `catalog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
+-- AUTO_INCREMENT для таблицы `catalog_1c`
+--
+ALTER TABLE `catalog_1c`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT для таблицы `catalog_1c_cats`
+--
+ALTER TABLE `catalog_1c_cats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT для таблицы `catalog_brands`
 --
 ALTER TABLE `catalog_brands`
@@ -1633,7 +1829,7 @@ ALTER TABLE `lc_cards_status`
 -- AUTO_INCREMENT для таблицы `lc_users`
 --
 ALTER TABLE `lc_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `mailing`
@@ -1663,7 +1859,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT для таблицы `orders_status`
@@ -1693,7 +1889,19 @@ ALTER TABLE `otzyvy_slider`
 -- AUTO_INCREMENT для таблицы `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+
+--
+-- AUTO_INCREMENT для таблицы `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `payments_status`
+--
+ALTER TABLE `payments_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `recipes`

@@ -31,6 +31,11 @@
 		global $db;
 		$stmt = $db->prepare($sql);
 		$stmt->execute($values);
+
+		// Если запрос был на вставку, возвращаем lastInsertId
+        if (preg_match('/^INSERT/i', trim($sql))) {
+            return $db->lastInsertId();
+        }
 		return $stmt->fetch(PDO::FETCH_LAZY);
 		$stmt = null;
 	}
