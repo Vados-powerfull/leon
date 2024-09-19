@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 22 2024 г., 15:56
+-- Время создания: Сен 19 2024 г., 11:39
 -- Версия сервера: 5.6.51
 -- Версия PHP: 7.3.33
 
@@ -831,7 +831,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `status_id`, `type_id`, `adress`, `summ`, `ves`, `phone`, `comment`, `details`, `time_order`, `date_order`, `ordering`) VALUES
-(101, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '16:53:11', '2024-07-19', 0);
+(101, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '16:53:11', '2024-07-19', 0),
+(102, 8, 1, 1, '', '4400 руб', 0.5, '+7 (222) 222 22 22', '', '\n			<div class=\"order-item\">\n			<div class=\"order-img__container\">\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\n			</div>\n			<p class=\"item-name\">\n				Говядина свежая 1 сорт Говядина свежая\n			</p>\n			<div class=\"item-total\">\n				<span class=\"item-price\">4400 руб</span>\n				<span class=\"item-amount\">1 шт</span>\n			</div>\n			</div>\n	  		', '14:21:11', '2024-07-23', 0);
 
 -- --------------------------------------------------------
 
@@ -1662,7 +1663,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT для таблицы `orders_status`
