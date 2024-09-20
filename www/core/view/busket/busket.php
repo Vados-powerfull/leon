@@ -1,5 +1,14 @@
 
 <?
+if (isset($_GET["order"]) && is_numeric($_GET["order"]))
+{
+    $order_info = mqo("SELECT payment_status_id FROM orders WHERE id='".$_GET["order"]."'");
+    $payment_status_info = mqo("SELECT * FROM payments_status WHERE id='".$order_info["payment_status_id"]."'");
+
+    echo '<script>alert("Ваш заказ '.mb_strtolower($payment_status_info["name"]).'");</script>';
+}
+
+
 function getAmountFromCookie($productId) {
     // Проверяем, есть ли кука с количеством
     if (isset($_COOKIE['cart_amount'])) {

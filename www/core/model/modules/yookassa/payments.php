@@ -1,5 +1,7 @@
 <?
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /*CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,                 -- ID заказа
@@ -27,7 +29,7 @@ function createPayment($order_id, $amount) {
         ],
         'confirmation' => [
             'type' => 'redirect',
-            'return_url' => 'http://leon.loc/paymentsucceeded', // URL возврата после оплаты
+            'return_url' => 'https://leon.zrtest.ru/busket?order='.$order_id, // URL возврата после оплаты
         ],
         'capture' => true, // Автоматическое подтверждение платежа
         'description' => 'Оплата заказа № ' . $order_id,
@@ -77,44 +79,85 @@ function createPayment($order_id, $amount) {
 }
 
 
+   /*
+    echo '<pre>';
+    print_r($event_json);  // Выводим все данные вебхука для проверки
+    echo '</pre>';
+*/
+
 function handleWebhook() {
     global $db;
 
+    // Чтение данных, полученных через вебхук
     $input = @file_get_contents("php://input");
     $event_json = json_decode($input, true);
 
-    if (isset($event_json['event'])) {
-        $payment_id = $event_json['object']['id'];
-        $status = $event_json['object']['status'];
-        $payment_method = $event_json['object']['payment_method']['type'];
 
-        // Обновляем данные о платеже в базе данных
-        mqo("UPDATE payments SET status = ?, payment_method = ? WHERE payment_id = ?", [
-            $status,
-            $payment_method,
-            $payment_id
-        ]);
 
-        // Извлекаем идентификатор заказа по payment_id
-        $order_id = mqo("SELECT order_id FROM payments WHERE payment_id = ?", [$payment_id])['order_id'];
+    // Записываем данные вебхука в лог-файл для проверки
+    file_put_contents('webhook_log.txt', date("Y-m-d H:i:s") . " - Webhook Data: " . print_r($event_json, true) . "\n", FILE_APPEND);
 
-        // Обновляем статус заказа в зависимости от статуса платежа
-        switch ($status) {
-            case 'pending':
-                mqo("UPDATE orders SET status = 'pending' WHERE id = ?", [$order_id]);
-                break;
-            case 'waiting_for_capture':
-                mqo("UPDATE orders SET status = 'waiting_for_capture' WHERE id = ?", [$order_id]);
-                break;
-            case 'succeeded':
-                mqo("UPDATE orders SET status = 'succeeded' WHERE id = ?", [$order_id]);
-                break;
-            case 'canceled':
-                mqo("UPDATE orders SET status = 'canceled' WHERE id = ?", [$order_id]);
-                break;
+    // Проверяем наличие объекта уведомления и объекта платежа в массиве
+    if (isset($event_json['event']) && isset($event_json['object'])) {
+        $event_type = $event_json['event'];
+        $payment = $event_json['object'];  // Извлекаем данные о платеже из 'object'
+
+        // Проверка, что это уведомление о платеже
+        if ($event_type == 'payment.succeeded' || $event_type == 'payment.canceled' || $event_type == 'payment.waiting_for_capture') {
+            $payment_id = $payment['id'];
+            $status = $payment['status'];
+            $amount = isset($payment['amount']['value']) ? $payment['amount']['value'] : 0;
+            $payment_method = isset($payment['payment_method']['type']) ? $payment['payment_method']['type'] : 'unknown';
+
+            // Логирование статуса для отладки
+            file_put_contents('webhook_log.txt', date("Y-m-d H:i:s") . " - Статус: $status, Сумма: $amount\n", FILE_APPEND);
+
+            // Обновляем данные о платеже в базе данных
+            mqo("UPDATE payments SET status = ?, payment_method = ?, amount = ? WHERE payment_id = ?", [
+                $status,
+                $payment_method,
+                $amount,
+                $payment_id
+            ]);
+
+            // Получаем статус из таблицы payments_status
+            $status_info = mqo("SELECT id FROM payments_status WHERE status = ?", [$status]);
+
+            // Извлекаем идентификатор заказа по payment_id
+            $order_info = mqo("SELECT order_id FROM payments WHERE payment_id = ?", [$payment_id]);
+
+            // Обновляем данные о заказе в таблице orders
+            mqo("UPDATE orders SET payment_status_id = ? WHERE id = ?", [
+                $status_info["id"],
+                $order_info["order_id"]
+            ]);
+
+            // Обрабатываем статусы платежа
+            switch ($status) {
+                case 'pending':
+                    file_put_contents('webhook_log.txt', "Ваш платеж ожидает подтверждения...\n", FILE_APPEND);
+                    break;
+                case 'waiting_for_capture':
+                    file_put_contents('webhook_log.txt', "Ваш платеж в обработке...\n", FILE_APPEND);
+                    break;
+                case 'succeeded':
+                    file_put_contents('webhook_log.txt', "Ваша оплата успешно прошла!\n", FILE_APPEND);
+                    echo 'все заеись!';
+                    break;
+                case 'canceled':
+                    file_put_contents('webhook_log.txt', "Ваша оплата не прошла!\n", FILE_APPEND);
+                    break;
+            }
+
+            // Отправляем ответ ЮKassa, что вебхук был успешно обработан
+            http_response_code(200);
+        } else {
+            // Если пришло другое событие, которое мы не обрабатываем
+            file_put_contents('webhook_log.txt', date("Y-m-d H:i:s") . " - Неизвестное событие: $event_type\n", FILE_APPEND);
         }
+    } else {
+        // Если объект платежа не найден, выводим сообщение в лог
+        file_put_contents('webhook_log.txt', date("Y-m-d H:i:s") . " - Некорректный вебхук или недостаточно данных\n", FILE_APPEND);
+        http_response_code(400);  // Сообщаем об ошибке, если вебхук не содержит нужные данные
     }
 }
-
-// Вызов функции для обработки вебхуков
-handleWebhook();
