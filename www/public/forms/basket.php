@@ -3,6 +3,11 @@
     include ('../../core/model/common.php');
     include ('../../core/model/modules/yookassa/payments.php');
 
+	if (empty($_POST['cart_email']) || empty($_POST['cart_dost']) || empty($_POST['cart_pay'])) {
+		// echo '<script>$("#loader").remove(); alert("Пожалуйста, заполните все обязательные поля");</script>';
+		exit;
+	}
+
 function generatePassword($length = 6) {
     // Набор символов: цифры и буквы
     $characters = '0123456789';
@@ -19,7 +24,7 @@ function generatePassword($length = 6) {
 
 
 	
-    $text = $_POST['sub'].PHP_EOL;
+    $text = isset($_POST['sub']) ? $_POST['sub'].PHP_EOL : '';
     if(isset($_POST['cart_fio'])) $text.="ФИО: ".$_POST['cart_fio'].PHP_EOL;
 	if(isset($_POST['cart_phone'])) $text.="Телефон: ".$_POST['cart_phone'].PHP_EOL;
 	if(isset($_POST['basket_adress'])) $text.="Адрес: ".$_POST['basket_adress'].PHP_EOL;
@@ -78,14 +83,17 @@ function generatePassword($length = 6) {
 
 
 	
-	if ($_POST['cart_pay'] == "online") {
-		createPayment($lastId, $total_price);
-	}
-	else{
-		$cnf = mqo("SELECT * FROM adm_m_feedback WHERE id = 1");
-		$header = 'Content-type: text/plain; charset="utf-8 \r\n"'."From: ".$cnf["send_from"]." \r\n";
-		$r = mail($cnf['send_to'], $cnf['mess_title'], $text, $header);
+if ($_POST['cart_pay'] == "online") {
+    createPayment($lastId, $total_price);
+} else {
+    $cnf = mqo("SELECT * FROM adm_m_feedback WHERE id = 1");
+    $header = 'Content-type: text/plain; charset="utf-8 \r\n"'."From: ".$cnf["send_from"]." \r\n";
+    $r = mail($cnf['send_to'], $cnf['mess_title'], $text, $header);
 
-		if ($r) echo '<script>$("#loader").remove(); alert("Заказ успешно отправлен! Мы свяжемся с Вами в ближайшее время");</script>';
-		else echo '<script>$("#loader").remove(); alert("'.$cnf['mess_send'].'");</script>';
-	}
+    if ($r) {
+        echo '<script>$("#loader").remove(); alert("Заказ успешно отправлен! Мы свяжемся с Вами в ближайшее время");</script>';
+    } else {
+        echo '<script>$("#loader").remove(); alert("'.$cnf['mess_send'].'");</script>';
+    }
+}
+ 

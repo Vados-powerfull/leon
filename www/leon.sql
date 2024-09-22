@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 20 2024 г., 17:55
--- Версия сервера: 5.6.47
--- Версия PHP: 7.3.17
+-- Время создания: Сен 22 2024 г., 09:42
+-- Версия сервера: 5.6.51
+-- Версия PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -804,7 +804,10 @@ INSERT INTO `lc_users` (`id`, `fio`, `adress`, `phone`, `email`, `pass`, `orderi
 (14, 'Александр Александрович Халин', 'Пр-т Хрущева, дом 29, кв. 50', '+7 (950) 877 77 73', 'halin_alex@list.ru', '004176', 0),
 (15, 'Александр Александрович Халин', 'Пр-т Хрущева, дом 29, кв. 50', '+7 (950) 877 77 73', 'halin_alex@liist.ru', '292001', 0),
 (16, 'тест тестов', 'Пр-т Хрущева, дом 29, кв. 50', '+7 (910) 321 23 23', 'piva@net.ru', '549193', 0),
-(17, 'тест Тест', '', '+7 (111) 111 11 11', '111@email.ru', '171035', 0);
+(17, 'тест Тест', '', '+7 (111) 111 11 11', '111@email.ru', '171035', 0),
+(18, '', '', '+7 (999) 999 99 99', 'sss@sss.ru', '562790', 0),
+(19, '', '', '', 'sss@sss..ru', '846623', 0),
+(20, '', '', '', 'mailing@mailing.ru', '221356', 0);
 
 -- --------------------------------------------------------
 
@@ -825,7 +828,8 @@ CREATE TABLE `mailing` (
 INSERT INTO `mailing` (`id`, `email`, `ordering`) VALUES
 (30, 'a@a.ru', 0),
 (31, 'aa@aa.ru', 0),
-(32, 'ba@aa.ru', 0);
+(32, 'ba@aa.ru', 0),
+(33, 'sss@ssss.ru', 0);
 
 -- --------------------------------------------------------
 
@@ -903,7 +907,7 @@ CREATE TABLE `news` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'Пользователь',
+  `user_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL COMMENT 'Статус',
   `type_id` int(11) NOT NULL COMMENT 'Тип заказа',
   `payment_status_id` int(11) NOT NULL COMMENT 'Статус оплаты заказа',
@@ -946,7 +950,21 @@ INSERT INTO `orders` (`id`, `user_id`, `status_id`, `type_id`, `payment_status_i
 (137, 14, 1, 0, 1, 'Пр-т Хрущева, дом 29, кв. 50', '4400', 500, '+7 (950) 877 77 73', 'корзина', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '17:15:19', '2024-09-20', 0),
 (138, 14, 1, 0, 1, 'Пр-т Хрущева, дом 29, кв. 50', '4400', 500, '+7 (950) 877 77 73', 'корзина', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '17:20:21', '2024-09-20', 0),
 (139, 17, 1, 0, 1, '', '8800', 500, '+7 (111) 111 11 11', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:23:51', '2024-09-20', 0),
-(140, 14, 1, 0, 1, 'Пр-т Хрущева, дом 29, кв. 50', '8800', 500, '+7 (950) 877 77 73', 'корзина', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:49:41', '2024-09-20', 0);
+(140, 14, 1, 0, 1, 'Пр-т Хрущева, дом 29, кв. 50', '8800', 500, '+7 (950) 877 77 73', 'корзина', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">2 шт</span>\r\n			</div>\r\n		</div>', '17:49:41', '2024-09-20', 0),
+(141, 13, 1, 0, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:08:55', '2024-09-22', 0),
+(142, 18, 1, 0, 0, '', '4400', 500, '+7 (999) 999 99 99', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:09:57', '2024-09-22', 0),
+(143, 13, 1, 0, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:10:09', '2024-09-22', 0),
+(144, 19, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:16:03', '2024-09-22', 0),
+(145, 19, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:16:03', '2024-09-22', 0),
+(146, 19, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:16:12', '2024-09-22', 0),
+(147, 19, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:16:12', '2024-09-22', 0),
+(148, 19, 1, 1, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:17:09', '2024-09-22', 0),
+(149, 19, 1, 1, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:17:09', '2024-09-22', 0),
+(150, 20, 1, 1, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:29:26', '2024-09-22', 0),
+(151, 20, 1, 1, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:29:26', '2024-09-22', 0),
+(152, 18, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:33:03', '2024-09-22', 0),
+(153, 18, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:33:14', '2024-09-22', 0),
+(154, 18, 1, 2, 0, '', '4400', 500, '', '', '<div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"/public/img/items/3.png\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\">Говядина свежая 1 сорт Говядина свежая</p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\">4400 руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div><div class=\"order-item\">\r\n			<div class=\"order-img__container\">\r\n				<img class=\"item-img\" src=\"\" alt=\"\" />\r\n			</div>\r\n			<p class=\"item-name\"></p>\r\n			<div class=\"item-total\">\r\n				<span class=\"item-price\"> руб</span>\r\n				<span class=\"item-amount\">1 шт</span>\r\n			</div>\r\n		</div>', '09:34:53', '2024-09-22', 0);
 
 -- --------------------------------------------------------
 
@@ -1294,7 +1312,8 @@ INSERT INTO `s_modes` (`id`, `name`, `action`, `dbtable`, `module_id`, `showcols
 (84, 'Бонусные карты', 'cards', 'lc_cards', 52, 'numb', 'active', '', '', '', 49),
 (85, 'Доставка и оплата', 'delivery', 'delivery', 53, 'name', '', '', '', '', 50),
 (86, 'mailing', 'mailing', 'mailing', 54, 'email', '', '', '', '', 51),
-(87, 'Заказы', 'item', 'orders', 55, 'id,details', '', '', '', '', 1);
+(87, 'Заказы', 'item', 'orders', 55, 'details', 'user_id', '', '', '', 1),
+(90, 'Рассылка', 'item', 'mailing', 56, 'email', '', '', '', '', 52);
 
 -- --------------------------------------------------------
 
@@ -1318,17 +1337,18 @@ CREATE TABLE `s_modules` (
 --
 
 INSERT INTO `s_modules` (`id`, `name`, `action`, `icon`, `settings`, `settingsTable`, `sys_name`, `ordering`) VALUES
-(8, 'Страницы', 'pages', '<i class=\"fa fa-file-o fa-fw\" aria-hidden=\"true\"></i>', 0, '', '', 3),
-(10, 'Меню', 'menu', '<i class=\"fa fa-compass fa-fw\" aria-hidden=\"true\"></i>', 0, '', '', 5),
-(20, 'Обратная связь', 'callback', '<i class=\"fa fa-phone\" aria-hidden=\"true\"></i>', 1, 'adm_m_feedback', '', 6),
-(23, 'Каталог', 'catalog', '<i class=\"fa fa-th\" aria-hidden=\"true\"></i>', 0, '', '', 1),
-(29, 'Контакты', 'kontakty', '<i class=\"fa fa-address-card\" aria-hidden=\"true\"></i>', 1, 'contacts_settings', '', 4),
-(40, 'Банеры', 'banners', '<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>', 0, '', '', 2),
-(49, 'FAQ', 'faq', '<i class=\"fa fa-quora\" aria-hidden=\"true\"></i>', 0, '', '', 10),
-(50, 'Рецепты', 'recipe', '<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i>', 0, '', '', 11),
-(52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 12),
-(53, 'Способы оплаты', 'delivery', '<i class=\"fa fa-money\" aria-hidden=\"true\"></i>', 0, '', '', 13),
-(55, 'Заказы', 'zakazi', '<i class=\"fa fa-window-maximize\" aria-hidden=\"true\"></i>', 0, '', '', 15);
+(8, 'Страницы', 'pages', '<i class=\"fa fa-file-o fa-fw\" aria-hidden=\"true\"></i>', 0, '', '', 4),
+(10, 'Меню', 'menu', '<i class=\"fa fa-compass fa-fw\" aria-hidden=\"true\"></i>', 0, '', '', 6),
+(20, 'Обратная связь', 'callback', '<i class=\"fa fa-phone\" aria-hidden=\"true\"></i>', 1, 'adm_m_feedback', '', 7),
+(23, 'Каталог', 'catalog', '<i class=\"fa fa-th\" aria-hidden=\"true\"></i>', 0, '', '', 2),
+(29, 'Контакты', 'kontakty', '<i class=\"fa fa-address-card\" aria-hidden=\"true\"></i>', 1, 'contacts_settings', '', 5),
+(40, 'Банеры', 'banners', '<i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>', 0, '', '', 3),
+(49, 'FAQ', 'faq', '<i class=\"fa fa-quora\" aria-hidden=\"true\"></i>', 0, '', '', 8),
+(50, 'Рецепты', 'recipe', '<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i>', 0, '', '', 9),
+(52, 'Пользователи', 'users', '<i class=\"fa fa-address-book\" aria-hidden=\"true\"></i>', 0, '', '', 10),
+(53, 'Способы оплаты', 'delivery', '<i class=\"fa fa-money\" aria-hidden=\"true\"></i>', 0, '', '', 11),
+(55, 'Заказы', 'zakazi', '<i class=\"fa fa-window-maximize\" aria-hidden=\"true\"></i>', 0, '', '', 1),
+(56, 'Рассылка', 'rassylka', '<i class=\"fa fa-envelope-o\" aria-hidden=\"true\"></i>', 0, '', '', 12);
 
 -- --------------------------------------------------------
 
@@ -1852,13 +1872,13 @@ ALTER TABLE `lc_cards_status`
 -- AUTO_INCREMENT для таблицы `lc_users`
 --
 ALTER TABLE `lc_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `mailing`
 --
 ALTER TABLE `mailing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`
@@ -1882,7 +1902,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT для таблицы `orders_status`
@@ -1948,13 +1968,13 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT для таблицы `s_modes`
 --
 ALTER TABLE `s_modes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT для таблицы `s_modules`
 --
 ALTER TABLE `s_modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT для таблицы `uslugi`

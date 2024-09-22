@@ -344,6 +344,53 @@ $(document).ready(function () {
     	curl = $(this).attr('data-url');
     	window.location.replace(curl);
     })
+
+	$('#submitForm').click(function(e) { // ПРОВЕРКА ОБЯЗАТЕЛЬНЫХ ПОЛЕЙ В БАКСКЕТЕ
+		e.preventDefault();
+		
+		var email = $('#basket-email').val(); // мыло
+		var delivery = $('input[name="cart_dost"]:checked').val(); // способ доставки
+		var payment = $('input[name="cart_pay"]:checked').val(); // способ оплаты
+		
+		var isValid = true;
+		var errorMessage = '';
+	
+		if (!email) {
+			isValid = false;
+			errorMessage += 'Пожалуйста, введите email.\n';
+			$('#basket-email').addClass('error');
+		} else {
+			$('#basket-email').removeClass('error');
+		}
+	
+		if (!delivery) {
+			isValid = false;
+			errorMessage += 'Пожалуйста, выберите способ доставки.\n';
+			$('.delivery-methods').addClass('error');
+		} else {
+			$('.delivery-methods').removeClass('error');
+		}
+	
+		if (!payment) {
+			isValid = false;
+			errorMessage += 'Пожалуйста, выберите способ оплаты.\n';
+			$('.payment-methods').addClass('error');
+		} else {
+			$('.payment-methods').removeClass('error');
+		}
+	
+		if (isValid) {
+			// Если все поля заполнены, отправляем форму
+			var _self = $('#form_basket');
+			$.post('/public/forms/basket.php', _self.serializeArray(), function(data){
+				$("body").append(data);
+			});
+			
+		} else {
+			// Если есть незаполненные поля, показываем сообщение об ошибке
+			alert(errorMessage);
+		}
+	});
 });
 
 
@@ -482,23 +529,6 @@ function updateTotalPrice() {
 updateTotalPrice();
 
 
-  // Обработчик формы нажатия на кнопки + и -
-		// Обработка нажатия на кнопку "-"
-	/*$('.choose-amount button:contains("-")').click(function(){
-		var counter = $(this).find('.current-amout');
-		var count = parseInt(counter.text()) - 1;
-		count = count < 0 ? 0 : count; // Предотвратить отрицательное значение
-		counter.text(count);
-	 });
-	  
-	  // Обработка нажатия на кнопку "+"
-	 $('.choose-amount button:contains("+")').click(function(){
-		var counter = $(this).find('.current-amout');
-		var count = parseInt(counter.text()) + 1;
-		counter.text(count);
-	 });*/
-
-
 
 
 
@@ -545,67 +575,6 @@ $(".make-order").click( function(){
 	})
 
 });
-
-// Баскет отправляет форму вне формы
-	$('#submitForm').click(function() {
-		_self = $('#form_basket');
-		$.post('/public/forms/basket.php', _self.serializeArray(), function(data){
-				$("body").append(data);
-				//_self.trigger('reset');
-				//my_target('basket');
-		});
-	})
-
-
-
-
-// $(".make-order-m").click( function(){
-// 	var goods = '';
-// 	$(".order-content-wrapper-m").find(".order-item").each(function(){
-// 		gname = $(this).find(".item-name").text();
-// 		price = $(this).find(".item-price").text();
-// 		amount = $(this).find(".current-amout").text();
-// 		itemimg = $(this).find(".item-img").attr("src");
-
-// 		goods += `
-// 			<div class="order-item">
-// 				<div class="order-img__container">
-// 					<img class="item-img" src="${itemimg}" alt="" />
-// 				</div>
-// 				<p class="item-name">
-// 					${gname}
-// 				</p>
-// 				<div class="item-total">
-// 					<span class="item-price">${price}</span>
-// 					<span class="item-amount">${amount} шт</span>
-// 				</div>
-// 			</div>
-// 	  		`;
-	
-		
-
-
-		
-// 	})
-
-// 	phone = $("#basket-tel").val();
-// 	adress = $("#basket-address").val();
-// 	comment = $("#basket-connet").val();
-// 	ves = $(".order-ves").text();
-// 	summ = $(".total-amount-m").text();
-// 	gtype = $(".order-type").val();
-
-// 	if ($("#delivery").is(":checked")) gtype = '2'; else gtype = '1';
-
-
-
-// 	$.post('/public/forms/order.php', {goods:goods, phone:phone, adress:adress, comment:comment, ves:ves, summ:summ, gtype:gtype}, function(data){
-// 		$("body").append(data);
-// 		_self.trigger('reset');
-
-// 	})
-
-// });
 
 
 
