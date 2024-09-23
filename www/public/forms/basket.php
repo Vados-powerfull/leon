@@ -9,7 +9,7 @@
 	}
 
 function generatePassword($length = 6) {
-    // Набор символов: цифры и буквы
+    // Набор символов: цифры
     $characters = '0123456789';
     $charactersLength = strlen($characters);
     $password = '';
